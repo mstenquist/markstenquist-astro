@@ -13,37 +13,147 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<div class="hero-content">
+					<div class="profile-image">
+						<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
+					</div>
+					<div class="hero-text">
+						<h1>👋 Hi, I'm Mark</h1>
+						<p class="lead">
+							A frontend engineer with 15+ years crafting innovative web solutions.
+						</p>
+						<p>
+							I'm actively exploring the new AI frontier, combining generative AI with web development to create smarter, faster, and more responsive digital experiences.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="journey">
+				<h2>🚀 My Journey</h2>
+				<p>
+					I started my career by joining the founding team of a college startup out of UMass Amherst started by my older brother. We grew the company, eventually raising millions from prominent Boston VCs. This early experience taught me how to build products while navigating the exciting chaos of startup life.
+				</p>
+				<p>
+					Later, I joined a Google Ventures backed startup (think Etsy for high-end furniture and jewelry) where I honed my skills creating beautiful, functional digital experiences that connected artisans with customers.
+				</p>
+				<p>
+					When that chapter closed in 2015, I ventured out as an independent consultant, primarily serving Boston-based startups. This period was incredibly rewarding—meeting new people, expanding my network, and solving diverse technical challenges across different industries.
+				</p>
+				<p>
+					During the COVID lockdown, these experiences and connections led me to co-found VisualBoston, where I lead the engineering side of our digital agency.
+				</p>
+			</section>
+
+			<section class="expertise">
+				<h2>💻 Technical Foundation</h2>
+				<p>
+					My expertise lies in frontend engineering (HTML, CSS, JavaScript), developed through multiple roles at venture-backed startups. I'm passionate about creating digital products that combine thoughtful design with high-quality engineering.
+				</p>
+				<p>
+					I'm obsessed with combining my deep technical experience developing user interfaces with generative AI to rapidly prototype and build new app ideas.
+				</p>
+			</section>
+
+			<section class="interests">
+				<h2>🌱 Beyond Technology</h2>
+				<p>
+					When I'm not building digital experiences, you'll find me working in the garden. I hold a Permaculture Design Certificate and would love to see a world that values transforming landscapes into thriving ecosystems that provide fresh food for family, friends, and neighbors.
+				</p>
+				<p>
+					I also play guitar to unwind and find creative inspiration offline.
+				</p>
+			</section>
+
+			<section class="contact">
+				<h2>🔗 Let's Connect!</h2>
+				<p>
+					Visit <a href="https://visualboston.com" target="_blank">visualboston.com</a> or reach out directly at <a href="mailto:mark@visualboston.com">mark@visualboston.com</a> to collaborate on your next digital project.
+				</p>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	section {
+		margin-bottom: 3rem;
+	}
+
+	.hero {
+		margin-bottom: 4rem;
+	}
+
+	.hero-content {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.profile-image {
+		flex-shrink: 0;
+	}
+
+	.profile-image img {
+		width: 250px;
+		height: 250px;
+		border-radius: 8px;
+		object-fit: cover;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.hero-text {
+		flex: 1;
+		padding-top: 2.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.hero-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.profile-image img {
+			width: 200px;
+			height: 200px;
+		}
+	}
+
+	h1 {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	h2 {
+		font-size: 1.8rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.lead {
+		font-size: 1.4rem;
+		font-weight: 500;
+		margin-bottom: 1rem;
+	}
+
+	p {
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+
+	a {
+		color: #0070f3;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>
