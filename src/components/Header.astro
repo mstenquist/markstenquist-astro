@@ -25,6 +25,7 @@ import { SITE_TITLE } from '../consts';
 		padding: 0 1em;
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		height: 64px;
 	}
 	h2 {
 		margin: 0;
@@ -39,12 +40,16 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		height: 100%;
 	}
 	nav a {
-		padding: 1em 0.5em;
+		padding: 0 0.5em;
 		color: var(--black);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
+		height: 100%;
+		display: flex;
+		align-items: center;
 	}
 	nav a.active {
 		text-decoration: none;
@@ -53,6 +58,8 @@ import { SITE_TITLE } from '../consts';
 	.social-links,
 	.social-links a {
 		display: flex;
+		height: 100%;
+		align-items: center;
 	}
 	@media (max-width: 720px) {
 		.social-links {
