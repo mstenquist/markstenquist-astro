@@ -82,6 +82,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		max-width: 800px;
 		margin: 0 auto;
 		padding: 2rem;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	section {
@@ -112,18 +114,61 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 	.hero-text {
 		flex: 1;
-		padding-top: 2.5rem;
 	}
 
 	@media (max-width: 768px) {
+		main {
+			padding: 1rem;
+		}
+
 		.hero-content {
 			flex-direction: column;
 			text-align: center;
+			gap: 1.5rem;
 		}
 
 		.profile-image img {
 			width: 200px;
 			height: 200px;
+		}
+
+		h1 {
+			font-size: 2rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		.lead {
+			font-size: 1.2rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		main {
+			padding: 0.75rem;
+		}
+
+		.profile-image img {
+			width: 180px;
+			height: 180px;
+		}
+
+		h1 {
+			font-size: 1.75rem;
+		}
+
+		h2 {
+			font-size: 1.3rem;
+		}
+
+		.lead {
+			font-size: 1.1rem;
+		}
+
+		p {
+			font-size: 0.95rem;
 		}
 	}
 
