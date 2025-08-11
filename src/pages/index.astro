@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/index.css';
+import '../styles/modern.css';
 ---
 
 <!doctype html>
@@ -15,59 +15,57 @@ import '../styles/index.css';
 		<Header />
 		<main>
 			<section class="hero">
-				<div class="hero-content">
-					<div class="profile-image">
-						<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
-					</div>
-					<div class="hero-text">
-						<h1>👋 Hi, I'm Mark</h1>
-						<p class="lead">
-							A frontend engineer with 15+ years crafting innovative web solutions.
-						</p>
-					</div>
+				<div class="profile-image">
+					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
+				</div>
+				<div class="hero-text">
+					<h1 class="text-display">Hi, I'm Mark</h1>
+					<p class="text-lead">
+						A frontend engineer with 15+ years crafting innovative web solutions.
+					</p>
 				</div>
 			</section>
 
-			<section class="journey">
-				<h2>A bit about me</h2>
-				<p>
-					I started my career by joining the founding team of a college startup out of UMass Amherst called CampusLIVE which was founded by my older brother. We grew the company, eventually raising millions from prominent Boston VCs including <a href="https://hcp.com" target="_blank">Highland Capital Partners</a> and <a href="https://www.crv.com/" target="_blank">CRV</a>. This early experience kickstarted my love of entreprenuership and taught me much of what I know now.
+			<section class="section-card animate-on-scroll">
+				<h2 class="text-section-heading">A bit about me</h2>
+				<p class="text-body">
+					I started my career by joining the founding team of a college startup out of UMass Amherst called CampusLIVE which was founded by my older brother. We grew the company, eventually raising millions from prominent Boston VCs including <a href="https://hcp.com" target="_blank" class="link-enhanced">Highland Capital Partners</a> and <a href="https://www.crv.com/" target="_blank" class="link-enhanced">CRV</a>. This early experience kickstarted my love of entrepreneurship and taught me much of what I know now.
 				</p>
-				<p>
-					Later, I joined a Google Ventures backed startup called <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others//" target="_blank">CustomMade</a> (think Etsy for high-end furniture and jewelry) where I honed my skills creating beautiful, functional digital experiences that connected artisans with customers.
+				<p class="text-body">
+					Later, I joined a Google Ventures backed startup called <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others//" target="_blank" class="link-enhanced">CustomMade</a> (think Etsy for high-end furniture and jewelry) where I honed my skills creating beautiful, functional digital experiences that connected artisans with customers.
 				</p>
-				<p>
+				<p class="text-body">
 					When that chapter closed in 2015, I ventured out as an independent consultant, primarily serving Boston-based startups. This period was incredibly rewarding—meeting new people, expanding my network, and solving diverse technical challenges across different industries.
 				</p>
-				<p>
+				<p class="text-body">
 					During the COVID lockdown, these experiences and connections led me to co-found VisualBoston, where I lead the engineering side of our digital agency.
 				</p>
 			</section>
 
-			<section class="expertise">
-				<h2>💻 Technical Foundation</h2>
-				<p>
+			<section class="section-card animate-on-scroll">
+				<h2 class="text-section-heading">Technical Foundation</h2>
+				<p class="text-body">
 					My expertise lies in frontend engineering (HTML, CSS, JavaScript), developed through multiple roles at venture-backed startups. I'm passionate about creating digital products that combine thoughtful design with high-quality engineering.
 				</p>
-				<p>
+				<p class="text-body">
 					I'm obsessed with combining my deep technical experience developing user interfaces with generative AI to rapidly prototype and build new app ideas.
 				</p>
 			</section>
 
-			<section class="interests">
-				<h2>🌱 Beyond Technology</h2>
-				<p>
+			<section class="section-card animate-on-scroll">
+				<h2 class="text-section-heading">Beyond Technology</h2>
+				<p class="text-body">
 					When I'm not building digital experiences, you'll find me working in the garden. I hold a Permaculture Design Certificate and would love to see a world that values transforming landscapes into thriving ecosystems that provide fresh food for family, friends, and neighbors.
 				</p>
-				<p>
+				<p class="text-body">
 					I also play guitar to unwind and find creative inspiration offline.
 				</p>
 			</section>
 
-			<section class="contact">
-				<h2>🔗 Let's Connect!</h2>
-				<p>
-					Visit <a href="https://visualboston.com" target="_blank">visualboston.com</a> or reach out directly at <a href="mailto:mark@visualboston.com">mark@visualboston.com</a> to collaborate on your next digital project.
+			<section class="section-card animate-on-scroll">
+				<h2 class="text-section-heading">Let's Connect!</h2>
+				<p class="text-body">
+					Visit <a href="https://visualboston.com" target="_blank" class="link-enhanced">visualboston.com</a> or reach out directly at <a href="mailto:mark@visualboston.com" class="link-enhanced">mark@visualboston.com</a> to collaborate on your next digital project.
 				</p>
 			</section>
 		</main>
