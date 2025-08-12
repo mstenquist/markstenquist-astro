@@ -101,6 +101,9 @@ import { SITE_TITLE } from '../consts';
 		border-radius: var(--radius-md, 0.5rem);
 		transition: all 0.2s ease;
 		color: var(--text-secondary);
+		min-width: 40px;
+		min-height: 40px;
+		justify-content: center;
 	}
 	
 	.social-links a:hover {
@@ -130,8 +133,25 @@ import { SITE_TITLE } from '../consts';
 	}
 	
 	@media (max-width: 480px) {
+		header {
+			padding: 0 0.75rem;
+		}
+		
+		h2 {
+			font-size: 1.125rem;
+		}
+		
 		.social-links {
-			display: none;
+			gap: 0.125rem;
+		}
+		
+		.social-links a {
+			padding: 0.25rem;
+		}
+		
+		.social-links svg {
+			width: 20px;
+			height: 20px;
 		}
 	}
 </style>
