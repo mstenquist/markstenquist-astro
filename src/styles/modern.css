@@ -262,10 +262,11 @@ main {
 /* Links */
 .link-enhanced {
   position: relative;
-  color: var(--accent);
+  color: var(--primary-600);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid var(--primary-200);
 }
 
 .link-enhanced::after {
@@ -275,16 +276,28 @@ main {
   height: 2px;
   bottom: -2px;
   left: 0;
-  background: linear-gradient(90deg, var(--accent), var(--primary-400));
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link-enhanced:hover {
-  color: var(--accent-hover);
+  color: var(--primary-700);
+  border-bottom-color: transparent;
 }
 
 .link-enhanced:hover::after {
   width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link-enhanced {
+    color: #60a5fa;
+    border-bottom-color: #3b82f6;
+  }
+  
+  .link-enhanced:hover {
+    color: #93c5fd;
+  }
 }
 
 /* Animations */
@@ -364,6 +377,11 @@ main {
     height: 180px;
   }
 }
+
+/* Tailwind Utility Classes */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
 
 /* Utility Classes */
 .sr-only {
