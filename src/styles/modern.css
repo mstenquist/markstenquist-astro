@@ -75,10 +75,6 @@
 
   /* Dark mode specific overrides */
   .text-display {
-    background: var(--text-primary);
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-    background-clip: unset;
     color: var(--text-primary);
   }
 
@@ -145,7 +141,7 @@ body {
 main {
   max-width: 900px;
   margin: 0 auto;
-  padding: var(--space-8);
+  padding: var(--space-12);
   background-color: var(--surface);
   box-shadow: var(--shadow-md);
   border-radius: var(--radius-xl);
@@ -162,10 +158,7 @@ main {
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -229,7 +222,7 @@ main {
 .section-card {
   background: var(--surface);
   border-radius: var(--radius-xl);
-  padding: var(--space-8);
+  padding: var(--space-12);
   margin-bottom: var(--space-8);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -352,7 +345,7 @@ main {
 
   main {
     margin: 1rem auto;
-    padding: var(--space-6);
+    padding: var(--space-8);
     width: calc(100% - 2rem);
     border-radius: var(--radius-lg);
   }
@@ -364,7 +357,7 @@ main {
   }
   
   .section-card {
-    padding: var(--space-6);
+    padding: var(--space-8);
     margin-bottom: var(--space-6);
   }
   
@@ -388,7 +381,7 @@ main {
   
   main {
     margin: 0.5rem auto;
-    padding: var(--space-4);
+    padding: var(--space-6);
     width: calc(100% - 1rem);
     border-radius: var(--radius-md);
   }
@@ -410,7 +403,7 @@ main {
   }
   
   .section-card {
-    padding: var(--space-4);
+    padding: var(--space-6);
   }
 }
 
