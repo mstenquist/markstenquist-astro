@@ -84,7 +84,6 @@
 
   .section-card--featured {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid var(--gray-600);
   }
 
   .profile-image::before {
@@ -233,7 +232,6 @@ main {
   padding: var(--space-8);
   margin-bottom: var(--space-8);
   box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -244,7 +242,6 @@ main {
 
 .section-card--featured {
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--surface) 100%);
-  border: 1px solid var(--primary-100);
 }
 
 /* Profile Image */
