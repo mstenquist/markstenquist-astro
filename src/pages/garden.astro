@@ -1,0 +1,230 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Pagination from '../components/Pagination.astro';
+import '../styles/global.css';
+
+// For now, using placeholder images - replace with your actual garden photos
+const allGardenPhotos = [
+	{ src: '/images/garden/placeholder-1.jpg', alt: 'Garden view 1', title: 'Spring blooms' },
+	{ src: '/images/garden/placeholder-2.jpg', alt: 'Garden view 2', title: 'Summer harvest' },
+	{ src: '/images/garden/placeholder-3.jpg', alt: 'Garden view 3', title: 'Permaculture design' },
+	{ src: '/images/garden/placeholder-4.jpg', alt: 'Garden view 4', title: 'Companion planting' },
+	{ src: '/images/garden/placeholder-5.jpg', alt: 'Garden view 5', title: 'Seasonal transition' },
+	{ src: '/images/garden/placeholder-6.jpg', alt: 'Garden view 6', title: 'Food forest progress' },
+	{ src: '/images/garden/placeholder-7.jpg', alt: 'Garden view 7', title: 'Winter planning' },
+	{ src: '/images/garden/placeholder-8.jpg', alt: 'Garden view 8', title: 'Soil preparation' },
+	{ src: '/images/garden/placeholder-9.jpg', alt: 'Garden view 9', title: 'Composting system' },
+	{ src: '/images/garden/placeholder-10.jpg', alt: 'Garden view 10', title: 'Native plants' },
+	{ src: '/images/garden/placeholder-11.jpg', alt: 'Garden view 11', title: 'Water management' },
+	{ src: '/images/garden/placeholder-12.jpg', alt: 'Garden view 12', title: 'Tool organization' },
+];
+
+const photosPerPage = 9;
+const url = new URL(Astro.request.url);
+const pageParam = url.searchParams.get('page');
+const currentPage = pageParam ? Math.max(1, parseInt(pageParam)) : 1;
+const totalPages = Math.ceil(allGardenPhotos.length / photosPerPage);
+
+// Ensure current page is within valid range
+const validCurrentPage = Math.min(currentPage, totalPages);
+const startIndex = (validCurrentPage - 1) * photosPerPage;
+const endIndex = startIndex + photosPerPage;
+const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Garden - Mark Stenquist" description="Exploring permaculture design and sustainable food systems through photography and seasonal documentation." />
+		<style>
+			.gallery-item {
+				position: relative;
+				overflow: hidden;
+				aspect-ratio: 1;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+			
+			.gallery-item:hover {
+				transform: scale(1.02);
+			}
+			
+			.gallery-item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: all 0.3s ease;
+			}
+			
+			.gallery-item:hover img {
+				transform: scale(1.1);
+			}
+			
+			.gallery-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				display: flex;
+				align-items: flex-end;
+				padding: 1rem;
+			}
+			
+			.gallery-item:hover .gallery-overlay {
+				opacity: 1;
+			}
+			
+			.gallery-title {
+				color: white;
+				font-weight: 600;
+				font-size: 0.875rem;
+				text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+			}
+
+			.gallery-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1rem;
+			}
+
+			@media (min-width: 640px) {
+				.gallery-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			@media (min-width: 768px) {
+				.gallery-grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+		</style>
+	</head>
+	<body class="bg-gray-50">
+		<Header />
+		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
+			<!-- Hero Section -->
+			<section class="text-center mb-12">
+				<h1 class="text-5xl font-black text-gray-900 mb-4 flex items-center justify-center">
+					<span class="mr-4">🌱</span> Garden
+				</h1>
+				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
+					Documenting the journey of transforming our quarter-acre lot into a thriving permaculture ecosystem that provides fresh food for family, friends, and neighbors.
+				</p>
+			</section>
+
+			<!-- Philosophy Section -->
+			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-12">
+				<h2 class="text-2xl font-bold text-gray-900 mb-6">Permaculture Principles</h2>
+				<div class="grid md:grid-cols-3 gap-6 text-center">
+					<div>
+						<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<span class="text-2xl">🌿</span>
+						</div>
+						<h3 class="font-semibold text-gray-900 mb-2">Observe & Interact</h3>
+						<p class="text-sm text-gray-600">Understanding natural patterns before making changes</p>
+					</div>
+					<div>
+						<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<span class="text-2xl">♻️</span>
+						</div>
+						<h3 class="font-semibold text-gray-900 mb-2">Use Renewable Resources</h3>
+						<p class="text-sm text-gray-600">Designing systems that regenerate themselves</p>
+					</div>
+					<div>
+						<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<span class="text-2xl">🤝</span>
+						</div>
+						<h3 class="font-semibold text-gray-900 mb-2">Share the Surplus</h3>
+						<p class="text-sm text-gray-600">Growing abundance to share with the community</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Photo Gallery -->
+			<section class="mb-12">
+				<div class="gallery-grid">
+					{gardenPhotos.map((photo) => (
+						<div class="gallery-item bg-gray-200 rounded-2xl shadow-sm border border-gray-100">
+							<img 
+								src={photo.src} 
+								alt={photo.alt}
+								loading="lazy"
+								onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+							/>
+							<!-- Fallback for missing images -->
+							<div class="hidden w-full h-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+								<div class="text-center">
+									<span class="text-4xl mb-2 block">🌱</span>
+									<p class="text-gray-600 font-medium">{photo.title}</p>
+									<p class="text-sm text-gray-500 mt-1">Photo coming soon</p>
+								</div>
+							</div>
+							<div class="gallery-overlay">
+								<h3 class="gallery-title">{photo.title}</h3>
+							</div>
+						</div>
+					))}
+				</div>
+				
+				<!-- Pagination Component -->
+				<Pagination 
+					currentPage={validCurrentPage} 
+					totalPages={totalPages} 
+					baseUrl="/garden" 
+				/>
+			</section>
+		</main>
+		<Footer />
+
+		<!-- Add lightbox functionality -->
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const galleryItems = document.querySelectorAll('.gallery-item');
+				
+				galleryItems.forEach(item => {
+					item.addEventListener('click', function() {
+						const img = this.querySelector('img');
+						const title = this.querySelector('.gallery-title')?.textContent;
+						
+						if (img && !img.style.display === 'none') {
+							// Simple lightbox - could be enhanced with a proper lightbox library
+							const lightbox = document.createElement('div');
+							lightbox.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4';
+							lightbox.innerHTML = `
+								<div class="relative max-w-4xl max-h-full">
+									<img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-full object-contain rounded-lg">
+									<button class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300">&times;</button>
+									${title ? `<p class="text-white text-center mt-4 text-lg">${title}</p>` : ''}
+								</div>
+							`;
+							
+							document.body.appendChild(lightbox);
+							
+							// Close lightbox
+							lightbox.addEventListener('click', function(e) {
+								if (e.target === lightbox || e.target.textContent === '×') {
+									document.body.removeChild(lightbox);
+								}
+							});
+							
+							// Close with escape key
+							document.addEventListener('keydown', function escapeHandler(e) {
+								if (e.key === 'Escape') {
+									document.body.removeChild(lightbox);
+									document.removeEventListener('keydown', escapeHandler);
+								}
+							});
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
