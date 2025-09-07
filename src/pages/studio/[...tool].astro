@@ -1,0 +1,31 @@
+---
+import SanityStudio from '../../components/SanityStudio'
+
+export const prerender = false
+
+// This catches all routes under /studio including /studio/structure, /studio/vision, etc.
+const { tool } = Astro.params
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Content Studio - Mark Stenquist</title>
+    <style>
+      html, body, #studio {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="studio">
+      <SanityStudio client:only="react" />
+    </div>
+  </body>
+</html>

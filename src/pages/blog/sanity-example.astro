@@ -1,0 +1,72 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getBlogPosts, urlFor } from '../../lib/sanity';
+
+// Fetch blog posts from Sanity
+const posts = await getBlogPosts();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Blog - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+				<h1 class="text-4xl font-bold mb-8">Blog Posts from Sanity</h1>
+				
+				{posts.length === 0 ? (
+					<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+						<p class="text-yellow-800">
+							No blog posts found. Visit <a href="/studio" class="underline font-medium">Sanity Studio</a> to create your first post!
+						</p>
+					</div>
+				) : (
+					<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+						{posts.map((post: any) => (
+							<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+								{post.heroImage && (
+									<img 
+										src={urlFor(post.heroImage).width(400).height(250).url()} 
+										alt={post.title}
+										class="w-full h-48 object-cover"
+									/>
+								)}
+								<div class="p-6">
+									<h2 class="text-xl font-semibold mb-2">
+										<a href={`/blog/${post.slug.current}`} class="hover:text-blue-600">
+											{post.title}
+										</a>
+									</h2>
+									{post.description && (
+										<p class="text-gray-600 mb-4 line-clamp-3">{post.description}</p>
+									)}
+									<div class="flex items-center justify-between">
+										<time class="text-sm text-gray-500">
+											{new Date(post.publishedAt).toLocaleDateString()}
+										</time>
+										{post.tags && post.tags.length > 0 && (
+											<div class="flex gap-2">
+												{post.tags.slice(0, 2).map((tag: string) => (
+													<span class="text-xs bg-gray-100 px-2 py-1 rounded">
+														{tag}
+													</span>
+												))}
+											</div>
+										)}
+									</div>
+								</div>
+							</article>
+						))}
+					</div>
+				)}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

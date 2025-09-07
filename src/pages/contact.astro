@@ -1,66 +1,56 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Layout from '../components/Layout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title="Contact - Mark Stenquist" description="Get in touch for frontend architecture consulting, AI integration, or team building services." />
-	</head>
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
-			<!-- Hero Section -->
-			<section class="text-center mb-12">
+<Layout title="Contact - Mark Stenquist" description="Get in touch for frontend architecture consulting, AI integration, or team building services.">
+	<!-- Hero Section -->
+	<section class="text-center mb-12">
 				<h1 class="text-5xl font-black text-gray-900 mb-4">Get In Touch</h1>
 				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
 					Let's discuss your next project or explore how we can work together
 				</p>
-			</section>
+	</section>
 
-			<!-- Contact Grid -->
-			<div class="grid lg:grid-cols-2 gap-12">
+	<!-- Contact Grid -->
+	<div class="grid lg:grid-cols-2 gap-12">
 				<!-- Contact Information (LEFT COLUMN) -->
-				<section class="space-y-6">
+		<section class="space-y-6">
 					<!-- Primary Contact Card -->
-					<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+			<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
 						<h2 class="text-2xl font-bold text-gray-900 mb-6">Let's Connect</h2>
 						
 						<!-- Primary Contact Methods -->
-						<div class="space-y-4 mb-6">
-							<div class="flex items-center text-lg">
-								<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+				<div class="space-y-4 mb-6">
+					<div class="flex items-center text-lg">
+						<div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
 									<svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
 									</svg>
-								</div>
-								<div>
+						</div>
+						<div>
 									<a href="mailto:mark@stenquist.com" class="text-blue-600 hover:text-blue-700 font-semibold hover:underline">mark@stenquist.com</a>
 									<p class="text-sm text-gray-600">Usually respond within 4 hours</p>
-								</div>
-							</div>
+						</div>
+					</div>
 							
-							<div class="flex items-center text-lg">
-								<div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+					<div class="flex items-center text-lg">
+						<div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
 									<svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
 									</svg>
-								</div>
-								<div>
+						</div>
+						<div>
 									<p class="font-semibold text-gray-900">Westwood, Massachusetts</p>
 									<p class="text-sm text-gray-600">Remote work available globally</p>
-								</div>
-							</div>
 						</div>
+					</div>
+				</div>
 
 						<!-- Social Links -->
-						<div class="border-t border-gray-100 pt-6 mb-6">
+				<div class="border-t border-gray-100 pt-6 mb-6">
 							<p class="text-sm font-semibold text-gray-700 mb-3">Connect with me</p>
-							<div class="flex gap-4">
+					<div class="flex gap-4">
 								<a href="https://linkedin.com/in/markstenquist" target="_blank" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
 									<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
 										<path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
@@ -73,13 +63,13 @@ import '../styles/global.css';
 									</svg>
 									GitHub
 								</a>
-							</div>
-						</div>
+					</div>
+				</div>
 
 						<!-- Quick Links -->
-						<div class="bg-gray-50 rounded-xl p-4">
+				<div class="bg-gray-50 rounded-xl p-4">
 							<p class="text-sm font-semibold text-gray-700 mb-3">Learn more about my work</p>
-							<div class="space-y-2">
+					<div class="space-y-2">
 								<a href="/services" class="block text-blue-600 hover:text-blue-700 text-sm hover:underline transition-colors">
 									→ Consulting Services
 								</a>
@@ -89,18 +79,18 @@ import '../styles/global.css';
 								<a href="https://visualboston.com" target="_blank" class="block text-blue-600 hover:text-blue-700 text-sm hover:underline transition-colors">
 									→ Visit VisualBoston.com
 								</a>
-							</div>
-						</div>
 					</div>
-				</section>
+				</div>
+			</div>
+		</section>
 
 				<!-- Contact Form (RIGHT COLUMN) -->
-				<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+		<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
 					<h2 class="text-2xl font-bold text-gray-900 mb-6">Send a Message</h2>
 					<p class="text-gray-600 mb-6">Ready to discuss your project? Fill out the form below and I'll get back to you within 24-48 hours.</p>
 					
 					<form class="space-y-6" action="https://formspree.io/f/xdkorrgk" method="POST">
-						<div>
+				<div>
 							<label for="name" class="block text-sm font-semibold text-gray-900 mb-2">NAME</label>
 							<input 
 								type="text" 
@@ -110,9 +100,9 @@ import '../styles/global.css';
 								class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
 								placeholder="Your full name"
 							/>
-						</div>
+				</div>
 						
-						<div>
+				<div>
 							<label for="email" class="block text-sm font-semibold text-gray-900 mb-2">EMAIL</label>
 							<input 
 								type="email" 
@@ -122,9 +112,9 @@ import '../styles/global.css';
 								class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
 								placeholder="your.email@company.com"
 							/>
-						</div>
+				</div>
 
-						<div>
+				<div>
 							<label for="company" class="block text-sm font-semibold text-gray-900 mb-2">COMPANY</label>
 							<input 
 								type="text" 
@@ -133,9 +123,9 @@ import '../styles/global.css';
 								class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
 								placeholder="Your company name (optional)"
 							/>
-						</div>
+				</div>
 
-						<div>
+				<div>
 							<label for="project" class="block text-sm font-semibold text-gray-900 mb-2">PROJECT TYPE</label>
 							<select 
 								id="project" 
@@ -149,9 +139,9 @@ import '../styles/global.css';
 								<option value="team-building">Team Building</option>
 								<option value="other">Other</option>
 							</select>
-						</div>
+				</div>
 
-						<div>
+				<div>
 							<label for="message" class="block text-sm font-semibold text-gray-900 mb-2">MESSAGE</label>
 							<textarea 
 								id="message" 
@@ -162,7 +152,7 @@ import '../styles/global.css';
 								class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-y"
 							></textarea>
 							<p class="text-xs text-gray-500 mt-1">Include your timeline, budget range, and specific challenges you're facing</p>
-						</div>
+				</div>
 
 						<button 
 							type="submit" 
@@ -173,9 +163,6 @@ import '../styles/global.css';
 						
 						<p class="text-xs text-gray-500 text-center">I'll respond within 24-48 hours during business days</p>
 					</form>
-				</section>
-			</div>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</section>
+	</div>
+</Layout>

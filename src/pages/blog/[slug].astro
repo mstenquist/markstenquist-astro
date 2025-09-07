@@ -1,0 +1,29 @@
+---
+import BlogPost from '../../layouts/BlogPost.astro';
+import { getBlogPost, getBlogPosts, urlFor } from '../../lib/sanity';
+import { PortableText } from '../../components/PortableText';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post: any) => ({
+    params: { slug: post.slug.current },
+    props: { slug: post.slug.current }
+  }));
+}
+
+const { slug } = Astro.props;
+const post = await getBlogPost(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+// Since we're using SSR, we need to mark this page for prerendering
+export const prerender = true;
+---
+
+<BlogPost title={post.title} description={post.description} pubDate={new Date(post.publishedAt)} heroImage={post.heroImage ? urlFor(post.heroImage).width(1200).height(630).url() : undefined}>
+  {post.body && (
+    <PortableText value={post.body} client:load />
+  )}
+</BlogPost>

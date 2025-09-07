@@ -1,58 +1,74 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../components/Layout.astro';
 import Button from '../components/Button.astro';
+import { PortableText } from '../components/PortableText';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import '../styles/global.css';
+import { getHomepageContent, urlFor } from '../lib/sanity';
+
+// Try to fetch homepage content from Sanity, fallback to static content
+let homepageContent = null;
+try {
+  homepageContent = await getHomepageContent();
+} catch (error) {
+  console.warn('Could not fetch homepage content from Sanity:', error);
+}
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			@keyframes wave {
-				0%, 100% { transform: rotate(0deg); }
-				25% { transform: rotate(20deg); }
-				75% { transform: rotate(-10deg); }
-			}
-			.wave {
-				animation: wave 1s ease-in-out 2;
-				transform-origin: 70% 70%;
-			}
-			.wave:hover {
-				animation: wave 1s ease-in-out infinite;
-			}
-		</style>
-	</head>
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
-			<!-- Hero Section -->
-			<section class="mb-16">
-				<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-					<div class="w-64 h-64 md:w-72 md:h-72 flex-shrink-0">
-						<img 
-							src="/images/mark-feature-photo.jpg" 
-							alt="Mark Stenquist" 
-							class="w-full h-full object-cover rounded-2xl shadow-xl"
-						/>
-					</div>
-					<div class="text-center md:text-left">
-						<h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-4">
-							<span class="inline-block wave">👋</span> I'm Mark
-						</h1>
-						<p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
-							Co-founder at <a href="https://visualboston.com" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold hover:underline">VisualBoston</a> and senior frontend engineer with 15+ years helping shape experiences on the web.
-						</p>
-					</div>
-				</div>
-			</section>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<style slot="head">
+		@keyframes wave {
+			0%, 100% { transform: rotate(0deg); }
+			25% { transform: rotate(20deg); }
+			75% { transform: rotate(-10deg); }
+		}
+		.wave {
+			animation: wave 1s ease-in-out 2;
+			transform-origin: 70% 70%;
+		}
+		.wave:hover {
+			animation: wave 1s ease-in-out infinite;
+		}
+	</style>
+	<!-- Hero Section -->
+	<section class="mb-24">
+		<div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+			<div class="w-64 h-64 md:w-72 md:h-72 flex-shrink-0">
+				{homepageContent?.heroSection?.profileImage?.asset ? (
+					<img 
+						src={urlFor(homepageContent.heroSection.profileImage).width(400).height(400).url()} 
+						alt={homepageContent.heroSection.profileImage.alt || 'Profile photo'} 
+						class="w-full h-full object-cover rounded-2xl shadow-xl"
+					/>
+				) : (
+					<img 
+						src="/images/mark-feature-photo.jpg" 
+						alt="Mark Stenquist" 
+						class="w-full h-full object-cover rounded-2xl shadow-xl"
+					/>
+				)}
+			</div>
+			<div class="text-center md:text-left">
+				<h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-4">
+					<span class="inline-block wave">👋</span> {homepageContent?.heroSection?.greeting || "I'm Mark"}
+				</h1>
+				<p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
+					{homepageContent?.heroSection?.subtitle || 
+						'Co-founder at VisualBoston and senior frontend engineer with 15+ years helping shape experiences on the web.'
+					}
+				</p>
+			</div>
+		</div>
+	</section>
 
-			<!-- Story Section -->
-			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
-				<div class="prose prose-lg max-w-none">
+	<!-- Story Section -->
+	<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
+		<div class="prose prose-lg max-w-none">
+			{homepageContent?.storySection?.content ? (
+				<div class="text-gray-600">
+					<PortableText value={homepageContent.storySection.content} client:load />
+				</div>
+			) : (
+				<>
 					<p class="text-gray-600 leading-relaxed mb-6">
 						I began my career at a startup called <a href="https://techcrunch.com/2011/04/25/campuslive-raises-3-1-million-to-help-brands-connect-with-college-students/" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold hover:underline">CampusLIVE</a>. My older brother was the founder and I was part of the small team that helped grow the company, eventually going on to raise millions from some prominent venture capital firms. This early experience taught me how to design and build products while navigating the chaos of startup life in 2010. Through this experience I got a crash course in web design and development due to my love for all things design and technology.
 					</p>
@@ -62,54 +78,84 @@ import '../styles/global.css';
 					<p class="text-gray-600 leading-relaxed">
 						During the COVID lockdown, these experiences and connections led me to co-found <a href="https://visualboston.com" target="_blank" class="text-blue-600 hover:text-blue-700 font-semibold hover:underline">VisualBoston</a>, where I lead the engineering side of our digital agency.
 					</p>
-				</div>
-			</section>
+				</>
+			)}
+		</div>
+	</section>
 
-			<!-- Technical Foundation -->
-			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
-				<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-					<span class="mr-3">💻</span> Technical Foundation
-				</h2>
-				<div class="space-y-4">
+	<!-- Technical Foundation -->
+	<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
+		<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+			<span class="mr-3">{homepageContent?.technicalSection?.icon || '💻'}</span> 
+			{homepageContent?.technicalSection?.title || 'Technical Foundation'}
+		</h2>
+		<div class="space-y-4">
+			{homepageContent?.technicalSection?.content ? (
+				<div class="text-gray-600">
+					<PortableText value={homepageContent.technicalSection.content} client:load />
+				</div>
+			) : (
+				<>
 					<p class="text-gray-600 leading-relaxed">
 						My expertise lies in frontend engineering (HTML, CSS, JavaScript), developed through multiple roles at venture-backed startups. I'm passionate about creating digital products that combine thoughtful design with high-quality engineering.
 					</p>
 					<p class="text-gray-600 leading-relaxed">
 						I'm obsessed with combining my deep technical experience developing user interfaces with generative AI to rapidly prototype and build new app ideas.
 					</p>
-				</div>
-			</section>
+				</>
+			)}
+		</div>
+	</section>
 
-			<!-- Beyond Technology -->
-			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
-				<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-					<span class="mr-3">🌱</span> Beyond Technology
-				</h2>
-				<div class="space-y-4">
+	<!-- Beyond Technology -->
+	<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-8">
+		<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+			<span class="mr-3">{homepageContent?.beyondTechSection?.icon || '🌱'}</span> 
+			{homepageContent?.beyondTechSection?.title || 'Beyond Technology'}
+		</h2>
+		<div class="space-y-4">
+			{homepageContent?.beyondTechSection?.content ? (
+				<div class="text-gray-600">
+					<PortableText value={homepageContent.beyondTechSection.content} client:load />
+				</div>
+			) : (
+				<>
 					<p class="text-gray-600 leading-relaxed">
 						When I'm not building digital experiences, you'll find me working in the garden. I hold a Permaculture Design Certificate and would love to see a world that values transforming landscapes into thriving ecosystems that provide fresh food for family, friends, and neighbors.
 					</p>
 					<p class="text-gray-600 leading-relaxed">
 						I also play guitar to unwind and find creative inspiration offline.
 					</p>
-				</div>
-				<div class="mt-6">
-					<Button href="/garden" variant="secondary">Explore My Garden</Button>
-				</div>
-			</section>
+				</>
+			)}
+		</div>
+		<div class="mt-6">
+			<Button 
+				href={homepageContent?.beyondTechSection?.ctaButton?.href || '/garden'} 
+				variant="secondary"
+			>
+				{homepageContent?.beyondTechSection?.ctaButton?.text || 'Explore My Garden'}
+			</Button>
+		</div>
+	</section>
 
-			<!-- CTA Section -->
-			<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-10 text-center">
-				<h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Work Together?</h2>
-				<p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-					Whether you need frontend architecture consulting or want to explore what VisualBoston can do for your project, let's start the conversation.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<Button href="/services">View My Services</Button>
-					<Button href="/contact" variant="secondary">Get In Touch</Button>
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+	<!-- CTA Section -->
+	<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-10 text-center">
+		<h2 class="text-2xl font-bold text-gray-900 mb-4">
+			{homepageContent?.ctaSection?.title || 'Ready to Work Together?'}
+		</h2>
+		<p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+			{homepageContent?.ctaSection?.description || 
+				'Whether you need frontend architecture consulting or want to explore what VisualBoston can do for your project, let\'s start the conversation.'
+			}
+		</p>
+		<div class="flex flex-col sm:flex-row gap-4 justify-center">
+			<Button href={homepageContent?.ctaSection?.primaryButton?.href || '/services'}>
+				{homepageContent?.ctaSection?.primaryButton?.text || 'View My Services'}
+			</Button>
+			<Button href={homepageContent?.ctaSection?.secondaryButton?.href || '/contact'} variant="secondary">
+				{homepageContent?.ctaSection?.secondaryButton?.text || 'Get In Touch'}
+			</Button>
+		</div>
+	</section>
+</Layout>

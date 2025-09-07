@@ -1,0 +1,64 @@
+---
+export interface Props {
+	title: string;
+	category: string;
+	description: string;
+	challenge: string;
+	solution: string;
+	website?: string;
+	image?: string;
+}
+
+const { title, category, description, challenge, solution, website, image } = Astro.props;
+---
+
+<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
+	{image ? (
+		<div class="h-64 overflow-hidden">
+			<img 
+				src={image} 
+				alt={title}
+				class="w-full h-full object-cover"
+				loading="lazy"
+			/>
+		</div>
+	) : (
+		<div class="h-64 bg-gray-700 flex items-center justify-center">
+			<h3 class="text-4xl font-bold text-white">{title}</h3>
+		</div>
+	)}
+	<div class="p-8">
+		<div class="flex justify-between items-start mb-4">
+			<h2 class="text-2xl font-bold text-gray-900">{title}</h2>
+			<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{category}</span>
+		</div>
+		<p class="text-gray-600 mb-6">{description}</p>
+		
+		<div class="space-y-4 mb-6">
+			<div>
+				<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
+				<p class="text-sm text-gray-600">{challenge}</p>
+			</div>
+			<div>
+				<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
+				<p class="text-sm text-gray-600">{solution}</p>
+			</div>
+		</div>
+		
+		{website && (
+			<div class="mt-6">
+				<a 
+					href={website} 
+					target="_blank" 
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm"
+				>
+					Visit Website
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+					</svg>
+				</a>
+			</div>
+		)}
+	</div>
+</article>

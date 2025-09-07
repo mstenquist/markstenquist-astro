@@ -1,20 +1,15 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../components/Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import '../styles/global.css';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
+<Layout title={title} description={description} class="!max-w-4xl">
+	<style slot="head">
 			/* Headings */
 			.blog-content :global(h1) {
 				font-size: 2.25rem !important;
@@ -204,14 +199,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				max-width: 100% !important;
 				height: auto !important;
 			}
-		</style>
-	</head>
-
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-4xl mx-auto px-6 py-16 pt-32">
-			<article>
-				<!-- Hero Image -->
+	</style>
+	<article>
+		<!-- Hero Image -->
 				{heroImage && (
 					<div class="mb-12 -mx-6 sm:mx-0">
 						<img 
@@ -224,7 +214,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					</div>
 				)}
 
-				<!-- Article Header -->
+		<!-- Article Header -->
 				<header class="mb-12 text-center">
 					<div class="mb-6">
 						<time class="text-sm text-gray-500 font-medium">
@@ -252,12 +242,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					</div>
 				</header>
 
-				<!-- Article Content -->
+		<!-- Article Content -->
 				<div class="blog-content">
 					<slot />
 				</div>
 
-				<!-- Article Footer -->
+		<!-- Article Footer -->
 				<footer class="mt-16 pt-8 border-t border-gray-200">
 					<div class="text-center">
 						<a 
@@ -271,8 +261,5 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						</a>
 					</div>
 				</footer>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+	</article>
+</Layout>

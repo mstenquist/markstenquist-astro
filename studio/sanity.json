@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "project": {
+    "name": "Mark Stenquist Portfolio"
+  },
+  "api": {
+    "projectId": "yncpf922",
+    "dataset": "production"
+  },
+  "plugins": [
+    "@sanity/structure",
+    "@sanity/vision"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["@sanity/vision"]
+    }
+  }
+}

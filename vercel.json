@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "src/pages/studio/**/*.astro": {
+      "maxDuration": 300
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/studio/:path*",
+      "destination": "/studio/:path*"
+    }
+  ]
+}

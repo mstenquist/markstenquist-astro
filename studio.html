@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanity Studio</title>
+    <style>
+      html, body, #root { height: 100%; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import React from 'react'
+      import ReactDOM from 'react-dom/client'
+      import {Studio} from 'sanity'
+      import {defineConfig} from 'sanity'
+      import {structureTool} from 'sanity/structure'
+      import {visionTool} from '@sanity/vision'
+      
+      // Import schemas
+      import blogPost from './sanity/schemaTypes/blogPost'
+      import work from './sanity/schemaTypes/work'
+      import service from './sanity/schemaTypes/service'
+      import blockContent from './sanity/schemaTypes/blockContent'
+      import siteSettings from './sanity/schemaTypes/siteSettings'
+      
+      const config = defineConfig({
+        name: 'default',
+        title: 'Mark Stenquist Portfolio',
+        projectId: 'yncpf922',
+        dataset: 'production',
+        plugins: [structureTool(), visionTool()],
+        schema: {
+          types: [blogPost, work, service, blockContent, siteSettings],
+        },
+      })
+      
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(React.createElement(Studio, {config}))
+    </script>
+  </body>
+</html>

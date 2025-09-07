@@ -1,0 +1,42 @@
+---
+export const prerender = false
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Content Studio</title>
+    <style>
+      html,
+      body,
+      #sanity-studio-root {
+        height: 100vh;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sanity-studio-root"></div>
+    <script type="module">
+      import {createStudio} from 'sanity'
+      import {structureTool} from 'sanity/structure'
+      import {visionTool} from '@sanity/vision'
+      
+      const config = {
+        projectId: 'yncpf922',
+        dataset: 'production',
+        plugins: [structureTool(), visionTool()],
+        basePath: '/admin',
+        schema: {
+          types: []
+        }
+      }
+      
+      createStudio(config).mount(document.getElementById('sanity-studio-root'))
+    </script>
+  </body>
+</html>

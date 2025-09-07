@@ -1,0 +1,62 @@
+[
+  {
+    "_type": "service",
+    "title": "Frontend Architecture",
+    "slug": {"current": "frontend-architecture", "_type": "slug"},
+    "shortDescription": "Strategic technical planning for scalable web applications. Component architecture, design systems, and performance optimization strategies.",
+    "iconColor": "blue",
+    "iconSvg": "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+    "features": [
+      "Technical architecture assessment",
+      "Component library development", 
+      "Performance optimization",
+      "Scalability planning"
+    ],
+    "order": 1
+  },
+  {
+    "_type": "service",
+    "title": "AI Integration",
+    "slug": {"current": "ai-integration", "_type": "slug"},
+    "shortDescription": "Practical AI implementation for web applications. From chatbots to data processing, making AI work for your business goals.",
+    "iconColor": "purple",
+    "iconSvg": "M13 10V3L4 14h7v7l9-11h-7z",
+    "features": [
+      "AI-powered user interfaces",
+      "LLM integration strategies",
+      "Automated workflows",
+      "Data visualization"
+    ],
+    "order": 2
+  },
+  {
+    "_type": "service",
+    "title": "Team Building",
+    "slug": {"current": "team-building", "_type": "slug"},
+    "shortDescription": "Through VisualBoston, connecting growing companies with talented designers and developers in the Boston area.",
+    "iconColor": "green",
+    "iconSvg": "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+    "features": [
+      "Frontend developer placement",
+      "UX/UI designer sourcing",
+      "Technical leadership hiring",
+      "Contract-to-hire options"
+    ],
+    "order": 3
+  },
+  {
+    "_type": "service",
+    "title": "Performance Optimization",
+    "slug": {"current": "performance-optimization", "_type": "slug"},
+    "shortDescription": "Core Web Vitals improvement, load time optimization, and user experience enhancements that drive measurable business results.",
+    "iconColor": "orange",
+    "iconSvg": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
+    "features": [
+      "Core Web Vitals optimization",
+      "Bundle size reduction",
+      "Mobile performance tuning",
+      "Conversion rate improvement"
+    ],
+    "order": 4
+  }
+]

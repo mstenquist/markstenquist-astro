@@ -1,234 +1,56 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Layout from '../components/Layout.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import { getWorkProjects, urlFor } from '../lib/sanity';
+
+const workEntries = await getWorkProjects();
+const sortedWork = workEntries.sort((a: any, b: any) => (a.order || 0) - (b.order || 0));
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title="Case Studies - Mark Stenquist" description="Frontend architecture case studies showcasing AI integration, performance optimization, and scalable solutions for venture-backed startups." />
-	</head>
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
-			<!-- Hero Section -->
-			<section class="text-center mb-12">
-				<h1 class="text-5xl font-black text-gray-900 mb-4">Case Studies</h1>
+<Layout title="Case Studies - Mark Stenquist" description="Frontend architecture case studies showcasing AI integration, performance optimization, and scalable solutions for venture-backed startups.">
+	<!-- Hero Section -->
+	<section class="text-center mb-12">
+				<h1 class="text-5xl font-black text-gray-900 mb-4">Recent Work</h1>
 				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
 					Examples of the quality of work I've delivered for clients
 				</p>
-			</section>
+	</section>
 
-			<!-- Case Studies Grid -->
-			<div class="grid md:grid-cols-2 gap-8">
-				<!-- FraudNet -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">FraudNet</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">FraudNet</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React & AI/ML</span>
-						</div>
-						<p class="text-gray-600 mb-6">Redefining AI-driven fraud prevention with intelligent interfaces</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">FraudNet needed to create intuitive dashboards for complex AI-driven fraud detection systems, making sophisticated machine learning insights accessible to security teams and analysts.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Architected React-based visualization tools for real-time fraud pattern detection. Built interactive dashboards that translate complex ML models into actionable insights for fraud prevention teams.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">AI/ML</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Data Visualization</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Fraud Prevention</span>
-						</div>
-					</div>
-				</article>
-
-				<!-- Shadow Lion -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">Shadow Lion</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">Shadow Lion</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Web & Mobile</span>
-						</div>
-						<p class="text-gray-600 mb-6">Designing a new video experience for content creators and viewers</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">Shadow Lion needed to create a revolutionary video platform that could compete with established players while offering unique features for content creators and their audiences.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Built a responsive video streaming platform with React and React Native. Implemented adaptive bitrate streaming, real-time analytics, and creator monetization tools that differentiated the platform in a crowded market.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Video Platform</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React Native</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Streaming</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Mobile App</span>
-						</div>
-					</div>
-				</article>
-
-				<!-- Project Finance (DCU) -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">Project Finance</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">Project Finance (DCU)</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React & TypeScript</span>
-						</div>
-						<p class="text-gray-600 mb-6">Elevating digital banking experiences for credit union members</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">DCU needed to modernize their digital banking platform to compete with fintech startups while maintaining the security and reliability their members expect from a trusted financial institution.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Developed a modern React and TypeScript banking application with enhanced security features. Created intuitive financial management tools, streamlined loan applications, and mobile-first account management interfaces.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Fintech</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Banking</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">TypeScript</span>
-						</div>
-					</div>
-				</article>
-
-				<!-- Linus Health -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">Linus Health</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">Linus Health</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React & Healthcare</span>
-						</div>
-						<p class="text-gray-600 mb-6">Transforming brain health assessment with AI-powered diagnostics</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">Linus Health needed to create intuitive interfaces for complex neurological assessment tools, making advanced brain health diagnostics accessible to healthcare providers and patients.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Built React-based assessment interfaces with real-time data processing and visualization. Created HIPAA-compliant dashboards that translate complex neurological data into actionable clinical insights.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Healthcare</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">AI Diagnostics</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">HIPAA</span>
-						</div>
-					</div>
-				</article>
-
-				<!-- O2X -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">O2X</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">O2X</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React & Performance</span>
-						</div>
-						<p class="text-gray-600 mb-6">Optimizing human performance for tactical athletes and first responders</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">O2X needed a comprehensive platform to deliver performance training, mental health resources, and data analytics to military units, fire departments, and law enforcement agencies.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Developed React-based training dashboards with real-time biometric data integration. Built performance tracking systems that help tactical athletes optimize their physical and mental readiness.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Performance</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Data Analytics</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Military</span>
-						</div>
-					</div>
-				</article>
-
-				<!-- Dwight Capital -->
-				<article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
-					<div class="h-64 bg-gray-700 flex items-center justify-center">
-						<h3 class="text-4xl font-bold text-white">Dwight Capital</h3>
-					</div>
-					<div class="p-8">
-						<div class="flex justify-between items-start mb-4">
-							<h2 class="text-2xl font-bold text-gray-900">Dwight Capital</h2>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React & Fintech</span>
-						</div>
-						<p class="text-gray-600 mb-6">Streamlining commercial real estate lending with modern interfaces</p>
-						
-						<div class="space-y-4 mb-6">
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Challenge</h4>
-								<p class="text-sm text-gray-600">Dwight Capital needed to digitize and modernize their commercial lending platform to handle billions in loan originations while maintaining compliance with complex financial regulations.</p>
-							</div>
-							<div>
-								<h4 class="font-semibold text-gray-900 mb-2">The Solution</h4>
-								<p class="text-sm text-gray-600">Built React-based loan origination and management systems with complex financial calculations and real-time underwriting tools. Created dashboards that reduced loan processing time while ensuring regulatory compliance.</p>
-							</div>
-						</div>
-
-
-						<div class="flex flex-wrap gap-2 mt-6">
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Fintech</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Real Estate</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">React</span>
-							<span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Compliance</span>
-						</div>
-					</div>
-				</article>
+	<!-- Case Studies Grid -->
+	<div class="grid md:grid-cols-2 gap-8">
+		{sortedWork.length === 0 ? (
+			<div class="col-span-full text-center py-16">
+				<div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+					<span class="text-4xl">💼</span>
+				</div>
+				<h2 class="text-2xl font-bold text-gray-900 mb-4">No work entries yet</h2>
+				<p class="text-gray-600 mb-8">Add work entries in Sanity Studio to display them here.</p>
+				<a 
+					href="/studio" 
+					class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+				>
+					Add Work
+				</a>
 			</div>
+		) : (
+			sortedWork.map((work: any) => (
+				<CaseStudyCard 
+					title={work.title}
+					category={work.category}
+					description={work.description}
+					challenge={work.challenge}
+					solution={work.solution}
+					website={work.website}
+					image={work.featuredImage ? urlFor(work.featuredImage).width(600).height(400).url() : undefined}
+				/>
+			))
+		)}
+	</div>
 
-			<!-- CTA Section -->
-			<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12 mt-16 text-center">
+	<!-- CTA Section -->
+	<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12 mt-16 text-center">
 				<h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Transform Your Frontend Architecture?</h2>
 				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Let's discuss how I can help scale your technical infrastructure and accelerate your growth.</p>
 				<a href="/contact" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Start a Conversation</a>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+	</section>
+</Layout>

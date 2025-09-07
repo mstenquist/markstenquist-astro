@@ -32,5 +32,44 @@ export default config({
         }),
       },
     }),
+    work: collection({
+      label: 'Case Studies',
+      slugField: 'title',
+      path: 'src/content/work/*',
+      format: { contentField: 'content' },
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        category: fields.text({
+          label: 'Category',
+          description: 'Technology category (e.g., React & AI/ML)',
+        }),
+        description: fields.text({
+          label: 'Description',
+          description: 'Brief description of the project',
+        }),
+        challenge: fields.text({
+          label: 'Challenge',
+          description: 'The challenge that needed to be solved',
+          multiline: true,
+        }),
+        solution: fields.text({
+          label: 'Solution',
+          description: 'How the challenge was addressed',
+          multiline: true,
+        }),
+        website: fields.text({
+          label: 'Website',
+          description: 'Optional website URL for the project',
+        }),
+        order: fields.integer({
+          label: 'Order',
+          description: 'Display order (lower numbers appear first)',
+          defaultValue: 0,
+        }),
+        content: fields.mdx({
+          label: 'Content',
+        }),
+      },
+    }),
   },
 });

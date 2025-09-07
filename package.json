@@ -11,16 +11,26 @@
   "dependencies": {
     "@astrojs/markdoc": "^0.15.5",
     "@astrojs/mdx": "^4.2.3",
+    "@astrojs/node": "^9.4.3",
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/vercel": "^8.2.7",
     "@keystatic/astro": "^5.0.6",
     "@keystatic/core": "^0.5.48",
+    "@portabletext/react": "^4.0.3",
+    "@sanity/client": "^7.11.0",
+    "@sanity/code-input": "^6.0.1",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.6.1",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "astro": "^5.6.1",
+    "dotenv": "^17.2.2",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "sanity": "^4.6.1",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",

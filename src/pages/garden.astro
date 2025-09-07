@@ -1,44 +1,27 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../components/Layout.astro';
 import Pagination from '../components/Pagination.astro';
-import '../styles/global.css';
-
-// For now, using placeholder images - replace with your actual garden photos
-const allGardenPhotos = [
-	{ src: '/images/garden/placeholder-1.jpg', alt: 'Garden view 1', title: 'Spring blooms' },
-	{ src: '/images/garden/placeholder-2.jpg', alt: 'Garden view 2', title: 'Summer harvest' },
-	{ src: '/images/garden/placeholder-3.jpg', alt: 'Garden view 3', title: 'Permaculture design' },
-	{ src: '/images/garden/placeholder-4.jpg', alt: 'Garden view 4', title: 'Companion planting' },
-	{ src: '/images/garden/placeholder-5.jpg', alt: 'Garden view 5', title: 'Seasonal transition' },
-	{ src: '/images/garden/placeholder-6.jpg', alt: 'Garden view 6', title: 'Food forest progress' },
-	{ src: '/images/garden/placeholder-7.jpg', alt: 'Garden view 7', title: 'Winter planning' },
-	{ src: '/images/garden/placeholder-8.jpg', alt: 'Garden view 8', title: 'Soil preparation' },
-	{ src: '/images/garden/placeholder-9.jpg', alt: 'Garden view 9', title: 'Composting system' },
-	{ src: '/images/garden/placeholder-10.jpg', alt: 'Garden view 10', title: 'Native plants' },
-	{ src: '/images/garden/placeholder-11.jpg', alt: 'Garden view 11', title: 'Water management' },
-	{ src: '/images/garden/placeholder-12.jpg', alt: 'Garden view 12', title: 'Tool organization' },
-];
+import { getGardenPhotos, getGardenPhotoCount, urlFor } from '../lib/sanity';
 
 const photosPerPage = 9;
 const url = new URL(Astro.request.url);
 const pageParam = url.searchParams.get('page');
 const currentPage = pageParam ? Math.max(1, parseInt(pageParam)) : 1;
-const totalPages = Math.ceil(allGardenPhotos.length / photosPerPage);
+
+// Get total count and calculate pagination
+const totalPhotos = await getGardenPhotoCount();
+const totalPages = Math.ceil(totalPhotos / photosPerPage);
 
 // Ensure current page is within valid range
 const validCurrentPage = Math.min(currentPage, totalPages);
-const startIndex = (validCurrentPage - 1) * photosPerPage;
-const endIndex = startIndex + photosPerPage;
-const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
+const offset = (validCurrentPage - 1) * photosPerPage;
+
+// Fetch photos for current page
+const gardenPhotos = await getGardenPhotos(photosPerPage, offset);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title="Garden - Mark Stenquist" description="Exploring permaculture design and sustainable food systems through photography and seasonal documentation." />
-		<style>
+<Layout title="Garden - Mark Stenquist" description="Exploring permaculture design and sustainable food systems through photography and seasonal documentation.">
+	<style slot="head">
 			.gallery-item {
 				position: relative;
 				overflow: hidden;
@@ -104,24 +87,20 @@ const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
 					grid-template-columns: repeat(3, 1fr);
 				}
 			}
-		</style>
-	</head>
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
-			<!-- Hero Section -->
-			<section class="text-center mb-12">
+	</style>
+	<!-- Hero Section -->
+	<section class="text-center mb-12">
 				<h1 class="text-5xl font-black text-gray-900 mb-4 flex items-center justify-center">
-					<span class="mr-4">🌱</span> Garden
+					<span class="mr-4">🌱</span> My Garden
 				</h1>
-				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-					Documenting the journey of transforming our quarter-acre lot into a thriving permaculture ecosystem that provides fresh food for family, friends, and neighbors.
+				<p class="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
+					Documenting my love of all things plants including growing my own vegetables and flowers.
 				</p>
-			</section>
+	</section>
 
-			<!-- Philosophy Section -->
-			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-12">
-				<h2 class="text-2xl font-bold text-gray-900 mb-6">Permaculture Principles</h2>
+	<!-- Philosophy Section -->
+	<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-12">
+				<h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Growing Principles</h2>
 				<div class="grid md:grid-cols-3 gap-6 text-center">
 					<div>
 						<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -145,46 +124,69 @@ const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
 						<p class="text-sm text-gray-600">Growing abundance to share with the community</p>
 					</div>
 				</div>
-			</section>
+	</section>
 
-			<!-- Photo Gallery -->
-			<section class="mb-12">
-				<div class="gallery-grid">
-					{gardenPhotos.map((photo) => (
-						<div class="gallery-item bg-gray-200 rounded-2xl shadow-sm border border-gray-100">
+	<!-- Photo Gallery -->
+	<section class="mb-12">
+		{gardenPhotos.length === 0 ? (
+			<div class="text-center py-16">
+				<div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+					<span class="text-4xl">🌱</span>
+				</div>
+				<h2 class="text-2xl font-bold text-gray-900 mb-4">No garden photos yet</h2>
+				<p class="text-gray-600 mb-8">Upload garden photos in Sanity Studio to display them here.</p>
+				<a 
+					href="/studio" 
+					class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+				>
+					Add Photos
+				</a>
+			</div>
+		) : (
+			<div class="gallery-grid">
+				{gardenPhotos.map((photo: any) => (
+					<div class="gallery-item bg-gray-200 rounded-2xl shadow-sm border border-gray-100">
+						{photo.image && photo.image.asset ? (
 							<img 
-								src={photo.src} 
-								alt={photo.alt}
+								src={urlFor(photo.image).width(600).height(600).url()} 
+								alt={photo.image.alt}
 								loading="lazy"
-								onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
 							/>
+						) : (
 							<!-- Fallback for missing images -->
-							<div class="hidden w-full h-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+							<div class="w-full h-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
 								<div class="text-center">
 									<span class="text-4xl mb-2 block">🌱</span>
 									<p class="text-gray-600 font-medium">{photo.title}</p>
-									<p class="text-sm text-gray-500 mt-1">Photo coming soon</p>
+									<p class="text-sm text-gray-500 mt-1">Photo upload needed</p>
 								</div>
 							</div>
-							<div class="gallery-overlay">
+						)}
+						<div class="gallery-overlay">
+							<div class="flex flex-col gap-1">
 								<h3 class="gallery-title">{photo.title}</h3>
+								{photo.season && (
+									<p class="text-white text-xs capitalize">{photo.season}</p>
+								)}
 							</div>
 						</div>
-					))}
-				</div>
+					</div>
+				))}
+			</div>
+		)}
 				
-				<!-- Pagination Component -->
-				<Pagination 
-					currentPage={validCurrentPage} 
-					totalPages={totalPages} 
-					baseUrl="/garden" 
-				/>
-			</section>
-		</main>
-		<Footer />
+		<!-- Pagination Component -->
+		{totalPages > 1 && (
+			<Pagination 
+				currentPage={validCurrentPage} 
+				totalPages={totalPages} 
+				baseUrl="/garden" 
+			/>
+		)}
+	</section>
 
-		<!-- Add lightbox functionality -->
-		<script>
+	<!-- Add lightbox functionality -->
+	<script>
 			document.addEventListener('DOMContentLoaded', function() {
 				const galleryItems = document.querySelectorAll('.gallery-item');
 				
@@ -193,7 +195,7 @@ const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
 						const img = this.querySelector('img');
 						const title = this.querySelector('.gallery-title')?.textContent;
 						
-						if (img && !img.style.display === 'none') {
+						if (img && img.style.display !== 'none') {
 							// Simple lightbox - could be enhanced with a proper lightbox library
 							const lightbox = document.createElement('div');
 							lightbox.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4';
@@ -225,6 +227,5 @@ const gardenPhotos = allGardenPhotos.slice(startIndex, endIndex);
 					});
 				});
 			});
-		</script>
-	</body>
-</html>
+	</script>
+</Layout>

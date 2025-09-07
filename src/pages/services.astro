@@ -1,135 +1,109 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Layout from '../components/Layout.astro';
+import { getServices } from '../lib/sanity';
+
+const services = await getServices();
+
+// Helper function to get icon colors
+const getColorClasses = (color: string) => {
+  const colorMap = {
+    blue: { bg: 'bg-blue-100', text: 'text-blue-600', bullet: 'bg-blue-600' },
+    purple: { bg: 'bg-purple-100', text: 'text-purple-600', bullet: 'bg-purple-600' },
+    green: { bg: 'bg-green-100', text: 'text-green-600', bullet: 'bg-green-600' },
+    orange: { bg: 'bg-orange-100', text: 'text-orange-600', bullet: 'bg-orange-600' },
+    red: { bg: 'bg-red-100', text: 'text-red-600', bullet: 'bg-red-600' },
+    indigo: { bg: 'bg-indigo-100', text: 'text-indigo-600', bullet: 'bg-indigo-600' },
+  };
+  return colorMap[color as keyof typeof colorMap] || colorMap.blue;
+};
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title="Services - Mark Stenquist" description="Frontend architecture consulting, AI integration, and performance optimization services for venture-backed startups." />
-	</head>
-	<body class="bg-gray-50">
-		<Header />
-		<main class="max-w-6xl mx-auto px-6 py-16 pt-32">
-			<!-- Hero Section -->
-			<section class="text-center mb-12">
+<Layout title="Services - Mark Stenquist" description="Frontend architecture consulting, AI integration, and performance optimization services for venture-backed startups.">
+	<!-- Hero Section -->
+	<section class="text-center mb-12">
 				<h1 class="text-5xl font-black text-gray-900 mb-4">Consulting Services</h1>
 				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
 					Web development and design for modern digital products.
 				</p>
-			</section>
+	</section>
 
-			<!-- Services Grid -->
-			<div class="grid md:grid-cols-2 gap-8 mb-16">
-				<!-- Frontend Architecture -->
-				<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-					<div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-						<svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-						</svg>
-					</div>
-					<h3 class="text-2xl font-bold text-gray-900 mb-4">Frontend Architecture</h3>
-					<p class="text-gray-600 mb-6">Strategic technical planning for scalable web applications. Component architecture, design systems, and performance optimization strategies.</p>
-					<ul class="space-y-2 text-sm text-gray-600">
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Technical architecture assessment</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Component library development</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Performance optimization</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Scalability planning</li>
-					</ul>
+	<!-- Services Grid -->
+	<div class="grid md:grid-cols-2 gap-8 mb-16">
+		{services.length === 0 ? (
+			<div class="col-span-full text-center py-16">
+				<div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+					<span class="text-4xl">⚙️</span>
 				</div>
-
-				<!-- AI Integration -->
-				<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-					<div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-						<svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-						</svg>
-					</div>
-					<h3 class="text-2xl font-bold text-gray-900 mb-4">AI Integration</h3>
-					<p class="text-gray-600 mb-6">Practical AI implementation for web applications. From chatbots to data processing, making AI work for your business goals.</p>
-					<ul class="space-y-2 text-sm text-gray-600">
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>AI-powered user interfaces</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>LLM integration strategies</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>Automated workflows</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-purple-600 rounded-full mr-3"></span>Data visualization</li>
-					</ul>
-				</div>
-
-				<!-- Team Building -->
-				<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-					<div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-						<svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-						</svg>
-					</div>
-					<h3 class="text-2xl font-bold text-gray-900 mb-4">Team Building</h3>
-					<p class="text-gray-600 mb-6">Through VisualBoston, connecting growing companies with talented designers and developers in the Boston area.</p>
-					<ul class="space-y-2 text-sm text-gray-600">
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Frontend developer placement</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>UX/UI designer sourcing</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Technical leadership hiring</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-3"></span>Contract-to-hire options</li>
-					</ul>
-				</div>
-
-				<!-- Performance Optimization -->
-				<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-					<div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
-						<svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-						</svg>
-					</div>
-					<h3 class="text-2xl font-bold text-gray-900 mb-4">Performance Optimization</h3>
-					<p class="text-gray-600 mb-6">Core Web Vitals improvement, load time optimization, and user experience enhancements that drive measurable business results.</p>
-					<ul class="space-y-2 text-sm text-gray-600">
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-600 rounded-full mr-3"></span>Core Web Vitals optimization</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-600 rounded-full mr-3"></span>Bundle size reduction</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-600 rounded-full mr-3"></span>Mobile performance tuning</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-orange-600 rounded-full mr-3"></span>Conversion rate improvement</li>
-					</ul>
-				</div>
+				<h2 class="text-2xl font-bold text-gray-900 mb-4">No services configured yet</h2>
+				<p class="text-gray-600 mb-8">Add services in Sanity Studio to display them here.</p>
+				<a 
+					href="/studio" 
+					class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+				>
+					Add Services
+				</a>
 			</div>
-
-			<!-- Process Section -->
-			<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-16">
-				<h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">How We Work Together</h2>
-				<div class="grid md:grid-cols-3 gap-8">
-					<div class="text-center">
-						<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-							<span class="text-2xl font-bold text-blue-600">1</span>
+		) : (
+			services.map((service: any) => {
+				const colors = getColorClasses(service.iconColor || 'blue');
+				return (
+					<div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+						<div class={`w-16 h-16 ${colors.bg} rounded-xl flex items-center justify-center mb-6`}>
+							<svg class={`w-8 h-8 ${colors.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.iconSvg}></path>
+							</svg>
 						</div>
+						<h3 class="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
+						<p class="text-gray-600 mb-6">{service.shortDescription}</p>
+						<ul class="space-y-2 text-sm text-gray-600">
+							{service.features?.map((feature: string) => (
+								<li class="flex items-center">
+									<span class={`w-1.5 h-1.5 ${colors.bullet} rounded-full mr-3`}></span>
+									{feature}
+								</li>
+							))}
+						</ul>
+					</div>
+				);
+			})
+		)}
+	</div>
+
+	<!-- Process Section -->
+	<section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-10 mb-16">
+				<h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">How We Work Together</h2>
+		<div class="grid md:grid-cols-3 gap-8">
+			<div class="text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+							<span class="text-2xl font-bold text-blue-600">1</span>
+				</div>
 						<h3 class="text-lg font-semibold text-gray-900 mb-2">Discovery Call</h3>
 						<p class="text-gray-600 text-sm">30-minute conversation to understand your technical challenges and business objectives.</p>
-					</div>
-					<div class="text-center">
-						<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+			</div>
+			<div class="text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
 							<span class="text-2xl font-bold text-blue-600">2</span>
-						</div>
+				</div>
 						<h3 class="text-lg font-semibold text-gray-900 mb-2">Technical Assessment</h3>
 						<p class="text-gray-600 text-sm">Comprehensive review of your current architecture, performance, and scalability needs.</p>
-					</div>
-					<div class="text-center">
-						<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+			</div>
+			<div class="text-center">
+				<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
 							<span class="text-2xl font-bold text-blue-600">3</span>
-						</div>
+				</div>
 						<h3 class="text-lg font-semibold text-gray-900 mb-2">Implementation</h3>
 						<p class="text-gray-600 text-sm">Strategic development work with regular check-ins and transparent progress tracking.</p>
-					</div>
-				</div>
-			</section>
+			</div>
+		</div>
+	</section>
 
-			<!-- CTA Section -->
-			<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12 text-center">
+	<!-- CTA Section -->
+	<section class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-sm border border-blue-100 p-8 md:p-12 text-center">
 				<h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Get Started?</h2>
 				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Let's discuss how I can help with your frontend challenges and technical goals.</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+		<div class="flex flex-col sm:flex-row gap-4 justify-center">
 					<a href="/contact" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Schedule a Call</a>
 					<a href="https://visualboston.com" target="_blank" class="inline-block bg-white text-blue-600 border border-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">Visit VisualBoston</a>
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</div>
+	</section>
+</Layout>

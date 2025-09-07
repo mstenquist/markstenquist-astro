@@ -1,0 +1,65 @@
+[
+  {
+    "_type": "work",
+    "title": "Shadow Lion",
+    "slug": {"current": "shadow-lion", "_type": "slug"},
+    "category": "Marketing Website",
+    "description": "Designing a new video experience for content creators and viewers",
+    "challenge": "Shadow Lion needed to create a revolutionary video platform that could compete with established players while offering unique features for content creators and their audiences.",
+    "solution": "Built a responsive video streaming platform with React and React Native. Implemented adaptive bitrate streaming, real-time analytics, and creator monetization tools that differentiated the platform in a crowded market.",
+    "website": "https://shadowlion.com",
+    "order": 2
+  },
+  {
+    "_type": "work",
+    "title": "Project Finance (DCU)",
+    "slug": {"current": "project-finance-dcu", "_type": "slug"},
+    "category": "React & TypeScript",
+    "description": "Elevating digital banking experiences for credit union members",
+    "challenge": "DCU needed to modernize their digital banking platform to compete with fintech startups while maintaining the security and reliability their members expect from a trusted financial institution.",
+    "solution": "Developed a modern React and TypeScript banking application with enhanced security features. Created intuitive financial management tools, streamlined loan applications, and mobile-first account management interfaces.",
+    "website": "https://dcu.org",
+    "order": 3
+  },
+  {
+    "_type": "work",
+    "title": "O2X",
+    "slug": {"current": "o2x", "_type": "slug"},
+    "category": "React & Performance",
+    "description": "Optimizing human performance for tactical athletes and first responders",
+    "challenge": "O2X needed a comprehensive platform to deliver performance training, mental health resources, and data analytics to military units, fire departments, and law enforcement agencies.",
+    "solution": "Developed React-based training dashboards with real-time biometric data integration. Built performance tracking systems that help tactical athletes optimize their physical and mental readiness.",
+    "website": "https://o2x.com",
+    "order": 5
+  },
+  {
+    "_type": "work",
+    "title": "Dwight Capital",
+    "slug": {"current": "dwight-capital", "_type": "slug"},
+    "category": "Commercial Real Estate",
+    "description": "Commercial real estate lending platform",
+    "challenge": "Dwight Capital needed a modern platform to streamline their commercial real estate lending process.",
+    "solution": "Built a comprehensive lending platform with automated workflows and data analytics.",
+    "order": 1
+  },
+  {
+    "_type": "work",
+    "title": "Linus Health",
+    "slug": {"current": "linus-health", "_type": "slug"},
+    "category": "Healthcare Technology",
+    "description": "Digital brain health assessment platform",
+    "challenge": "Linus Health needed to digitize cognitive assessment tools for healthcare providers.",
+    "solution": "Developed a React-based platform for digital cognitive assessments with real-time scoring.",
+    "order": 4
+  },
+  {
+    "_type": "work",
+    "title": "FraudNet",
+    "slug": {"current": "fraudnet", "_type": "slug"},
+    "category": "Fintech Security",
+    "description": "Financial fraud detection and prevention platform",
+    "challenge": "FraudNet needed to build a sophisticated platform to detect and prevent financial fraud.",
+    "solution": "Created a React-based dashboard with real-time fraud detection algorithms and analytics.",
+    "order": 6
+  }
+]
