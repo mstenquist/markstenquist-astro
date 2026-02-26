@@ -5,7 +5,7 @@ import { SITE_TITLE } from '../consts';
 
 <header class="header">
 	<nav>
-		<h2><a href="/">mark_stenquist</a></h2>
+		<h2><a href="#top" id="logo-link">mark_stenquist</a></h2>
 		<div class="nav-links">
 		</div>
 		<div class="social-links">
@@ -40,11 +40,22 @@ import { SITE_TITLE } from '../consts';
 </header>
 <style>
 	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
 		margin: 0;
 		padding: 0 2rem;
 		background: var(--surface, #fdfcfa);
 		height: 60px;
 		border-bottom: 1px solid var(--border, #e6ddd0);
+		transform: translateY(0);
+		/* Transition added via JS after first scroll to prevent animation on load */
+	}
+	
+	header.header-hidden {
+		transform: translateY(-100%);
 	}
 	
 	h2 {
@@ -162,3 +173,48 @@ import { SITE_TITLE } from '../consts';
 		}
 	}
 </style>
+
+<script>
+	const header = document.querySelector('header');
+	const logoLink = document.getElementById('logo-link');
+	let lastScroll = window.scrollY;
+	let ticking = false;
+	let hasScrolled = false;
+
+	function updateHeader() {
+		const currentScroll = window.scrollY;
+		
+		// Enable transition only after first user scroll
+		if (!hasScrolled) {
+			hasScrolled = true;
+			header?.style.setProperty('transition', 'transform 0.3s ease');
+		}
+		
+		if (currentScroll <= 0) {
+			header?.classList.remove('header-hidden');
+		} else if (currentScroll > lastScroll) {
+			// Scrolling down
+			header?.classList.add('header-hidden');
+		} else {
+			// Scrolling up
+			header?.classList.remove('header-hidden');
+		}
+		
+		lastScroll = currentScroll;
+		ticking = false;
+	}
+
+	window.addEventListener('scroll', () => {
+		if (!ticking) {
+			requestAnimationFrame(updateHeader);
+			ticking = true;
+		}
+	}, { passive: true });
+
+	// Smooth scroll to top when clicking logo
+	logoLink?.addEventListener('click', (e) => {
+		e.preventDefault();
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+		header?.classList.remove('header-hidden');
+	});
+</script>

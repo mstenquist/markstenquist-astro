@@ -104,6 +104,7 @@ body {
   font-family: var(--font-sans);
   margin: 0;
   padding: 0;
+  padding-top: 60px; /* Fixed header height */
   background-color: var(--background);
   color: var(--text-primary);
   font-size: var(--text-base);
@@ -413,6 +414,10 @@ code, .code {
     --text-lg: 1rem;
     --space-6: 1rem;
     --space-4: 0.75rem;
+  }
+  
+  body {
+    padding-top: 52px; /* Mobile header height */
   }
   
   main {
