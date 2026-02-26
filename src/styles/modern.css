@@ -300,28 +300,77 @@ code, .code {
   }
 }
 
-/* Animations - more subtle */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-on-scroll {
-  animation: fadeIn 0.5s ease forwards;
+/* Scroll Reveal Animation - Blur to Crisp */
+.reveal {
   opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  transition: 
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.animate-on-scroll:nth-child(1) { animation-delay: 0.05s; }
-.animate-on-scroll:nth-child(2) { animation-delay: 0.1s; }
-.animate-on-scroll:nth-child(3) { animation-delay: 0.15s; }
-.animate-on-scroll:nth-child(4) { animation-delay: 0.2s; }
-.animate-on-scroll:nth-child(5) { animation-delay: 0.25s; }
+.reveal.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* Stagger children for nice cascading effect */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 0.05s; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 0.1s; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 0.15s; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 0.2s; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 0.25s; }
+.reveal-stagger > *:nth-child(7) { transition-delay: 0.3s; }
+.reveal-stagger > *:nth-child(8) { transition-delay: 0.35s; }
+
+/* Individual paragraph/heading reveals */
+.reveal-item {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(12px);
+  transition: 
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-item.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-item {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Legacy class for backwards compatibility */
+.animate-on-scroll {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  transition: 
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
