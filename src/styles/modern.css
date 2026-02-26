@@ -192,30 +192,24 @@ h3.text-xl::before {
 /* Layout Components */
 .hero {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 136px 1fr;
   gap: var(--space-8);
   align-items: start;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-6);
   padding: var(--space-6) 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .section-card {
   background: transparent;
   padding: var(--space-8) 0;
   margin-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.section-card:last-of-type {
-  border-bottom: none;
 }
 
 /* Profile Image */
 .profile-image {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 136px;
+  height: 136px;
 }
 
 .profile-image img {
@@ -401,8 +395,8 @@ code, .code {
   }
   
   .profile-image {
-    width: 160px;
-    height: 160px;
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -419,8 +413,8 @@ code, .code {
   }
   
   .profile-image {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
   }
   
   .text-display {
