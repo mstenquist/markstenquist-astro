@@ -3,39 +3,46 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Mark Stenquist. All rights reserved.
+	<span class="copyright">&copy; {today.getFullYear()} mark_stenquist</span>
+	<span class="separator">—</span>
+	<span class="tagline">building for the web since 2009</span>
 </footer>
 <style>
 	footer {
-		padding: 3rem 2rem 4rem 2rem;
-		background: var(--background, #f8fafc);
-		color: var(--text-muted, #94a3b8);
+		padding: 2rem;
+		background: var(--surface, #fdfcfa);
+		color: var(--text-muted, #b8a589);
 		text-align: center;
-		font-size: 0.875rem;
-		border-top: 1px solid var(--border, #e2e8f0);
+		font-family: var(--font-mono, 'JetBrains Mono', monospace);
+		font-size: 0.75rem;
+		letter-spacing: 0.02em;
+		border-top: 1px solid var(--border, #e6ddd0);
 		margin-top: 2rem;
 	}
 	
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1.5rem;
-		margin-top: 1.5rem;
+	.copyright {
+		color: var(--text-secondary, #7a6a52);
 	}
 	
-	.social-links a {
-		text-decoration: none;
-		color: var(--text-muted, #94a3b8);
-		transition: color 0.2s ease;
+	.separator {
+		margin: 0 0.75rem;
+		color: var(--border, #e6ddd0);
 	}
 	
-	.social-links a:hover {
-		color: var(--accent, #0284c7);
+	.tagline {
+		color: var(--text-muted, #b8a589);
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 480px) {
 		footer {
-			padding: 2rem 1rem 3rem 1rem;
+			padding: 1.5rem 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+		
+		.separator {
+			display: none;
 		}
 	}
 </style>
