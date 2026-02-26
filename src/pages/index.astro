@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import '../styles/modern.css';
 ---
@@ -14,7 +15,7 @@ import '../styles/modern.css';
 	<body>
 		<Header />
 		<main>
-			<section class="hero">
+			<section class="hero reveal">
 				<div class="profile-image">
 					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
 				</div>
@@ -26,7 +27,7 @@ import '../styles/modern.css';
 				</div>
 			</section>
 
-			<section class="section-card animate-on-scroll">
+			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">A bit about me</h2>
 				<p class="text-body">
 					My journey began on the founding team of <a href="https://techcrunch.com/2011/04/25/campuslive-raises-3-1-million-to-help-brands-connect-with-college-students/" target="_blank" class="link-enhanced">CampusLIVE</a> at UMass Amherst, a college startup that grew from dorm room idea to a multi-million dollar company backed by <a href="https://hcp.com" target="_blank" class="link-enhanced">Highland Capital Partners</a> and <a href="https://www.crv.com/" target="_blank" class="link-enhanced">CRV</a>. This early experience didn't just teach me how to code; it showed me how technology can scale human connections and create real business value.
@@ -35,14 +36,14 @@ import '../styles/modern.css';
 					At Google Ventures-backed <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others//" target="_blank" class="link-enhanced">CustomMade</a>, I grew my the frontend skills and used them to help them connect thousands of artisans with customers seeking custom furniture and jewelry. I learned that great user interfaces aren't just about clean code, they're about understanding user psychology, reducing friction, and building trust through digital experiences.
 				</p>
 				<p class="text-body">
-					After CustomMade, I spent the next five years as an independent consultant, working with dozens of Boston-area startups across industries from fintech to healthcare and beyond.Each project taught me something new about solving complex technical challenges while meeting aggressive business timelines.
+					After CustomMade, I spent the next five years as an independent consultant, working with dozens of Boston-area startups across industries from fintech to healthcare and beyond. Each project taught me something new about solving complex technical challenges while meeting aggressive business timelines.
 				</p>
 				<p class="text-body">
 					In 2020, these experiences and connections led me to co-found <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>, where I lead engineering for our digital agency. We've grown from a pandemic pivot to a thriving team that helps ambitious companies build their digital presence.
 				</p>
 			</section>
 
-			<section class="section-card animate-on-scroll">
+			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Technical Foundation</h2>
 				<h3 class="text-xl font-semibold text-primary mb-4">Core Expertise & Technical Stack</h3>
 				<p class="text-body">
@@ -63,7 +64,7 @@ import '../styles/modern.css';
 				</p>
 			</section>
 
-			<section class="section-card animate-on-scroll">
+			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Beyond Technology</h2>
 				<h3 class="text-xl font-semibold text-primary mb-4">Growing More Than Code</h3>
 				<p class="text-body">
@@ -74,7 +75,7 @@ import '../styles/modern.css';
 				</p>
 			</section>
 
-			<section class="section-card animate-on-scroll">
+			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Ready to Build Something Great?</h2>
 				<p class="text-body">
 					I work with forward-thinking companies and ambitious entrepreneurs who understand that exceptional digital experiences drive business results. Whether you need a technical co-founder, a frontend architect for your next big feature, or a consulting partner to help navigate complex development challenges, I'd love to explore how we can work together.
@@ -94,5 +95,6 @@ import '../styles/modern.css';
 			</section>
 		</main>
 		<Footer />
+		<ScrollReveal />
 	</body>
 </html>

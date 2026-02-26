@@ -1,0 +1,38 @@
+---
+// Scroll Reveal Animation Script
+// Uses Intersection Observer for smooth blur-to-crisp reveal
+---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    };
+
+    const revealOnScroll = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(revealOnScroll, observerOptions);
+
+    // Observe all elements with reveal classes
+    const revealElements = document.querySelectorAll('.reveal, .reveal-item, .animate-on-scroll');
+    revealElements.forEach(el => observer.observe(el));
+
+    // For staggered children, observe and reveal children individually
+    const staggerContainers = document.querySelectorAll('.reveal-stagger');
+    staggerContainers.forEach(container => {
+      const children = container.children;
+      Array.from(children).forEach(child => {
+        child.classList.add('reveal-item');
+        observer.observe(child);
+      });
+    });
+  });
+</script>
