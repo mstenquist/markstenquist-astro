@@ -230,24 +230,31 @@ h3.text-xl::before {
   color: var(--accent-dark);
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 1px solid var(--accent-light);
-  transition: all 0.2s ease;
+  background: 
+    linear-gradient(var(--accent), var(--accent)) left bottom no-repeat,
+    linear-gradient(var(--accent-light), var(--accent-light)) left bottom no-repeat;
+  background-size: 0% 1px, 100% 1px;
+  padding-bottom: 1px;
+  transition: background-size 0.3s ease, color 0.25s ease;
 }
 
 .link-enhanced:hover {
+  background-size: 100% 1px, 100% 1px;
   color: var(--accent);
-  border-bottom-color: var(--accent);
 }
 
 @media (prefers-color-scheme: dark) {
   .link-enhanced {
     color: var(--accent);
-    border-bottom-color: var(--accent-dark);
+    background: 
+      linear-gradient(var(--accent-light), var(--accent-light)) left bottom no-repeat,
+      linear-gradient(var(--accent-dark), var(--accent-dark)) left bottom no-repeat;
+    background-size: 0% 1px, 100% 1px;
   }
   
   .link-enhanced:hover {
-    color: var(--accent-dark);
-    border-bottom-color: var(--accent);
+    background-size: 100% 1px, 100% 1px;
+    color: var(--accent-light);
   }
 }
 
