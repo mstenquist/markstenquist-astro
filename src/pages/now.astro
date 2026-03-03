@@ -1,0 +1,90 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import '../styles/modern.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Now | Mark Stenquist" description="What I'm currently working on and focused on right now." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero reveal">
+				<div class="hero-text" style="max-width: 100%;">
+					<h1 class="text-display">What I'm doing now</h1>
+					<p class="text-lead">
+						This is a <a href="https://nownownow.com/about" target="_blank" class="link-enhanced">now page</a>. Updated March 2026.
+					</p>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🚀 Building</h2>
+				
+				<h3 class="text-xl font-semibold text-primary mb-4">TallyQuote</h3>
+				<p class="text-body">
+					Soft launching a voice-to-estimate PWA for contractors. Record a job site walkthrough, AI extracts line items, generates professional proposals. Built with Next.js, Claude API, Deepgram. Currently onboarding beta users and iterating on the mobile experience.
+				</p>
+				<p class="text-body mb-6">
+					<a href="https://tallyquote.com" target="_blank" class="link-enhanced">tallyquote.com</a>
+				</p>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">Layerflow</h3>
+				<p class="text-body">
+					An AI-powered UI builder with composable layers. Early stage, working on the editor experience and AI integration for rapid prototyping.
+				</p>
+				<p class="text-body mb-6">
+					<a href="https://layerflow.com" target="_blank" class="link-enhanced">layerflow.com</a>
+				</p>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">VisualBoston Client Work</h3>
+				<p class="text-body">
+					Leading engineering at our agency. Current focus: QuickBooks integrations, AI-powered document analysis, and helping ambitious startups ship faster.
+				</p>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🧠 Learning</h2>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2">Deep diving into <strong>AI agent architectures</strong> and tool-use patterns</li>
+					<li class="mb-2">Exploring <strong>voice interfaces</strong> for business applications</li>
+					<li class="mb-2">Getting better at <strong>product marketing</strong> for dev tools</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🌱 Growing</h2>
+				<p class="text-body">
+					Planning the spring garden. This year: expanding the raised beds, trying out some new permaculture techniques, and hopefully getting the fruit trees established.
+				</p>
+				<p class="text-body">
+					Also focused on being present for my family. Cutting out distractions, eating cleaner, and making time for what matters.
+				</p>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">📍 Location</h2>
+				<p class="text-body">
+					East coast suburbs of Boston, MA. Working from home most days, occasionally at coffee shops when I need a change of scenery.
+				</p>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">💬 Get in touch</h2>
+				<p class="text-body">
+					Best way to reach me is email: <a href="mailto:mark@visualboston.com" class="link-enhanced">mark@visualboston.com</a>
+				</p>
+				<p class="text-body">
+					Currently taking on 1-2 strategic consulting projects per quarter. If you're building something interesting with AI or need frontend architecture help, let's talk.
+				</p>
+			</section>
+		</main>
+		<Footer />
+		<ScrollReveal />
+	</body>
+</html>
