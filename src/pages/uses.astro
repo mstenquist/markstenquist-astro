@@ -1,0 +1,120 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import '../styles/modern.css';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Uses | Mark Stenquist" description="The tools, hardware, and software I use to build things." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero reveal">
+				<div class="hero-text" style="max-width: 100%;">
+					<h1 class="text-display">What I use</h1>
+					<p class="text-lead">
+						My current setup for building web applications and running a business.
+					</p>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">💻 Hardware</h2>
+				
+				<h3 class="text-xl font-semibold text-primary mb-4">Workstation</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>MacBook Pro 16" M3 Max</strong> — Primary machine. The performance is absurd.</li>
+					<li class="mb-2"><strong>Mac Mini M4 Pro</strong> — Always-on server for AI agents, cron jobs, and background tasks.</li>
+					<li class="mb-2"><strong>Apple Studio Display</strong> — Clean, sharp, just works.</li>
+					<li class="mb-2"><strong>Apple Magic Keyboard</strong> — The one with Touch ID.</li>
+					<li class="mb-2"><strong>Logitech MX Master 3</strong> — Best mouse I've ever used.</li>
+				</ul>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">Mobile</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>iPhone 15 Pro</strong> — Always in my pocket. Great for testing mobile web.</li>
+					<li class="mb-2"><strong>AirPods Pro</strong> — For calls, music, and blocking out distractions.</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🛠 Development</h2>
+				
+				<h3 class="text-xl font-semibold text-primary mb-4">Editor & Terminal</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>VS Code</strong> — With Vim keybindings. Can't quit the muscle memory.</li>
+					<li class="mb-2"><strong>Cursor</strong> — For AI-assisted coding sessions. Game changer.</li>
+					<li class="mb-2"><strong>iTerm2</strong> — With Oh My Zsh and Starship prompt.</li>
+					<li class="mb-2"><strong>GitHub Copilot</strong> — Always on, helpful for boilerplate.</li>
+				</ul>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">Stack</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Next.js / React</strong> — My go-to for web apps.</li>
+					<li class="mb-2"><strong>TypeScript</strong> — Won't start a project without it anymore.</li>
+					<li class="mb-2"><strong>Tailwind CSS</strong> — Fast styling, consistent design systems.</li>
+					<li class="mb-2"><strong>Drizzle ORM</strong> — Type-safe database queries.</li>
+					<li class="mb-2"><strong>Postgres (Neon)</strong> — Serverless Postgres that scales.</li>
+					<li class="mb-2"><strong>Vercel</strong> — Deploy and forget. The DX is unmatched.</li>
+				</ul>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">AI Tools</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Claude (Anthropic)</strong> — My primary AI. Best for reasoning and code.</li>
+					<li class="mb-2"><strong>OpenClaw</strong> — AI assistant framework. Runs on my Mac Mini 24/7.</li>
+					<li class="mb-2"><strong>Deepgram</strong> — Speech-to-text for TallyQuote. Fast and accurate.</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">📱 Apps</h2>
+				
+				<h3 class="text-xl font-semibold text-primary mb-4">Productivity</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Notion</strong> — Project management, docs, wikis.</li>
+					<li class="mb-2"><strong>Raycast</strong> — Replaced Spotlight. Snippets, clipboard history, everything.</li>
+					<li class="mb-2"><strong>1Password</strong> — Password manager for the team.</li>
+					<li class="mb-2"><strong>Figma</strong> — Design, prototyping, collaboration.</li>
+					<li class="mb-2"><strong>Slack</strong> — Team communication.</li>
+					<li class="mb-2"><strong>Telegram</strong> — Quick messages, AI bot interfaces.</li>
+				</ul>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">Mail & Calendar</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Superhuman</strong> — Fast email. Worth every penny.</li>
+					<li class="mb-2"><strong>Google Calendar</strong> — Shared calendars with the team.</li>
+				</ul>
+
+				<h3 class="text-xl font-semibold text-primary mb-4">Browser</h3>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Arc</strong> — Primary browser. Spaces and profiles are great.</li>
+					<li class="mb-2"><strong>Chrome</strong> — For testing and DevTools.</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🎧 Music & Focus</h2>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Spotify</strong> — Lo-fi beats, instrumental, ambient.</li>
+					<li class="mb-2"><strong>Brain.fm</strong> — When I really need to lock in.</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">🌱 Garden</h2>
+				<ul class="mb-6 text-secondary leading-relaxed">
+					<li class="mb-2"><strong>Felco F-2 Pruners</strong> — The only pruners you'll ever need.</li>
+					<li class="mb-2"><strong>Hori Hori Knife</strong> — Japanese garden knife. Dig, cut, measure.</li>
+					<li class="mb-2"><strong>Broadfork</strong> — No-till soil prep. Good workout too.</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<ScrollReveal />
+	</body>
+</html>
