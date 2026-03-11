@@ -7,6 +7,10 @@ import { SITE_TITLE } from '../consts';
 	<nav>
 		<h2><a href="#top" id="logo-link">mark_stenquist</a></h2>
 		<div class="nav-links">
+			<button id="mode-toggle" class="mode-toggle" aria-label="Switch mode">
+				<span class="mode-label engineer-label">🌿 Garden</span>
+				<span class="mode-label garden-label">💻 Engineer</span>
+			</button>
 		</div>
 		<div class="social-links">
 			<a href="https://linkedin.com/in/markstenquist" target="_blank" title="LinkedIn">
@@ -172,6 +176,36 @@ import { SITE_TITLE } from '../consts';
 			font-size: 0.75rem;
 		}
 	}
+
+	/* Mode toggle button */
+	.mode-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.3rem 0.75rem;
+		border-radius: 999px;
+		border: 1.5px solid var(--border, #e6ddd0);
+		background: transparent;
+		font-family: var(--font-mono, 'JetBrains Mono', monospace);
+		font-size: 0.78rem;
+		font-weight: 500;
+		color: var(--text-muted, #9a8568);
+		cursor: pointer;
+		transition: all 0.2s ease;
+		white-space: nowrap;
+	}
+
+	.mode-toggle:hover {
+		border-color: var(--accent, #b8845c);
+		color: var(--accent, #b8845c);
+		background: transparent;
+	}
+
+	.mode-label { display: none; }
+
+	/* Show correct label based on current mode */
+	:global(html[data-mode="engineer"]) .engineer-label { display: inline; }
+	:global(html[data-mode="garden"]) .garden-label { display: inline; }
 </style>
 
 <script>
@@ -216,5 +250,14 @@ import { SITE_TITLE } from '../consts';
 		e.preventDefault();
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 		header?.classList.remove('header-hidden');
+	});
+
+	// Mode toggle
+	const toggle = document.getElementById('mode-toggle');
+	toggle?.addEventListener('click', () => {
+		const current = document.documentElement.getAttribute('data-mode') || 'engineer';
+		const next = current === 'engineer' ? 'garden' : 'engineer';
+		document.documentElement.setAttribute('data-mode', next);
+		localStorage.setItem('site-mode', next);
 	});
 </script>

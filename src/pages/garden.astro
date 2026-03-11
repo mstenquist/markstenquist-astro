@@ -1,0 +1,355 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import '../styles/modern.css';
+
+const title = "Garden Consultation — Mark Stenquist";
+const description = "Book a one-on-one garden consultation with Mark Stenquist. Permaculture Design Certificate holder with 15+ years of experience in growing food, composting, raised beds, and regenerative gardening.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero-garden reveal">
+				<div class="hero-badge">🌱 Garden Consultation</div>
+				<h1 class="text-display">Grow something real.</h1>
+				<p class="text-lead">
+					One-on-one consultation with a permaculture-trained gardener. Whether you're starting your first raised bed or want to turn your yard into a productive ecosystem, let's build a plan that works for your space.
+				</p>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Credentials & Experience</h2>
+				<ul>
+					<li><strong>Permaculture Design Certificate (PDC)</strong> — Trained in ecological design, companion planting, soil health, and building resilient growing systems</li>
+					<li><strong>15+ years of hands-on gardening</strong> — From seed to harvest, across New England's challenging growing conditions</li>
+					<li><strong>Regenerative practices</strong> — Sheet mulching, composting systems, no-dig methods, and cover cropping</li>
+					<li><strong>Quarter-acre urban homestead</strong> — Currently running a productive lot in suburban Boston with vegetables, herbs, fruit, and perennials</li>
+				</ul>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">What We Can Cover</h2>
+				<p class="text-body">Every consultation is tailored to you. Common topics include:</p>
+
+				<div class="topics-grid">
+					<div class="topic-card">
+						<span class="topic-icon">🌱</span>
+						<h3>Starting from Seed</h3>
+						<p>Indoor seed starting setup, timing by frost dates, hardening off, transplanting. Stop buying starts and grow your own.</p>
+					</div>
+					<div class="topic-card">
+						<span class="topic-icon">🪴</span>
+						<h3>Garden Bed Setup</h3>
+						<p>Raised beds vs. in-ground, soil composition, no-dig sheet mulching, lasagna gardening, and layout planning.</p>
+					</div>
+					<div class="topic-card">
+						<span class="topic-icon">♻️</span>
+						<h3>Composting</h3>
+						<p>Hot compost, cold compost, vermicomposting, and bokashi. Build living soil from your kitchen and yard waste.</p>
+					</div>
+					<div class="topic-card">
+						<span class="topic-icon">🥦</span>
+						<h3>Growing Your Own Food</h3>
+						<p>Crop planning, succession planting, spacing, companion planting, and maximizing yield in small spaces.</p>
+					</div>
+					<div class="topic-card">
+						<span class="topic-icon">🍎</span>
+						<h3>Perennials & Food Forests</h3>
+						<p>Fruit trees, berry bushes, herbs, and perennial vegetables. Plants that keep giving year after year.</p>
+					</div>
+					<div class="topic-card">
+						<span class="topic-icon">🌍</span>
+						<h3>Permaculture Design</h3>
+						<p>Whole-site design principles, zones, guilds, water management, and creating a low-maintenance productive landscape.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">How It Works</h2>
+				<ol class="steps-list">
+					<li>
+						<span class="step-num">01</span>
+						<div>
+							<strong>Send an inquiry</strong>
+							<p>Fill out the form below with a bit about your space, goals, and what you're hoping to get out of the session.</p>
+						</div>
+					</li>
+					<li>
+						<span class="step-num">02</span>
+						<div>
+							<strong>Schedule a time</strong>
+							<p>We'll find a time that works — consultations are held virtually via video call or in-person if you're in the greater Boston area.</p>
+						</div>
+					</li>
+					<li>
+						<span class="step-num">03</span>
+						<div>
+							<strong>Walk away with a plan</strong>
+							<p>You'll leave the session with clear next steps, a planting or design plan, and ongoing support via email if you have follow-up questions.</p>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="section-card booking-section reveal-stagger" id="book">
+				<h2 class="text-section-heading">Book a Consultation</h2>
+				<p class="text-body">Reach out and tell me a bit about your garden goals. I'll get back to you within a couple days.</p>
+
+				<form class="booking-form" action="mailto:mark@visualboston.com" method="get" enctype="text/plain">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="name">Your name</label>
+							<input type="text" id="name" name="name" placeholder="Jane Smith" required />
+						</div>
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="email" id="email" name="email" placeholder="jane@example.com" required />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="location">Your location</label>
+						<input type="text" id="location" name="location" placeholder="e.g. Somerville, MA (virtual is fine too)" />
+					</div>
+					<div class="form-group">
+						<label for="space">Describe your space</label>
+						<textarea id="space" name="space" rows="3" placeholder="Backyard, raised beds, balcony, community plot... whatever you've got."></textarea>
+					</div>
+					<div class="form-group">
+						<label for="goals">What do you want help with?</label>
+						<textarea id="goals" name="goals" rows="4" placeholder="E.g. I want to start growing vegetables but don't know where to begin. I have a sunny 10×10 patch and want to make the most of it." required></textarea>
+					</div>
+					<button type="submit" class="submit-btn">Send inquiry →</button>
+				</form>
+			</section>
+		</main>
+		<Footer />
+		<ScrollReveal />
+	</body>
+</html>
+
+<style>
+	.hero-garden {
+		padding: var(--space-8) 0 var(--space-6);
+		margin-bottom: var(--space-4);
+	}
+
+	.hero-badge {
+		display: inline-block;
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 10%, transparent);
+		border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+		padding: 0.25rem 0.75rem;
+		border-radius: var(--radius-md);
+		margin-bottom: var(--space-4);
+		letter-spacing: 0.05em;
+	}
+
+	/* Topics grid */
+	.topics-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--space-4);
+		margin-top: var(--space-6);
+	}
+
+	.topic-card {
+		background: var(--sand-100);
+		border: 1px solid var(--border);
+		padding: var(--space-6);
+		border-radius: var(--radius-lg);
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.topic-card {
+			background: var(--surface-elevated);
+		}
+	}
+
+	.topic-card:hover {
+		border-color: var(--accent);
+		box-shadow: var(--shadow-md);
+	}
+
+	.topic-icon {
+		display: block;
+		font-size: 1.5rem;
+		margin-bottom: var(--space-2);
+	}
+
+	.topic-card h3 {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text-primary);
+		margin: 0 0 var(--space-2);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.topic-card p {
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	/* Steps */
+	.steps-list {
+		list-style: none;
+		padding: 0;
+		margin-top: var(--space-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+
+	.steps-list li {
+		display: flex;
+		gap: var(--space-6);
+		align-items: flex-start;
+		padding-left: 0;
+	}
+
+	.steps-list li::before {
+		display: none;
+	}
+
+	.step-num {
+		font-family: var(--font-mono);
+		font-size: var(--text-2xl);
+		font-weight: 700;
+		color: var(--accent);
+		opacity: 0.4;
+		line-height: 1;
+		min-width: 2.5rem;
+		padding-top: 2px;
+	}
+
+	.steps-list strong {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--text-primary);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		display: block;
+		margin-bottom: var(--space-1);
+	}
+
+	.steps-list p {
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	/* Booking form */
+	.booking-section {
+		border-top: 1px solid var(--border);
+	}
+
+	.booking-form {
+		margin-top: var(--space-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-4);
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+
+	label {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		font-weight: 600;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	input, textarea {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-primary);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		padding: 0.6rem 0.875rem;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+		resize: vertical;
+	}
+
+	input::placeholder, textarea::placeholder {
+		color: var(--text-muted);
+		opacity: 0.7;
+	}
+
+	input:focus, textarea:focus {
+		outline: none;
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+	}
+
+	.submit-btn {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--surface);
+		background: var(--accent);
+		border: none;
+		border-radius: var(--radius-md);
+		padding: 0.75rem 1.5rem;
+		cursor: pointer;
+		align-self: flex-start;
+		letter-spacing: 0.03em;
+		transition: background 0.2s ease, transform 0.15s ease;
+	}
+
+	.submit-btn:hover {
+		background: var(--accent-dark);
+		transform: translateY(-1px);
+	}
+
+	.submit-btn:active {
+		transform: translateY(0);
+	}
+
+	/* Responsive */
+	@media (max-width: 640px) {
+		.topics-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+
+		.steps-list li {
+			gap: var(--space-4);
+		}
+	}
+</style>
