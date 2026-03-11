@@ -158,22 +158,22 @@ main {
 /* Typography */
 .text-display {
   font-family: var(--font-sans);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(3rem, 7vw, 5rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
 .text-section-heading {
   font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: var(--space-6);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
 }
 
 .text-lead {
@@ -195,9 +195,9 @@ main {
 
 h3.text-xl {
   font-family: var(--font-sans);
-  font-size: 1.125rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
   margin-top: var(--space-6);
@@ -444,15 +444,6 @@ code, .code {
   .profile-image {
     width: 80px;
     height: 80px;
-  }
-  
-  .text-display {
-    font-size: var(--text-2xl);
-    word-break: break-word;
-  }
-  
-  .text-section-heading {
-    font-size: var(--text-base);
   }
 }
 
