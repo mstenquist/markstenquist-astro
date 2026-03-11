@@ -8,19 +8,7 @@ import '../styles/modern.css';
 ---
 
 <style>
-	.hero-badge {
-		display: inline-block;
-		font-family: var(--font-mono);
-		font-size: var(--text-sm);
-		font-weight: 500;
-		color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 10%, transparent);
-		border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-		padding: 0.25rem 0.75rem;
-		border-radius: 0.5rem;
-		margin-bottom: 1rem;
-		letter-spacing: 0.05em;
-	}
+
 	.topics-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -41,12 +29,10 @@ import '../styles/modern.css';
 	.topic-icon { display: block; font-size: 1.4rem; margin-bottom: 0.5rem; }
 	.topic-card h3 {
 		font-family: var(--font-mono);
-		font-size: 0.8rem;
+		font-size: var(--text-sm);
 		font-weight: 600;
 		color: var(--text-primary);
 		margin: 0 0 0.4rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
 	}
 	.topic-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 	@media (max-width: 640px) { .topics-grid { grid-template-columns: 1fr; } }
@@ -174,7 +160,6 @@ import '../styles/modern.css';
 			<div class="mode-section" data-show-in="garden">
 				<section class="hero reveal">
 					<div class="hero-text">
-						<div class="hero-badge">🌱 Garden Consultation</div>
 						<h1 class="text-display">Grow something real.</h1>
 						<p class="text-lead">
 							One-on-one consultation with a permaculture-trained gardener. Whether you're starting your first raised bed or want to turn your yard into a productive ecosystem, let's build a plan that works for your space.
