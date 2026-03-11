@@ -1,7 +1,7 @@
 /* Modern Engineering Design System for Mark Stenquist */
 
 /* Import JetBrains Mono for that engineering feel, Lora for garden mode */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 :root {
   /* Warm Neutral Palette - Light Tan/Paper tones */
@@ -68,25 +68,22 @@
 
 /* Garden mode */
 html[data-mode="garden"] {
-  --background: #f5f0e8;
-  --surface: #faf7f2;
+  --background: #f7f5f2;
+  --surface: #ffffff;
   --surface-elevated: white;
-  --border: rgba(122, 158, 126, 0.3);
-  --border-light: rgba(122, 158, 126, 0.15);
-  --text-primary: #1b3a2d;
-  --text-secondary: #2d5a3f;
-  --text-muted: #7a9e7e;
-  --accent: #6b4c3b;
-  --accent-dark: #4a3328;
-  --accent-light: #8b6f5e;
-  --font-heading: 'Lora', Georgia, serif;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.05);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #888;
+  --accent: #3d6b45;
+  --accent-dark: #2a4d30;
+  --accent-light: #5a8f65;
 }
 
-html[data-mode="garden"] h1,
-html[data-mode="garden"] h2,
-html[data-mode="garden"] h3,
-html[data-mode="garden"] h4 {
-  font-family: var(--font-heading);
+html[data-mode="garden"] .text-display {
+  font-family: 'Lora', Georgia, serif;
+  font-style: italic;
 }
 
 /* Smooth mode transition */
@@ -154,35 +151,30 @@ main {
   max-width: 800px;
   margin: 0 auto;
   padding: var(--space-12) var(--space-8);
-  background-color: var(--surface);
-  border: 1px solid var(--border-light);
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-8);
   width: calc(100% - 2rem);
   box-sizing: border-box;
 }
 
 /* Typography */
 .text-display {
-  font-family: var(--font-mono);
-  font-size: var(--text-3xl);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
 .text-section-heading {
-  font-family: var(--font-mono);
-  font-size: var(--text-xl);
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: var(--space-6);
-  line-height: 1.3;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
-
-
 
 .text-lead {
   font-family: var(--font-sans);
@@ -202,9 +194,10 @@ main {
 }
 
 h3.text-xl {
-  font-family: var(--font-mono);
-  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
   margin-bottom: var(--space-4);
   margin-top: var(--space-6);
@@ -215,24 +208,24 @@ h3.text-xl {
 /* Layout Components */
 .hero {
   display: grid;
-  grid-template-columns: 136px 1fr;
-  gap: var(--space-8);
-  align-items: start;
-  margin-bottom: var(--space-6);
-  padding: var(--space-6) 0;
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-12);
+  align-items: center;
+  padding: var(--space-16) 0 var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 .section-card {
-  background: transparent;
-  padding: var(--space-8) 0;
-  margin-bottom: var(--space-4);
+  padding: var(--space-12) 0;
 }
 
 /* Profile Image */
 .profile-image {
-  position: relative;
-  width: 136px;
-  height: 136px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .profile-image img {
@@ -245,6 +238,18 @@ h3.text-xl {
 
 .profile-image:hover img {
   filter: grayscale(0%) contrast(1);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .profile-image {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+  }
 }
 
 /* Links */
