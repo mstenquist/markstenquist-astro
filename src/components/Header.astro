@@ -7,13 +7,9 @@ import { SITE_TITLE } from '../consts';
 	<nav>
 		<h2><a href="#top" id="logo-link">mark_stenquist</a></h2>
 		<div class="nav-links">
-			<button id="mode-toggle" class="mode-toggle" aria-label="Switch mode">
-				<span class="mode-label engineer-label">🌿 Garden</span>
-				<span class="mode-label garden-label">💻 Engineer</span>
-			</button>
 		</div>
 		<div class="social-links">
-			<a href="https://linkedin.com/in/markstenquist" target="_blank" title="LinkedIn">
+			<a href="https://linkedin.com/in/markstenquist" target="_blank" title="LinkedIn" class="social-icon">
 				<span class="sr-only">Go to Mark's LinkedIn Profile</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
 					<g clip-path="url(#clip0_17_68)">
@@ -26,7 +22,7 @@ import { SITE_TITLE } from '../consts';
 					</defs>
 				</svg>
 			</a>
-			<a href="https://github.com/mstenquist" target="_blank" title="GitHub">
+			<a href="https://github.com/mstenquist" target="_blank" title="GitHub" class="social-icon github-link">
 				<span class="sr-only">Go to Mark's GitHub Profile</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
 					<g clip-path="url(#clip0_910_44)">
@@ -39,6 +35,10 @@ import { SITE_TITLE } from '../consts';
 					</defs>
 				</svg>
 			</a>
+			<button id="mode-toggle" class="mode-toggle" aria-label="Switch mode">
+				<span class="mode-label engineer-label">🌿 also a gardener</span>
+				<span class="mode-label garden-label">💻 also an engineer</span>
+			</button>
 		</div>
 	</nav>
 </header>
@@ -206,6 +206,9 @@ import { SITE_TITLE } from '../consts';
 	/* Show correct label based on current mode */
 	:global(html[data-mode="engineer"]) .engineer-label { display: inline; }
 	:global(html[data-mode="garden"]) .garden-label { display: inline; }
+
+	/* Hide GitHub in garden mode */
+	:global(html[data-mode="garden"]) .github-link { display: none; }
 </style>
 
 <script>
