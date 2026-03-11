@@ -186,12 +186,7 @@ main {
   border-bottom: 1px solid var(--border);
 }
 
-.text-section-heading::before {
-  content: '//';
-  color: var(--accent);
-  margin-right: var(--space-2);
-  font-weight: 400;
-}
+
 
 .text-lead {
   font-family: var(--font-sans);
