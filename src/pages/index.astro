@@ -7,6 +7,51 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import '../styles/modern.css';
 ---
 
+<style>
+	.hero-badge {
+		display: inline-block;
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 10%, transparent);
+		border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+		padding: 0.25rem 0.75rem;
+		border-radius: 0.5rem;
+		margin-bottom: 1rem;
+		letter-spacing: 0.05em;
+	}
+	.topics-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+	.topic-card {
+		background: var(--background);
+		border: 1px solid var(--border);
+		padding: 1.25rem;
+		border-radius: 0.75rem;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+	.topic-card:hover {
+		border-color: var(--accent);
+		box-shadow: var(--shadow-md);
+	}
+	.topic-icon { display: block; font-size: 1.4rem; margin-bottom: 0.5rem; }
+	.topic-card h3 {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin: 0 0 0.4rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+	.topic-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+	@media (max-width: 640px) { .topics-grid { grid-template-columns: 1fr; } }
+</style>
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -15,6 +60,8 @@ import '../styles/modern.css';
 	<body>
 		<Header />
 		<main>
+			<!-- ENGINEER MODE -->
+			<div class="mode-section" data-show-in="engineer">
 			<section class="hero reveal">
 				<div class="profile-image">
 					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
@@ -121,6 +168,47 @@ import '../styles/modern.css';
 					<em>Currently most interested in projects involving AI integration, complex data visualization, or scaling frontend architectures for high-growth companies.</em>
 				</p>
 			</section>
+			</div><!-- /engineer mode -->
+
+			<!-- GARDEN MODE -->
+			<div class="mode-section" data-show-in="garden">
+				<section class="hero reveal">
+					<div class="hero-text">
+						<div class="hero-badge">🌱 Garden Consultation</div>
+						<h1 class="text-display">Grow something real.</h1>
+						<p class="text-lead">
+							One-on-one consultation with a permaculture-trained gardener. Whether you're starting your first raised bed or want to turn your yard into a productive ecosystem, let's build a plan that works for your space.
+						</p>
+					</div>
+				</section>
+
+				<section class="section-card reveal-stagger">
+					<h2 class="text-section-heading">Credentials & Experience</h2>
+					<ul>
+						<li><strong>Permaculture Design Certificate (PDC)</strong> — Trained in ecological design, companion planting, soil health, and building resilient growing systems</li>
+						<li><strong>15+ years of hands-on gardening</strong> — From seed to harvest, across New England's challenging growing conditions</li>
+						<li><strong>Quarter-acre urban homestead</strong> — Running a productive lot in suburban Boston with vegetables, herbs, fruit, and perennials</li>
+					</ul>
+				</section>
+
+				<section class="section-card reveal-stagger">
+					<h2 class="text-section-heading">What We Can Cover</h2>
+					<div class="topics-grid">
+						<div class="topic-card"><span class="topic-icon">🌱</span><h3>Starting from Seed</h3><p>Indoor setup, timing, hardening off, transplanting.</p></div>
+						<div class="topic-card"><span class="topic-icon">🪴</span><h3>Garden Bed Setup</h3><p>Raised beds, soil, no-dig methods, layout planning.</p></div>
+						<div class="topic-card"><span class="topic-icon">♻️</span><h3>Composting</h3><p>Hot compost, vermicomposting, bokashi. Build living soil.</p></div>
+						<div class="topic-card"><span class="topic-icon">🥦</span><h3>Growing Food</h3><p>Crop planning, companion planting, maximizing small spaces.</p></div>
+						<div class="topic-card"><span class="topic-icon">🍎</span><h3>Perennials & Food Forests</h3><p>Fruit trees, berry bushes, herbs — plants that give every year.</p></div>
+						<div class="topic-card"><span class="topic-icon">🌍</span><h3>Permaculture Design</h3><p>Whole-site design, zones, water management, resilient landscapes.</p></div>
+					</div>
+				</section>
+
+				<section class="section-card reveal-stagger">
+					<h2 class="text-section-heading">Ready to Build Something Great?</h2>
+					<p class="text-body">Consultations are held virtually or in-person in the greater Boston area. Reach out and tell me about your space.</p>
+					<p class="text-body"><a href="mailto:mark@visualboston.com" class="link-enhanced">mark@visualboston.com</a></p>
+				</section>
+			</div><!-- /garden mode -->
 		</main>
 		<Footer />
 		<ScrollReveal />

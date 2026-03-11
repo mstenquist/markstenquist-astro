@@ -1,7 +1,7 @@
 /* Modern Engineering Design System for Mark Stenquist */
 
-/* Import JetBrains Mono for that engineering feel */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+/* Import JetBrains Mono for that engineering feel, Lora for garden mode */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap');
 
 :root {
   /* Warm Neutral Palette - Light Tan/Paper tones */
@@ -65,6 +65,41 @@
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
+
+/* Garden mode */
+html[data-mode="garden"] {
+  --background: #f5f0e8;
+  --surface: #faf7f2;
+  --surface-elevated: white;
+  --border: rgba(122, 158, 126, 0.3);
+  --border-light: rgba(122, 158, 126, 0.15);
+  --text-primary: #1b3a2d;
+  --text-secondary: #2d5a3f;
+  --text-muted: #7a9e7e;
+  --accent: #6b4c3b;
+  --accent-dark: #4a3328;
+  --accent-light: #8b6f5e;
+  --font-heading: 'Lora', Georgia, serif;
+}
+
+html[data-mode="garden"] h1,
+html[data-mode="garden"] h2,
+html[data-mode="garden"] h3,
+html[data-mode="garden"] h4 {
+  font-family: var(--font-heading);
+}
+
+/* Smooth mode transition */
+html {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Mode section show/hide */
+.mode-section {
+  transition: opacity 0.3s ease;
+}
+html[data-mode="engineer"] .mode-section[data-show-in="garden"] { display: none; }
+html[data-mode="garden"] .mode-section[data-show-in="engineer"] { display: none; }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
