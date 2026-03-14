@@ -1,0 +1,115 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import '../styles/modern.css';
+
+const title = "Engineering — Mark Stenquist";
+const description = "15+ years building for the web. Case studies, technical writing, and projects from VisualBoston and beyond.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero reveal">
+				<div class="hero-text">
+					<h1 class="text-display">Building for the web.</h1>
+					<p class="text-lead">
+						Co-founder and lead engineer at <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>. 15+ years shipping products across startups, agencies, and my own ventures. AI-first development is my current obsession.
+					</p>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Current Projects</h2>
+
+				<div class="project-list">
+					<div class="project-item">
+						<div class="project-header">
+							<h3>TallyQuote</h3>
+							<a href="https://tallyquote.com" target="_blank" class="link-enhanced project-link">tallyquote.com →</a>
+						</div>
+						<p class="text-body">Voice-powered estimating for tradespeople. Record a job site walkthrough, AI extracts line items and generates a professional proposal in minutes.</p>
+					</div>
+
+					<div class="project-item">
+						<div class="project-header">
+							<h3>Layerflow</h3>
+							<a href="https://layerflow.com" target="_blank" class="link-enhanced project-link">layerflow.com →</a>
+						</div>
+						<p class="text-body">AI-powered UI builder with composable layers. Rapidly prototype and build interfaces without the usual back-and-forth.</p>
+					</div>
+
+					<div class="project-item">
+						<div class="project-header">
+							<h3>VisualBoston</h3>
+							<a href="https://visualboston.com" target="_blank" class="link-enhanced project-link">visualboston.com →</a>
+						</div>
+						<p class="text-body">The agency I co-founded in 2020. We build digital products for ambitious companies — from early-stage startups to established brands.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Stack</h2>
+				<p class="text-body">React, Next.js, TypeScript, Node.js, Astro, Tailwind, Postgres, Vercel. AI integrations with Claude, OpenAI, and whatever makes sense for the problem.</p>
+			</section>
+
+			<section class="section-card reveal-stagger coming-soon-card reveal-stagger">
+				<h2 class="text-section-heading">Full Site Coming Soon</h2>
+				<p class="text-body">
+					A dedicated engineering site is in the works at <span class="link-enhanced">engineering.markstenquist.com</span> — case studies, technical writing, and deeper dives into what I'm building and learning.
+				</p>
+				<p class="text-body">In the meantime, reach out directly:</p>
+				<p class="text-body"><a href="mailto:mark@stenquist.com" class="link-enhanced">mark@stenquist.com</a></p>
+			</section>
+		</main>
+		<Footer />
+		<ScrollReveal />
+	</body>
+</html>
+
+<style>
+.project-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+	margin-top: var(--space-6);
+}
+.project-item {
+	padding-bottom: var(--space-8);
+	border-bottom: 1px solid var(--border-light);
+}
+.project-item:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+.project-header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--space-4);
+	margin-bottom: var(--space-2);
+	flex-wrap: wrap;
+}
+.project-header h3 {
+	font-family: var(--font-mono);
+	font-size: var(--text-lg);
+	font-weight: 600;
+	color: var(--text-primary);
+}
+.project-link {
+	font-family: var(--font-mono);
+	font-size: var(--text-sm);
+}
+.coming-soon-card {
+	border: 1px dashed var(--border);
+	background: var(--sand-50);
+}
+</style>
