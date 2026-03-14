@@ -36,6 +36,71 @@ import '../styles/modern.css';
 	}
 	.topic-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 	@media (max-width: 640px) { .topics-grid { grid-template-columns: 1fr; } }
+
+	/* Worlds Section */
+	.worlds-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--space-6);
+		margin-top: var(--space-6);
+	}
+	.worlds-intro {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		margin-bottom: 0;
+	}
+	.world-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: var(--space-8);
+		box-shadow: var(--shadow-sm);
+		transition: box-shadow 0.2s ease, border-color 0.2s ease;
+		text-decoration: none;
+		color: inherit;
+	}
+	.world-card:hover {
+		box-shadow: var(--shadow-md);
+		border-color: var(--accent);
+	}
+	.world-card-icon {
+		display: block;
+		font-size: 2rem;
+		margin-bottom: var(--space-4);
+	}
+	.world-card-title {
+		font-family: var(--font-mono);
+		font-weight: 700;
+		font-size: var(--text-xl);
+		color: var(--text-primary);
+		margin: 0 0 var(--space-1);
+	}
+	.world-card-tagline {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--accent);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin: 0 0 var(--space-4);
+	}
+	.world-card-desc {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin: 0;
+	}
+	.world-card-cta {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--accent);
+		font-weight: 600;
+		margin-top: auto;
+		padding-top: var(--space-4);
+	}
 </style>
 
 <!doctype html>
@@ -155,6 +220,28 @@ import '../styles/modern.css';
 				</p>
 			</section>
 			</div><!-- /engineer mode -->
+
+			<!-- WORLDS SECTION (always visible, no data-show-in) -->
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Interests</h2>
+				<p class="worlds-intro">A few things I spend serious time on. Each has its own space to go deeper.</p>
+				<div class="worlds-grid">
+					<a class="world-card" href="/engineering">
+						<span class="world-card-icon">💻</span>
+						<h3 class="world-card-title">Engineering</h3>
+						<p class="world-card-tagline">Web development & AI</p>
+						<p class="world-card-desc">15+ years building for the web. Case studies, technical writing, and projects from VisualBoston and beyond.</p>
+						<span class="world-card-cta">Explore →</span>
+					</a>
+					<a class="world-card" href="https://gardening.markstenquist.com" target="_blank" rel="noopener noreferrer">
+						<span class="world-card-icon">🌿</span>
+						<h3 class="world-card-title">Garden</h3>
+						<p class="world-card-tagline">Permaculture & backyard growing</p>
+						<p class="world-card-desc">Season notes, garden experiments, and consultation services from a PDC-certified grower in suburban Boston.</p>
+						<span class="world-card-cta">Explore →</span>
+					</a>
+				</div>
+			</section>
 
 			<!-- GARDEN MODE -->
 			<div class="mode-section" data-show-in="garden">
