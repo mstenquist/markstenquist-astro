@@ -5,7 +5,7 @@ import { SITE_TITLE } from '../consts';
 
 <header class="header">
 	<nav>
-		<h2><a href="#top" id="logo-link">mark_stenquist</a></h2>
+		<h2><a href="/" id="logo-link">mark_stenquist</a></h2>
 		<div class="nav-links">
 		</div>
 		<div class="social-links">
@@ -212,10 +212,8 @@ import { SITE_TITLE } from '../consts';
 		}
 	}, { passive: true });
 
-	// Smooth scroll to top when clicking logo
-	logoLink?.addEventListener('click', (e) => {
-		e.preventDefault();
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+	// Logo always navigates to homepage
+	logoLink?.addEventListener('click', () => {
 		header?.classList.remove('header-hidden');
 	});
 
