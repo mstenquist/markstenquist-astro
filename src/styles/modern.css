@@ -66,38 +66,6 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Garden mode */
-html[data-mode="garden"] {
-  --background: #f7f5f2;
-  --surface: #ffffff;
-  --surface-elevated: white;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-light: rgba(0, 0, 0, 0.05);
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #888;
-  --accent: #3d6b45;
-  --accent-dark: #2a4d30;
-  --accent-light: #5a8f65;
-}
-
-html[data-mode="garden"] .text-display {
-  font-family: 'Lora', Georgia, serif;
-  font-style: italic;
-}
-
-/* Smooth mode transition */
-html {
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* Mode section show/hide */
-.mode-section {
-  transition: opacity 0.3s ease;
-}
-html[data-mode="engineer"] .mode-section[data-show-in="garden"] { display: none; }
-html[data-mode="garden"] .mode-section[data-show-in="engineer"] { display: none; }
-
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {

@@ -8,35 +8,6 @@ import '../styles/modern.css';
 ---
 
 <style>
-
-	.topics-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-		margin-top: 1.5rem;
-	}
-	.topic-card {
-		background: var(--background);
-		border: 1px solid var(--border);
-		padding: 1.25rem;
-		border-radius: 0.75rem;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
-	}
-	.topic-card:hover {
-		border-color: var(--accent);
-		box-shadow: var(--shadow-md);
-	}
-	.topic-icon { display: block; font-size: 1.4rem; margin-bottom: 0.5rem; }
-	.topic-card h3 {
-		font-family: var(--font-mono);
-		font-size: var(--text-sm);
-		font-weight: 600;
-		color: var(--text-primary);
-		margin: 0 0 0.4rem;
-	}
-	.topic-card p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
-	@media (max-width: 640px) { .topics-grid { grid-template-columns: 1fr; } }
-
 	/* Worlds Section */
 	.worlds-grid {
 		display: grid;
@@ -111,117 +82,19 @@ import '../styles/modern.css';
 	<body>
 		<Header />
 		<main>
-			<!-- ENGINEER MODE -->
-			<div class="mode-section" data-show-in="engineer">
 			<section class="hero reveal">
 				<div class="profile-image">
 					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
 				</div>
 				<div class="hero-text">
 					<h1 class="text-display">Hi, I'm Mark.</h1>
-					<p class="text-lead">
-						Co-founder and lead engineer at <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>. I build scalable web applications and use AI to accelerate the entire process, from design to deployment.
+					<p class="text-lead">Engineer. Gardener. Dad.<br />Based in suburban Boston.</p>
+					<p class="text-body">
+						I build things on the web and grow things in the backyard. Co-founder of <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>. Permaculture nerd.
 					</p>
 				</div>
 			</section>
 
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">A bit about me</h2>
-				<p class="text-body">
-					My journey began on the founding team of <a href="https://techcrunch.com/2011/04/25/campuslive-raises-3-1-million-to-help-brands-connect-with-college-students/" target="_blank" class="link-enhanced">CampusLIVE</a> at UMass Amherst, a college startup that grew from dorm room idea to a multi-million dollar company backed by <a href="https://hcp.com" target="_blank" class="link-enhanced">Highland</a> and <a href="https://www.crv.com/" target="_blank" class="link-enhanced">CRV</a>. This early experience didn't just teach me how to code; it showed me how technology can scale human connections and create real business value.
-				</p>
-				<p class="text-body">
-					At Google Ventures-backed <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others//" target="_blank" class="link-enhanced">CustomMade</a>, I grew my the frontend skills and used them to help them connect thousands of artisans with customers seeking custom furniture and jewelry. I learned that great user interfaces aren't just about clean code, they're about understanding user psychology, reducing friction, and building trust through digital experiences.
-				</p>
-				<p class="text-body">
-					After CustomMade, I spent the next five years as an independent consultant, working with dozens of Boston-area startups across industries from fintech to healthcare and beyond. Each project taught me something new about solving complex technical challenges while meeting aggressive business timelines.
-				</p>
-				<p class="text-body">
-					In 2020, these experiences and connections led me to co-found <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>, where I lead engineering for our digital agency. We've grown from a pandemic pivot to a thriving team that helps ambitious companies build their digital presence.
-				</p>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Technical Foundation</h2>
-				<h3 class="text-xl font-semibold text-primary mb-4">Core Expertise & Technical Stack</h3>
-				<p class="text-body">
-					My 15+ years in frontend engineering span the evolution from jQuery to modern frameworks. I specialize in:
-				</p>
-				<ul class="mb-6 text-secondary leading-relaxed">
-					<li class="mb-2"><strong>Frontend Architecture</strong>: React, Vue, Angular, and vanilla JavaScript for high-performance applications</li>
-					<li class="mb-2"><strong>Modern Development</strong>: TypeScript, Node.js, Progressive Web Apps, and JAMstack architectures</li>
-					<li class="mb-2"><strong>Performance Optimization</strong>: Core Web Vitals mastery, load time optimization, and mobile-first responsive design</li>
-					<li class="mb-2"><strong>AI Integration</strong>: Combining traditional frontend development with generative AI for rapid prototyping and enhanced user experiences</li>
-				</ul>
-				<h3 class="text-xl font-semibold text-primary mb-4">What Sets Me Apart</h3>
-				<p class="text-body">
-					I obsess over creating seamless experiences on the web. Having worked at venture-backed startups, I understand the pressure to ship fast while building for scale. I've led technical decisions that supported 10x user growth, optimized applications serving millions of requests, and mentored development teams through complex product launches.
-				</p>
-				<p class="text-body">
-					My current obsession is the intersection of AI and frontend development. I'm building tools and workflows that leverage generative AI to accelerate the design-to-code process, automate repetitive development tasks, and create more intuitive user interfaces. This isn't just about using ChatGPT to write code. It's about fundamentally rethinking how we build digital products.
-				</p>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Current Projects</h2>
-				<p class="text-body">
-					Beyond client work, I'm building products that solve real problems:
-				</p>
-				<h3 class="text-xl font-semibold text-primary mb-4">TallyQuote</h3>
-				<p class="text-body">
-					A voice-powered estimating tool for tradespeople. Record a walkthrough at the job site, and AI extracts line items to generate professional proposals in minutes.
-				</p>
-				<p class="text-body mb-6">
-					<a href="https://tallyquote.com" target="_blank" class="link-enhanced">TallyQuote</a>
-				</p>
-				<h3 class="text-xl font-semibold text-primary mb-4">Garden Mates</h3>
-				<p class="text-body">
-					A yard sharing app that connects gardeners who have extra space with those looking for a place to grow.
-				</p>
-				<p class="text-body mb-6">
-					<a href="https://garden-mates.vercel.app/" target="_blank" class="link-enhanced">Garden Mates</a>
-				</p>
-				<h3 class="text-xl font-semibold text-primary mb-4">Layerflow</h3>
-				<p class="text-body">
-					An AI-powered UI builder with composable layers for rapidly prototyping and building interfaces.
-				</p>
-				<p class="text-body mb-6">
-					<a href="https://layerflow.com" target="_blank" class="link-enhanced">Layerflow</a>
-				</p>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Beyond Technology</h2>
-				<h3 class="text-xl font-semibold text-primary mb-4">Growing More Than Code</h3>
-				<p class="text-body">
-					When I step away from the screen, you'll find me in the garden with my hands in the soil. I hold a Permaculture Design Certificate and am passionate about regenerative agriculture practices. I'm an avid gardener — growing vegetables, herbs, and fruit on our quarter-acre lot in suburban Boston.
-				</p>
-				<p class="text-body">
-					Permaculture principles have actually influenced how I approach software development. Both involve designing sustainable systems, understanding interconnected relationships, and creating solutions that improve over time. Whether I'm planning a garden bed or architecting an application, I'm thinking about long-term sustainability and beneficial relationships between components.
-				</p>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Ready to Build Something Great?</h2>
-				<p class="text-body">
-					I work with forward-thinking companies and ambitious entrepreneurs who understand that exceptional digital experiences drive business results. Whether you need a technical co-founder, a frontend architect for your next big feature, or a consulting partner to help navigate complex development challenges, I'd love to explore how we can work together.
-				</p>
-				<p class="text-body">
-					<strong>Current availability:</strong> I take on 1-2 strategic consulting projects per quarter alongside my work at VisualBoston.
-				</p>
-				<h3 class="text-xl font-semibold text-primary mb-4">Get In Touch:</h3>
-				<ul class="mb-6 text-secondary leading-relaxed list-none pl-0">
-					<li class="mb-2">Visit <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston.com</a> to see our agency work and case studies</li>
-					<li class="mb-2">Email me directly at <a href="mailto:mark@stenquist.com" class="link-enhanced">mark@stenquist.com</a> for consulting inquiries</li>
-					<li class="mb-2">Connect with me on <a href="https://linkedin.com/in/markstenquist" target="_blank" class="link-enhanced">LinkedIn</a> to follow my thoughts on frontend development and AI</li>
-				</ul>
-				<p class="text-body italic text-muted">
-					<em>Currently most interested in projects involving AI integration, complex data visualization, or scaling frontend architectures for high-growth companies.</em>
-				</p>
-			</section>
-			</div><!-- /engineer mode -->
-
-			<!-- WORLDS SECTION (always visible, no data-show-in) -->
 			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Interests</h2>
 				<p class="worlds-intro">A few things I spend serious time on. Each has its own space to go deeper.</p>
@@ -230,60 +103,18 @@ import '../styles/modern.css';
 						<span class="world-card-icon">💻</span>
 						<h3 class="world-card-title">Engineering</h3>
 						<p class="world-card-tagline">Web development & AI</p>
-						<p class="world-card-desc">15+ years building for the web. Case studies, technical writing, and projects from VisualBoston and beyond.</p>
+						<p class="world-card-desc">Case studies, current projects, and technical writing.</p>
 						<span class="world-card-cta">Explore →</span>
 					</a>
 					<a class="world-card" href="https://gardening.markstenquist.com" target="_blank" rel="noopener noreferrer">
 						<span class="world-card-icon">🌿</span>
 						<h3 class="world-card-title">Garden</h3>
 						<p class="world-card-tagline">Permaculture & backyard growing</p>
-						<p class="world-card-desc">Season notes, garden experiments, and consultation services from a PDC-certified grower in suburban Boston.</p>
+						<p class="world-card-desc">Season notes, garden experiments, and consultation.</p>
 						<span class="world-card-cta">Explore →</span>
 					</a>
 				</div>
 			</section>
-
-			<!-- GARDEN MODE -->
-			<div class="mode-section" data-show-in="garden">
-				<section class="hero reveal">
-					<div class="profile-image">
-						<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
-					</div>
-					<div class="hero-text">
-						<h1 class="text-display">Grow something real.</h1>
-						<p class="text-lead">
-							One-on-one consultation with a permaculture-trained gardener. Whether you're starting your first raised bed or want to turn your yard into a productive ecosystem, let's build a plan that works for your space.
-						</p>
-					</div>
-				</section>
-
-				<section class="section-card reveal-stagger">
-					<h2 class="text-section-heading">Credentials & Experience</h2>
-					<ul>
-						<li><strong>Permaculture Design Certificate (PDC)</strong> — Trained in ecological design, companion planting, soil health, and building resilient growing systems</li>
-						<li><strong>15+ years of hands-on gardening</strong> — From seed to harvest, across New England's challenging growing conditions</li>
-						<li><strong>Quarter-acre garden</strong> — Avid gardener growing vegetables, herbs, fruit, and perennials in suburban Boston</li>
-					</ul>
-				</section>
-
-				<section class="section-card reveal-stagger">
-					<h2 class="text-section-heading">What We Can Cover</h2>
-					<div class="topics-grid">
-						<div class="topic-card"><span class="topic-icon">🌱</span><h3>Starting from Seed</h3><p>Indoor setup, timing, hardening off, transplanting.</p></div>
-						<div class="topic-card"><span class="topic-icon">🪴</span><h3>Garden Bed Setup</h3><p>Raised beds, soil, no-dig methods, layout planning.</p></div>
-						<div class="topic-card"><span class="topic-icon">♻️</span><h3>Composting</h3><p>Hot compost, vermicomposting, bokashi. Build living soil.</p></div>
-						<div class="topic-card"><span class="topic-icon">🥦</span><h3>Growing Food</h3><p>Crop planning, companion planting, maximizing small spaces.</p></div>
-						<div class="topic-card"><span class="topic-icon">🍎</span><h3>Perennials & Food Forests</h3><p>Fruit trees, berry bushes, herbs — plants that give every year.</p></div>
-						<div class="topic-card"><span class="topic-icon">🌍</span><h3>Permaculture Design</h3><p>Whole-site design, zones, water management, resilient landscapes.</p></div>
-					</div>
-				</section>
-
-				<section class="section-card reveal-stagger">
-					<h2 class="text-section-heading">Ready to Build Something Great?</h2>
-					<p class="text-body">Consultations are held virtually or in-person in the greater Boston area. Reach out and tell me about your space.</p>
-					<p class="text-body"><a href="mailto:mark@stenquist.com" class="link-enhanced">mark@stenquist.com</a></p>
-				</section>
-			</div><!-- /garden mode -->
 		</main>
 		<Footer />
 		<ScrollReveal />

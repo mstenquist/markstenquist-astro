@@ -35,10 +35,6 @@ import { SITE_TITLE } from '../consts';
 					</defs>
 				</svg>
 			</a>
-			<button id="mode-toggle" class="mode-toggle" aria-label="Switch mode">
-				<span class="mode-label engineer-label">🌿 also a gardener</span>
-				<span class="mode-label garden-label">💻 also an engineer</span>
-			</button>
 		</div>
 	</nav>
 </header>
@@ -177,38 +173,6 @@ import { SITE_TITLE } from '../consts';
 		}
 	}
 
-	/* Mode toggle button */
-	.mode-toggle {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		padding: 0.3rem 0.75rem;
-		border-radius: 999px;
-		border: 1.5px solid var(--border, #e6ddd0);
-		background: transparent;
-		font-family: var(--font-mono, 'JetBrains Mono', monospace);
-		font-size: 0.78rem;
-		font-weight: 500;
-		color: var(--text-muted, #9a8568);
-		cursor: pointer;
-		transition: all 0.2s ease;
-		white-space: nowrap;
-	}
-
-	.mode-toggle:hover {
-		border-color: var(--accent, #b8845c);
-		color: var(--accent, #b8845c);
-		background: transparent;
-	}
-
-	.mode-label { display: none; }
-
-	/* Show correct label based on current mode */
-	:global(html[data-mode="engineer"]) .engineer-label { display: inline; }
-	:global(html[data-mode="garden"]) .garden-label { display: inline; }
-
-	/* Hide GitHub in garden mode */
-	:global(html[data-mode="garden"]) .github-link { display: none; }
 </style>
 
 <script>
@@ -255,12 +219,4 @@ import { SITE_TITLE } from '../consts';
 		header?.classList.remove('header-hidden');
 	});
 
-	// Mode toggle
-	const toggle = document.getElementById('mode-toggle');
-	toggle?.addEventListener('click', () => {
-		const current = document.documentElement.getAttribute('data-mode') || 'engineer';
-		const next = current === 'engineer' ? 'garden' : 'engineer';
-		document.documentElement.setAttribute('data-mode', next);
-		localStorage.setItem('site-mode', next);
-	});
 </script>
