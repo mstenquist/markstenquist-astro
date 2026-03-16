@@ -177,6 +177,8 @@ h3.text-xl {
 .hero {
   display: grid;
   grid-template-columns: 160px 1fr;
+  gap: var(--space-8);
+  align-items: center;
 }
 .hero--full {
   grid-template-columns: 1fr;
