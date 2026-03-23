@@ -123,6 +123,141 @@ import '../styles/modern.css';
 		margin-top: auto;
 		padding-top: var(--space-4);
 	}
+
+	/* Timeline */
+	.timeline {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		margin-top: var(--space-6);
+		position: relative;
+		padding-left: 5rem;
+	}
+	.timeline::before {
+		content: '';
+		position: absolute;
+		left: 3.25rem;
+		top: 0.5rem;
+		bottom: 0.5rem;
+		width: 1px;
+		background: var(--border);
+	}
+	.timeline-item {
+		position: relative;
+		padding-bottom: var(--space-8);
+		display: flex;
+		align-items: flex-start;
+	}
+	.timeline-item:last-child { padding-bottom: 0; }
+	.timeline-year {
+		position: absolute;
+		left: -4.75rem;
+		top: 0.05rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.04em;
+		white-space: nowrap;
+	}
+	.timeline-item::before {
+		content: '';
+		position: absolute;
+		left: -1.6rem;
+		top: 0.42rem;
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: var(--accent);
+		border: 2px solid var(--background);
+		box-shadow: 0 0 0 1px var(--accent);
+	}
+	.timeline-body h3 {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 var(--space-1);
+	}
+	.timeline-body p {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.65;
+		margin: 0;
+	}
+	@media (max-width: 500px) {
+		.timeline { padding-left: 4rem; }
+		.timeline::before { left: 2.5rem; }
+		.timeline-year { left: -3.9rem; font-size: 0.68rem; }
+		.timeline-item::before { left: -1.55rem; }
+	}
+
+	/* Projects */
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--space-6);
+		margin-top: var(--space-6);
+	}
+	.project-card {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		padding: var(--space-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		transition: border-color 0.2s, box-shadow 0.2s;
+	}
+	.project-card:hover {
+		border-color: var(--accent);
+		box-shadow: var(--shadow-md);
+	}
+	.project-header {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-4);
+	}
+	.project-icon { font-size: 1.75rem; line-height: 1; flex-shrink: 0; }
+	.project-name {
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 var(--space-1);
+	}
+	.project-tagline {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		color: var(--accent);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin: 0;
+	}
+	.project-desc {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.65;
+		margin: 0;
+		flex: 1;
+	}
+	.project-stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+	}
+	.stack-badge {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 500;
+		color: var(--text-secondary);
+		background: var(--background);
+		border: 1px solid var(--border);
+		padding: 0.2rem 0.55rem;
+		border-radius: var(--radius-sm);
+	}
 </style>
 
 <!doctype html>
@@ -162,6 +297,85 @@ import '../styles/modern.css';
 				<p class="text-body">
 					After that I spent five years as an independent consultant, working with Boston-area startups across fintech, healthcare, and beyond. In 2020 I co-founded <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>, where I lead engineering. My current focus is AI-first development, building tools and workflows that fundamentally change how digital products get made.
 				</p>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Timeline</h2>
+				<div class="timeline">
+					<div class="timeline-item">
+						<span class="timeline-year">2011</span>
+						<div class="timeline-body">
+							<h3>CampusLIVE</h3>
+							<p>Joined the founding team at UMass. Grew from a dorm-room idea into a multi-million dollar company backed by Highland Capital Partners and CRV.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<span class="timeline-year">2013</span>
+						<div class="timeline-body">
+							<h3>CustomMade</h3>
+							<p>Built frontend systems at Google Ventures-backed CustomMade, connecting thousands of artisans with customers seeking custom goods.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<span class="timeline-year">2015</span>
+						<div class="timeline-body">
+							<h3>Independent Consulting</h3>
+							<p>Five years working with Boston-area startups across fintech, healthcare, and consumer products as a freelance engineer and technical lead.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<span class="timeline-year">2020</span>
+						<div class="timeline-body">
+							<h3>Co-founded VisualBoston</h3>
+							<p>Launched a boutique engineering and design agency with a focus on ambitious digital products and AI-first development.</p>
+						</div>
+					</div>
+					<div class="timeline-item">
+						<span class="timeline-year">2025</span>
+						<div class="timeline-body">
+							<h3>Building with AI</h3>
+							<p>Shipping TallyQuote (voice-to-estimate for tradespeople) and GardenMates (land-sharing marketplace for gardeners) — both AI-native from day one.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Projects</h2>
+				<div class="projects-grid">
+					<div class="project-card">
+						<div class="project-header">
+							<span class="project-icon">🧾</span>
+							<div>
+								<h3 class="project-name">TallyQuote</h3>
+								<p class="project-tagline">Voice-to-estimate for tradespeople</p>
+							</div>
+						</div>
+						<p class="project-desc">Record your voice at the job site — TallyQuote extracts line items and generates a professional proposal, ready to send in seconds. Built for contractors who'd rather be working than doing paperwork.</p>
+						<div class="project-stack">
+							<span class="stack-badge">Next.js</span>
+							<span class="stack-badge">TypeScript</span>
+							<span class="stack-badge">Claude API</span>
+							<span class="stack-badge">Stripe</span>
+						</div>
+					</div>
+					<div class="project-card">
+						<div class="project-header">
+							<span class="project-icon">🌱</span>
+							<div>
+								<h3 class="project-name">GardenMates</h3>
+								<p class="project-tagline">Land-sharing for gardeners</p>
+							</div>
+						</div>
+						<p class="project-desc">Connects people who want to grow food with neighbors who have unused outdoor space. Landowners get a cut of the harvest or a monthly fee. Gardeners get a plot without needing a yard.</p>
+						<div class="project-stack">
+							<span class="stack-badge">React</span>
+							<span class="stack-badge">TypeScript</span>
+							<span class="stack-badge">Prisma</span>
+							<span class="stack-badge">Neon</span>
+						</div>
+					</div>
+				</div>
 			</section>
 
 			<section class="section-card reveal-stagger">
