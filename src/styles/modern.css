@@ -66,9 +66,9 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Dark mode */
+/* Dark mode - supports both system preference and manual toggle */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #1a1816;
     --surface: #242220;
     --surface-elevated: #2e2b28;
@@ -80,6 +80,19 @@
     --accent: #d4a574;
     --accent-dark: #e6b88a;
   }
+}
+
+:root[data-theme="dark"] {
+  --background: #1a1816;
+  --surface: #242220;
+  --surface-elevated: #2e2b28;
+  --border: var(--sand-800);
+  --border-light: #3a3633;
+  --text-primary: var(--sand-100);
+  --text-secondary: var(--sand-300);
+  --text-muted: var(--sand-500);
+  --accent: #d4a574;
+  --accent-dark: #e6b88a;
 }
 
 /* Base Styles */
@@ -176,9 +189,9 @@ h3.text-xl {
 /* Layout Components */
 .hero {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 120px 1fr;
   gap: var(--space-8);
-  align-items: center;
+  align-items: start;
 }
 .hero--full {
   grid-template-columns: 1fr;
@@ -194,8 +207,8 @@ h3.text-xl {
 
 /* Profile Image */
 .profile-image {
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -245,18 +258,31 @@ h3.text-xl {
 }
 
 @media (prefers-color-scheme: dark) {
-  .link-enhanced {
+  :root:not([data-theme="light"]) .link-enhanced {
     color: var(--accent);
-    background: 
+    background:
       linear-gradient(var(--accent-light), var(--accent-light)) left bottom no-repeat,
       linear-gradient(var(--accent-dark), var(--accent-dark)) left bottom no-repeat;
     background-size: 0% 1px, 100% 1px;
   }
-  
-  .link-enhanced:hover {
+
+  :root:not([data-theme="light"]) .link-enhanced:hover {
     background-size: 100% 1px, 100% 1px;
     color: var(--accent-light);
   }
+}
+
+:root[data-theme="dark"] .link-enhanced {
+  color: var(--accent);
+  background:
+    linear-gradient(var(--accent-light), var(--accent-light)) left bottom no-repeat,
+    linear-gradient(var(--accent-dark), var(--accent-dark)) left bottom no-repeat;
+  background-size: 0% 1px, 100% 1px;
+}
+
+:root[data-theme="dark"] .link-enhanced:hover {
+  background-size: 100% 1px, 100% 1px;
+  color: var(--accent-light);
 }
 
 /* Lists */
@@ -287,9 +313,15 @@ code, .code {
 }
 
 @media (prefers-color-scheme: dark) {
-  code, .code {
+  :root:not([data-theme="light"]) code,
+  :root:not([data-theme="light"]) .code {
     background: var(--surface-elevated);
   }
+}
+
+:root[data-theme="dark"] code,
+:root[data-theme="dark"] .code {
+  background: var(--surface-elevated);
 }
 
 /* Scroll Reveal Animation - Blur to Crisp */
@@ -347,22 +379,6 @@ code, .code {
   }
 }
 
-/* Legacy class for backwards compatibility */
-.animate-on-scroll {
-  opacity: 0;
-  filter: blur(8px);
-  transform: translateY(20px);
-  transition: 
-    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.animate-on-scroll.revealed {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

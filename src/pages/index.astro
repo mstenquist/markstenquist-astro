@@ -8,6 +8,30 @@ import '../styles/modern.css';
 ---
 
 <style>
+	/* Hero CTA */
+	.hero-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--surface);
+		background: var(--accent);
+		padding: 0.65rem 1.25rem;
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		transition: background 0.2s ease, transform 0.15s ease;
+		margin-top: var(--space-2);
+	}
+	.hero-cta:hover {
+		background: var(--accent-dark);
+		transform: translateY(-1px);
+	}
+	.hero-cta:active {
+		transform: translateY(0);
+	}
+
 	/* VisualBoston Feature */
 	.vb-feature {
 		display: block;
@@ -220,6 +244,17 @@ import '../styles/modern.css';
 		gap: var(--space-4);
 	}
 	.project-icon { font-size: 1.75rem; line-height: 1; flex-shrink: 0; }
+	.project-logo {
+		height: 28px;
+		width: auto;
+	}
+	.project-logo-dark { display: none; }
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme="light"]) .project-logo-light { display: none; }
+		:root:not([data-theme="light"]) .project-logo-dark { display: block; }
+	}
+	:global([data-theme="dark"]) .project-logo-light { display: none; }
+	:global([data-theme="dark"]) .project-logo-dark { display: block; }
 	.project-name {
 		font-family: var(--font-sans);
 		font-size: var(--text-lg);
@@ -258,6 +293,29 @@ import '../styles/modern.css';
 		padding: 0.2rem 0.55rem;
 		border-radius: var(--radius-sm);
 	}
+
+	/* Contact Section */
+	.contact-grid {
+		display: flex;
+		gap: var(--space-6);
+		margin-top: var(--space-6);
+		flex-wrap: wrap;
+	}
+	.contact-link {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--accent);
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+	.contact-link:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+	}
 </style>
 
 <!doctype html>
@@ -270,24 +328,14 @@ import '../styles/modern.css';
 		<main>
 			<section class="hero reveal">
 				<div class="profile-image">
-					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
+					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist, frontend engineer based in Westwood, MA" />
 				</div>
 				<div class="hero-text">
 					<h1 class="text-display">Hi, I'm Mark.</h1>
-					<p class="text-lead">Engineer. Gardener. Dad.<br />Based in Westwood, MA.</p>
+					<p class="text-lead">Running a web agency, building my own products, and growing food in suburban Boston.</p>
+					<a href="/engineering" class="hero-cta">See my work &rarr;</a>
 				</div>
 			</section>
-
-			<a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="vb-feature reveal-stagger">
-				<div class="vb-feature-inner">
-					<div class="vb-feature-text">
-						<span class="vb-label">Co-founder & Lead Engineer · Full-time</span>
-						<h2 class="vb-name">VisualBoston</h2>
-						<p class="vb-desc">We design and build websites, apps, and AI-powered tools for ambitious companies. Senior talent, no overhead, available when you need us.</p>
-						<span class="vb-cta">visualboston.com →</span>
-					</div>
-				</div>
-			</a>
 
 			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">About</h2>
@@ -298,6 +346,17 @@ import '../styles/modern.css';
 					After that I spent five years as an independent consultant, working with Boston-area startups across fintech, healthcare, and beyond. In 2020 I co-founded <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>, where I lead engineering. My current focus is AI-first development, building tools and workflows that fundamentally change how digital products get made.
 				</p>
 			</section>
+
+			<a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="vb-feature reveal-stagger">
+				<div class="vb-feature-inner">
+					<div class="vb-feature-text">
+						<span class="vb-label">Co-founder & Lead Engineer</span>
+						<h2 class="vb-name">VisualBoston</h2>
+						<p class="vb-desc">We design and build websites, apps, and AI-powered tools for ambitious companies. Senior talent, no overhead, available when you need us.</p>
+						<span class="vb-cta">visualboston.com &rarr;</span>
+					</div>
+				</div>
+			</a>
 
 			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Timeline</h2>
@@ -334,7 +393,7 @@ import '../styles/modern.css';
 						<span class="timeline-year">2025</span>
 						<div class="timeline-body">
 							<h3>Building with AI</h3>
-							<p>Shipping TallyQuote (voice-to-estimate for tradespeople) and GardenMates (land-sharing marketplace for gardeners) — both AI-native from day one.</p>
+							<p>Shipping TallyQuote (proposal-to-booking for contractors) and GardenMates (land-sharing marketplace for gardeners) , both AI-native from day one.</p>
 						</div>
 					</div>
 				</div>
@@ -343,22 +402,19 @@ import '../styles/modern.css';
 			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Projects</h2>
 				<div class="projects-grid">
-					<div class="project-card">
+					<a href="https://tallyquote.com" target="_blank" rel="noopener noreferrer" class="project-card">
 						<div class="project-header">
-							<span class="project-icon">🧾</span>
-							<div>
-								<h3 class="project-name">TallyQuote</h3>
-								<p class="project-tagline">Voice-to-estimate for tradespeople</p>
-							</div>
+							<img src="/images/tallyquote-logo-light.svg" alt="TallyQuote" class="project-logo project-logo-light" />
+							<img src="/images/tallyquote-logo.svg" alt="TallyQuote" class="project-logo project-logo-dark" />
 						</div>
-						<p class="project-desc">Record your voice at the job site — TallyQuote extracts line items and generates a professional proposal, ready to send in seconds. Built for contractors who'd rather be working than doing paperwork.</p>
+						<p class="project-desc">A proposal-to-booking platform for contractors. The client describes what they need, AI drafts a proposal, the contractor tweaks and sends it, and the client can sign and schedule, all in one flow.</p>
 						<div class="project-stack">
 							<span class="stack-badge">Next.js</span>
 							<span class="stack-badge">TypeScript</span>
 							<span class="stack-badge">Claude API</span>
 							<span class="stack-badge">Stripe</span>
 						</div>
-					</div>
+					</a>
 					<div class="project-card">
 						<div class="project-header">
 							<span class="project-icon">🌱</span>
@@ -387,15 +443,25 @@ import '../styles/modern.css';
 						<h3 class="world-card-title">Engineering</h3>
 						<p class="world-card-tagline">Web development & AI</p>
 						<p class="world-card-desc">Case studies, current projects, and technical writing.</p>
-						<span class="world-card-cta">Explore →</span>
+						<span class="world-card-cta">Explore &rarr;</span>
 					</a>
 					<a class="world-card" href="https://gardening.markstenquist.com" target="_blank" rel="noopener noreferrer">
 						<span class="world-card-icon">🌿</span>
 						<h3 class="world-card-title">Gardening</h3>
 						<p class="world-card-tagline">Permaculture & backyard growing</p>
 						<p class="world-card-desc">Season notes, garden experiments, and consultation.</p>
-						<span class="world-card-cta">Explore →</span>
+						<span class="world-card-cta">Explore &rarr;</span>
 					</a>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
+				<h2 class="text-section-heading">Get In Touch</h2>
+				<p class="text-body">Open to consulting engagements, collaboration on interesting projects, or just a conversation about building things.</p>
+				<div class="contact-grid">
+					<a href="mailto:mark@stenquist.com" class="contact-link">mark@stenquist.com</a>
+					<a href="https://linkedin.com/in/markstenquist" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
+					<a href="https://github.com/mstenquist" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub</a>
 				</div>
 			</section>
 		</main>

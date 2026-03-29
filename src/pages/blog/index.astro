@@ -1,0 +1,110 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/modern.css';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const title = "Blog | Mark Stenquist";
+const description = "Writing about web development, AI-first engineering, and building products.";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero hero--full reveal">
+				<div class="hero-text">
+					<h1 class="text-display">Blog.</h1>
+					<p class="text-lead">Thoughts on engineering, AI, and building products.</p>
+				</div>
+			</section>
+
+			<section class="reveal-stagger">
+				<ul class="post-list">
+					{posts.map((post) => (
+						<li class="post-item">
+							<a href={`/blog/${post.id}/`}>
+								<div class="post-meta">
+									<FormattedDate date={post.data.pubDate} />
+								</div>
+								<h2 class="post-title">{post.data.title}</h2>
+								<p class="post-desc">{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<ScrollReveal />
+	</body>
+</html>
+
+<style>
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.post-item {
+		margin: 0;
+	}
+
+	.post-item a {
+		display: block;
+		padding: var(--space-8) 0;
+		border-bottom: 1px solid var(--border-light);
+		text-decoration: none;
+		color: inherit;
+		transition: opacity 0.2s ease;
+	}
+
+	.post-item:first-child a {
+		padding-top: 0;
+	}
+
+	.post-item a:hover {
+		opacity: 0.75;
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-bottom: var(--space-2);
+	}
+
+	.post-title {
+		font-family: var(--font-sans);
+		font-size: var(--text-xl);
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 var(--space-2);
+		letter-spacing: -0.01em;
+	}
+
+	.post-desc {
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin: 0;
+	}
+</style>
