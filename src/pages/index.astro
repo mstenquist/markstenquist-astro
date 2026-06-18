@@ -83,6 +83,188 @@ import '../styles/modern.css';
 		color: #00c9a7;
 	}
 
+	/* Homepage Hero */
+	.hero-eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.76rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent-dark);
+		margin: 0 0 var(--space-4);
+	}
+	.hero-summary {
+		max-width: 620px;
+	}
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: var(--space-8);
+	}
+	.hero-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+		padding: 0.72rem 1rem;
+		border-radius: var(--radius-md);
+		font-family: var(--font-mono);
+		font-size: 0.82rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+	}
+	.hero-action:hover {
+		transform: translateY(-1px);
+		text-decoration: none;
+	}
+	.hero-action-primary {
+		background: var(--text-primary);
+		border: 1px solid var(--text-primary);
+		color: var(--background);
+	}
+	.hero-action-primary:hover {
+		color: var(--background);
+	}
+	.hero-action-secondary {
+		background: transparent;
+		border: 1px solid var(--border);
+		color: var(--text-primary);
+	}
+	.hero-action-secondary:hover {
+		border-color: var(--accent);
+		color: var(--accent-dark);
+	}
+	.hero-proof {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-top: var(--space-8);
+	}
+	.hero-proof span {
+		display: inline-flex;
+		align-items: center;
+		min-height: 32px;
+		padding: 0.35rem 0.65rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-sm);
+		background: color-mix(in srgb, var(--surface) 84%, transparent);
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: var(--text-secondary);
+	}
+	.hero-media {
+		position: relative;
+		align-self: stretch;
+		min-height: 420px;
+	}
+	.hero-media::before {
+		content: '';
+		position: absolute;
+		inset: 1.2rem -0.6rem -0.8rem 1.6rem;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-xl);
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent-light) 20%, transparent), transparent 55%),
+			var(--surface);
+		z-index: 0;
+	}
+	.profile-image-large {
+		position: relative;
+		z-index: 1;
+		width: min(100%, 340px);
+		aspect-ratio: 4 / 5;
+		margin-left: auto;
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		box-shadow: var(--shadow-lg);
+	}
+	.profile-image-large img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.92) contrast(1.04);
+	}
+	.hero-note {
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		bottom: 1.25rem;
+		max-width: 260px;
+		padding: var(--space-4);
+		border: 1px solid var(--border);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--surface-elevated) 92%, transparent);
+		box-shadow: var(--shadow-md);
+		backdrop-filter: blur(12px);
+	}
+	.hero-note-label {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent-dark);
+		margin-bottom: var(--space-2);
+	}
+	.hero-note p {
+		margin: 0;
+		font-size: var(--text-sm);
+		line-height: 1.55;
+		color: var(--text-secondary);
+	}
+	.now-strip {
+		display: grid;
+		grid-template-columns: 0.75fr 1fr 1fr 1fr;
+		gap: 1px;
+		overflow: hidden;
+		border: 1px solid var(--border);
+		border-radius: var(--radius-lg);
+		background: var(--border);
+		margin: calc(var(--space-8) * -1) 0 var(--space-12);
+	}
+	.now-label,
+	.now-link {
+		background: var(--surface);
+		padding: 1.25rem;
+	}
+	.now-label {
+		display: flex;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-dark);
+	}
+	.now-link {
+		text-decoration: none;
+		color: inherit;
+		transition: background-color 0.2s ease;
+	}
+	.now-link:hover {
+		background: var(--surface-elevated);
+		text-decoration: none;
+	}
+	.now-link strong {
+		display: block;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		color: var(--text-primary);
+		margin-bottom: var(--space-1);
+	}
+	.now-link span {
+		display: block;
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		line-height: 1.45;
+		color: var(--text-secondary);
+	}
+
 	/* Worlds Section */
 	.worlds-grid {
 		display: grid;
@@ -216,6 +398,42 @@ import '../styles/modern.css';
 		.timeline-year { left: -3.9rem; font-size: 0.68rem; }
 		.timeline-item::before { left: -1.55rem; }
 	}
+	@media (max-width: 820px) {
+		.hero-media {
+			min-height: auto;
+			width: 100%;
+		}
+		.hero-media::before {
+			display: none;
+		}
+		.profile-image-large {
+			width: min(100%, 460px);
+			margin: 0;
+			aspect-ratio: 16 / 11;
+		}
+		.hero-note {
+			position: relative;
+			left: auto;
+			bottom: auto;
+			max-width: none;
+			margin-top: var(--space-4);
+		}
+		.now-strip {
+			grid-template-columns: 1fr;
+			margin-top: 0;
+		}
+	}
+	@media (max-width: 520px) {
+		.hero-actions {
+			flex-direction: column;
+		}
+		.hero-action {
+			width: 100%;
+		}
+		.hero-proof span {
+			width: 100%;
+		}
+	}
 
 	/* Projects */
 	.projects-grid {
@@ -327,14 +545,45 @@ import '../styles/modern.css';
 		<Header />
 		<main>
 			<section class="hero reveal">
-				<div class="profile-image">
-					<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist, frontend engineer based in Westwood, MA" />
-				</div>
 				<div class="hero-text">
-					<h1 class="text-display">Hi, I'm Mark.</h1>
-					<p class="text-lead">Running a web agency, building my own products, and growing food in suburban Boston.</p>
-
+					<p class="hero-eyebrow">Mark Stenquist · Westwood, MA</p>
+					<h1 class="text-display">Building practical AI tools, thoughtful websites, and garden experiments.</h1>
+					<p class="text-lead hero-summary">I co-run VisualBoston, ship software for real businesses, and keep one foot in the soil with projects around gardening, land use, and everyday sustainability.</p>
+					<div class="hero-actions" aria-label="Primary links">
+						<a class="hero-action hero-action-primary" href="https://visualboston.com" target="_blank" rel="noopener noreferrer">Work with me</a>
+						<a class="hero-action hero-action-secondary" href="/engineering">See projects</a>
+					</div>
+					<div class="hero-proof" aria-label="Highlights">
+						<span>Co-founder at VisualBoston</span>
+						<span>Building TallyQuote</span>
+						<span>Gardening in Zone 6b</span>
+					</div>
 				</div>
+				<div class="hero-media">
+					<div class="profile-image-large">
+						<img src="/images/mark-feature-photo.jpg" alt="Mark Stenquist" />
+					</div>
+					<div class="hero-note">
+						<span class="hero-note-label">Current focus</span>
+						<p>Using AI as a real production tool, not a novelty layer, across client work and personal products.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="now-strip reveal-stagger" aria-label="Currently building">
+				<div class="now-label">Building now</div>
+				<a class="now-link" href="https://visualboston.com" target="_blank" rel="noopener noreferrer">
+					<strong>VisualBoston</strong>
+					<span>Websites, apps, and AI workflows for growing companies.</span>
+				</a>
+				<a class="now-link" href="#projects">
+					<strong>TallyQuote</strong>
+					<span>Voice-to-estimate software for tradespeople.</span>
+				</a>
+				<a class="now-link" href="https://gardening.markstenquist.com" target="_blank" rel="noopener noreferrer">
+					<strong>Garden notes</strong>
+					<span>Backyard growing, experiments, and seasonal documentation.</span>
+				</a>
 			</section>
 
 			<section class="section-card reveal-stagger">
@@ -392,7 +641,7 @@ import '../styles/modern.css';
 				</div>
 			</section>
 
-			<section class="section-card reveal-stagger">
+			<section class="section-card reveal-stagger" id="projects">
 				<h2 class="text-section-heading">Projects</h2>
 				<div class="projects-grid">
 					<a href="https://tallyquote.com" target="_blank" rel="noopener noreferrer" class="project-card">
