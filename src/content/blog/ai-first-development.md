@@ -12,7 +12,7 @@ That loop is broken now, and I mean that in the best way.
 
 It doesn't mean slapping a chatbot onto an existing product. It means the AI is the product's core engine, not a feature bolted on after launch.
 
-With [TallyQuote](https://tallyquote.com), a client describes the job they need done. The AI drafts a proposal for the contractor, they adjust what they want, and send it in minutes. The client signs, suggests a time, and the contractor has a booked job. Without the language model, there is no product. The entire value proposition collapses.
+Take an AI proposal workflow: a client describes the job they need done, the system drafts a proposal for the contractor, they adjust what they want, and send it in minutes. The client signs, suggests a time, and the contractor has a booked job. Without the language model, there is no product. The entire value proposition collapses.
 
 This is different from "AI-enhanced." An AI-enhanced invoicing tool might auto-suggest descriptions. An AI-first tool starts from the assumption that proposals should draft themselves.
 
@@ -40,4 +40,4 @@ The surprising thing is how little the frontend stack has changed. React is stil
 
 I initially treated AI outputs as trusted data. They're not. They're suggestions that need validation, formatting, and sometimes correction. Building that validation layer (the part that catches when the model hallucinates a line item or misinterprets a measurement) is where the real engineering happens.
 
-The contractors using TallyQuote don't care about the AI. They care that proposals go out fast and clients book on the spot. The technology is invisible when it works, and that's the goal.
+Contractors do not care about the AI. They care that proposals go out fast and clients book on the spot. The technology is invisible when it works, and that's the goal.

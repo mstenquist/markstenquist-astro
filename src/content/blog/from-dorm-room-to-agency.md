@@ -28,7 +28,7 @@ In 2020, I co-founded VisualBoston with a designer I'd worked with for years. Th
 
 We're not trying to be a big agency. We're two people who've shipped dozens of products and know how to move fast without cutting corners. Our clients get the same people from kickoff to launch. No handoffs to junior developers, no "account managers" who don't understand the code.
 
-The agency model lets me work on diverse problems while still building my own products on the side. TallyQuote (an all-in-one platform for contractors) and GardenMates both started as side projects that grew into real products because the agency gives me the financial stability to take risks.
+The agency model lets me work on diverse problems while still building my own products on the side. GardenMates and other experiments started as side projects that grew into real products because the agency gives me the financial stability to take risks.
 
 ## What I'd tell myself in 2009
 
