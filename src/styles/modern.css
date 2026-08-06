@@ -418,16 +418,18 @@ code, .code {
   }
 }
 
+@media (max-width: 640px) {
+  body {
+    padding-top: 74px;
+  }
+}
+
 @media (max-width: 480px) {
   :root {
     --text-3xl: 1.5rem;
     --text-lg: 1rem;
     --space-6: 1rem;
     --space-4: 0.75rem;
-  }
-  
-  body {
-    padding-top: 52px; /* Mobile header height */
   }
   
   main {

@@ -26,9 +26,6 @@ const { title, description, image = '/images/mark-feature-photo.jpg' } = Astro.p
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 	rel="alternate"
@@ -37,6 +34,10 @@ const { title, description, image = '/images/mark-feature-photo.jpg' } = Astro.p
 	href={new URL('rss.xml', Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
+<meta name="author" content="Mark Stenquist" />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#f9f7f3" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1a1816" media="(prefers-color-scheme: dark)" />
 
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
@@ -74,6 +75,7 @@ const { title, description, image = '/images/mark-feature-photo.jpg' } = Astro.p
 	"name": "Mark Stenquist",
 	"url": "https://markstenquist.com",
 	"jobTitle": "Frontend Engineer & Co-founder",
+	"description": "Massachusetts-based product engineer and VisualBoston co-founder building AI-powered websites, apps, and workflows.",
 	"worksFor": {
 		"@type": "Organization",
 		"name": "VisualBoston",

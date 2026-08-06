@@ -96,6 +96,38 @@ import '../styles/modern.css';
 	.hero-summary {
 		max-width: 620px;
 	}
+	.help-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-6);
+		margin-top: var(--space-6);
+	}
+	.help-item {
+		border-top: 1px solid var(--border);
+		padding-top: var(--space-4);
+	}
+	.help-item h3 {
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 700;
+		color: var(--text-primary);
+		margin: 0 0 var(--space-2);
+	}
+	.help-item p {
+		font-size: var(--text-sm);
+		line-height: 1.65;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+	.section-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent-dark);
+		margin: 0 0 var(--space-2);
+	}
 	.hero-actions {
 		display: flex;
 		flex-wrap: wrap;
@@ -399,6 +431,9 @@ import '../styles/modern.css';
 		.timeline-item::before { left: -1.55rem; }
 	}
 	@media (max-width: 820px) {
+		.help-grid {
+			grid-template-columns: 1fr;
+		}
 		.hero-media {
 			min-height: auto;
 			width: 100%;
@@ -424,6 +459,12 @@ import '../styles/modern.css';
 		}
 	}
 	@media (max-width: 520px) {
+		.hero {
+			padding-top: var(--space-8);
+		}
+		.text-display {
+			font-size: 2.05rem;
+		}
 		.hero-actions {
 			flex-direction: column;
 		}
@@ -541,23 +582,23 @@ import '../styles/modern.css';
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
-		<Header />
-		<main>
-			<section class="hero reveal">
-				<div class="hero-text">
-					<p class="hero-eyebrow">Mark Stenquist · Westwood, MA</p>
-					<h1 class="text-display">Building practical AI tools, thoughtful websites, and garden experiments.</h1>
-					<p class="text-lead hero-summary">I co-run VisualBoston, ship software for real businesses, and keep one foot in the soil with projects around gardening, land use, and everyday sustainability.</p>
-					<div class="hero-actions" aria-label="Primary links">
-						<a class="hero-action hero-action-primary" href="https://visualboston.com" target="_blank" rel="noopener noreferrer">Work with me</a>
-						<a class="hero-action hero-action-secondary" href="/engineering">See projects</a>
-					</div>
-					<div class="hero-proof" aria-label="Highlights">
-						<span>Co-founder at VisualBoston</span>
-						<span>Building TallyQuote</span>
-						<span>Gardening in Zone 6b</span>
-					</div>
+		<body>
+			<Header />
+			<main>
+				<section class="hero reveal">
+					<div class="hero-text">
+						<p class="hero-eyebrow">Mark Stenquist · Westwood, MA</p>
+						<h1 class="text-display">I build AI-powered web products for businesses that need senior engineering without agency bloat.</h1>
+						<p class="text-lead hero-summary">I co-run VisualBoston, turn messy product ideas into shipped software, and use this site as the personal layer behind the work: engineering notes, current projects, and garden experiments.</p>
+						<div class="hero-actions" aria-label="Primary links">
+							<a class="hero-action hero-action-primary" href="https://visualboston.com" target="_blank" rel="noopener noreferrer">Start a project</a>
+							<a class="hero-action hero-action-secondary" href="/engineering">See engineering work</a>
+						</div>
+						<div class="hero-proof" aria-label="Highlights">
+							<span>Co-founder at VisualBoston</span>
+							<span>Building TallyQuote</span>
+							<span>Gardening in Zone 6b</span>
+						</div>
 				</div>
 				<div class="hero-media">
 					<div class="profile-image-large">
@@ -565,7 +606,7 @@ import '../styles/modern.css';
 					</div>
 					<div class="hero-note">
 						<span class="hero-note-label">Current focus</span>
-						<p>Using AI as a real production tool, not a novelty layer, across client work and personal products.</p>
+						<p>Using AI as production infrastructure across client work, internal systems, and personal products.</p>
 					</div>
 				</div>
 			</section>
@@ -587,12 +628,31 @@ import '../styles/modern.css';
 			</section>
 
 			<section class="section-card reveal-stagger">
+				<p class="section-kicker">How I can help</p>
+				<h2 class="text-section-heading">Senior product engineering, without the ceremony.</h2>
+				<div class="help-grid">
+					<div class="help-item">
+						<h3>Build the first real version</h3>
+						<p>Turn a fuzzy product idea into a usable web app, workflow, or prototype that can get in front of customers.</p>
+					</div>
+					<div class="help-item">
+						<h3>Modernize what already works</h3>
+						<p>Improve aging websites, internal tools, and customer flows without blowing up the parts of the business that still matter.</p>
+					</div>
+					<div class="help-item">
+						<h3>Add AI where it earns its keep</h3>
+						<p>Design practical AI features around intake, quoting, search, support, operations, and internal decision-making.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">About</h2>
 				<p class="text-body">
-					I got my start on the founding team of <a href="https://techcrunch.com/2011/04/25/campuslive-raises-3-1-million-to-help-brands-connect-with-college-students/" target="_blank" class="link-enhanced">CampusLIVE</a> at UMass, a dorm room startup that grew into a multi-million dollar company backed by Highland Capital Partners and CRV. From there I joined Google Ventures-backed <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others/" target="_blank" class="link-enhanced">CustomMade</a>, where I built frontend systems connecting thousands of artisans with customers seeking custom goods.
+					I got my start on the founding team of <a href="https://techcrunch.com/2011/04/25/campuslive-raises-3-1-million-to-help-brands-connect-with-college-students/" target="_blank" rel="noopener noreferrer" class="link-enhanced">CampusLIVE</a> at UMass, a dorm room startup that grew into a multi-million dollar company backed by Highland Capital Partners and CRV. From there I joined Google Ventures-backed <a href="https://venturebeat.com/entrepreneur/custom-goods-marketplace-custommade-cooks-up-18m-from-google-atlas-others/" target="_blank" rel="noopener noreferrer" class="link-enhanced">CustomMade</a>, where I built frontend systems connecting thousands of artisans with customers seeking custom goods.
 				</p>
 				<p class="text-body">
-					After that I spent five years as an independent consultant, working with Boston-area startups across fintech, healthcare, and beyond. In 2020 I co-founded <a href="https://visualboston.com" target="_blank" class="link-enhanced">VisualBoston</a>, where I lead engineering. My current focus is AI-first development, building tools and workflows that fundamentally change how digital products get made.
+					After that I spent five years as an independent consultant, working with Boston-area startups across fintech, healthcare, and beyond. In 2020 I co-founded <a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="link-enhanced">VisualBoston</a>, where I lead engineering. My current focus is AI-first development, building tools and workflows that fundamentally change how digital products get made.
 				</p>
 			</section>
 
@@ -699,8 +759,9 @@ import '../styles/modern.css';
 
 			<section class="section-card reveal-stagger">
 				<h2 class="text-section-heading">Get In Touch</h2>
-				<p class="text-body">Open to consulting engagements, collaboration on interesting projects, or just a conversation about building things.</p>
+				<p class="text-body">Best fit: businesses that need a sharp technical partner for a serious web product, website rebuild, or practical AI workflow.</p>
 				<div class="contact-grid">
+					<a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="contact-link">Work through VisualBoston</a>
 					<a href="mailto:mark@stenquist.com" class="contact-link">mark@stenquist.com</a>
 					<a href="https://linkedin.com/in/markstenquist" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
 					<a href="https://github.com/mstenquist" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub</a>

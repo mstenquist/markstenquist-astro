@@ -28,7 +28,7 @@ import { SITE_TITLE } from '../consts';
 					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 				</svg>
 			</button>
-			<a href="https://linkedin.com/in/markstenquist" target="_blank" title="LinkedIn" class="social-icon">
+			<a href="https://linkedin.com/in/markstenquist" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-icon">
 				<span class="sr-only">Go to Mark's LinkedIn Profile</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
 					<g clip-path="url(#clip0_17_68)">
@@ -41,7 +41,7 @@ import { SITE_TITLE } from '../consts';
 					</defs>
 				</svg>
 			</a>
-			<a href="https://github.com/mstenquist" target="_blank" title="GitHub" class="social-icon github-link">
+			<a href="https://github.com/mstenquist" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-icon github-link">
 				<span class="sr-only">Go to Mark's GitHub Profile</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
 					<g clip-path="url(#clip0_910_44)">
@@ -67,7 +67,7 @@ import { SITE_TITLE } from '../consts';
 		margin: 0;
 		padding: 0 2rem;
 		background: var(--surface, #fdfcfa);
-		height: 60px;
+		min-height: 60px;
 		border-bottom: 1px solid var(--border, #e6ddd0);
 		transform: translateY(0);
 	}
@@ -100,6 +100,7 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		gap: 1rem;
 		height: 100%;
 		max-width: 1120px;
 		margin: 0 auto;
@@ -109,6 +110,7 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
+		min-width: 0;
 	}
 
 	.nav-links :global(a) {
@@ -146,6 +148,7 @@ import { SITE_TITLE } from '../consts';
 		height: 100%;
 		align-items: center;
 		gap: 0.25rem;
+		flex-shrink: 0;
 	}
 
 	.social-links a {
@@ -196,15 +199,54 @@ import { SITE_TITLE } from '../consts';
 	}
 
 	@media (max-width: 640px) {
+		header {
+			height: auto;
+			min-height: 74px;
+			padding: 0.65rem 1rem;
+		}
+
+		nav {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-areas:
+				"logo social"
+				"links links";
+			row-gap: 0.45rem;
+			align-content: center;
+		}
+
+		h2 {
+			grid-area: logo;
+		}
+
 		.nav-links {
+			grid-area: links;
+			display: flex;
+			gap: 1rem;
+			overflow-x: auto;
+			padding-bottom: 0.1rem;
+			scrollbar-width: none;
+		}
+
+		.nav-links::-webkit-scrollbar {
 			display: none;
+		}
+
+		.nav-links :global(a) {
+			font-size: 0.78rem;
+			white-space: nowrap;
+		}
+
+		.social-links {
+			grid-area: social;
+			height: auto;
 		}
 	}
 
 	@media (max-width: 480px) {
 		header {
 			padding: 0 0.75rem;
-			height: 52px;
+			min-height: 74px;
 		}
 
 		h2 {
