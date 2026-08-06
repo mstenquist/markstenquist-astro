@@ -58,6 +58,10 @@ import { SITE_TITLE } from '../consts';
 	</nav>
 </header>
 <style>
+	:global(:root) {
+		--site-header-offset: 86px;
+	}
+
 	header {
 		position: fixed;
 		top: 0;
@@ -65,10 +69,12 @@ import { SITE_TITLE } from '../consts';
 		right: 0;
 		z-index: 1000;
 		margin: 0;
-		padding: 0 2rem;
-		background: var(--surface, #fdfcfa);
-		min-height: 60px;
-		border-bottom: 1px solid var(--border, #e6ddd0);
+		padding: 0.85rem clamp(1rem, 3vw, 2rem);
+		background: color-mix(in srgb, var(--surface, #fdfcfa) 92%, transparent);
+		border-bottom: 1px solid color-mix(in srgb, var(--border, #e6ddd0) 78%, transparent);
+		box-shadow: 0 10px 30px rgb(61 53 43 / 0.04);
+		backdrop-filter: blur(18px);
+		-webkit-backdrop-filter: blur(18px);
 		transform: translateY(0);
 	}
 
@@ -100,52 +106,55 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
-		height: 100%;
+		gap: clamp(1rem, 4vw, 2.5rem);
+		min-height: 56px;
 		max-width: 1120px;
 		margin: 0 auto;
+		width: 100%;
 	}
 
 	.nav-links {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
+		justify-content: center;
+		gap: 0.35rem;
 		min-width: 0;
+		padding: 0.35rem;
+		border: 1px solid var(--border-light, #f2ede5);
+		border-radius: var(--radius-md, 0.5rem);
+		background: color-mix(in srgb, var(--background, #f9f7f3) 62%, transparent);
 	}
 
 	.nav-links :global(a) {
 		font-family: var(--font-mono, 'JetBrains Mono', monospace);
-		font-size: 0.875rem;
+		font-size: 0.82rem;
 		font-weight: 400;
 		color: var(--text-secondary, #7a6a52);
 		text-decoration: none;
-		transition: color 0.2s ease;
+		transition: color 0.2s ease, background 0.2s ease;
 		position: relative;
+		padding: 0.45rem 0.65rem;
+		border-radius: var(--radius-sm, 0.25rem);
+		line-height: 1;
 	}
 
 	.nav-links :global(a:hover) {
 		color: var(--text-primary, #3d352b);
+		background: var(--surface, #fdfcfa);
 	}
 
 	.nav-links :global(a.active) {
 		color: var(--accent, #b8845c);
 		font-weight: 500;
+		background: var(--surface, #fdfcfa);
 	}
 
 	.nav-links :global(a.active::after) {
-		content: '';
-		position: absolute;
-		bottom: -4px;
-		left: 0;
-		right: 0;
-		height: 2px;
-		background: var(--accent, #b8845c);
-		border-radius: 1px;
+		content: none;
 	}
 
 	.social-links {
 		display: flex;
-		height: 100%;
 		align-items: center;
 		gap: 0.25rem;
 		flex-shrink: 0;
@@ -155,30 +164,36 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.5rem;
-		transition: all 0.2s ease;
+		width: 2.3rem;
+		height: 2.3rem;
+		transition: color 0.2s ease, background 0.2s ease;
 		color: var(--text-secondary, #7a6a52);
 		text-decoration: none;
+		border-radius: var(--radius-md, 0.5rem);
 	}
 
 	.social-links a:hover {
 		color: var(--accent, #b8845c);
+		background: color-mix(in srgb, var(--background, #f9f7f3) 82%, transparent);
 	}
 
 	.theme-toggle {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.5rem;
+		width: 2.3rem;
+		height: 2.3rem;
 		background: none;
 		border: none;
+		border-radius: var(--radius-md, 0.5rem);
 		cursor: pointer;
 		color: var(--text-secondary, #7a6a52);
-		transition: color 0.2s ease;
+		transition: color 0.2s ease, background 0.2s ease;
 	}
 
 	.theme-toggle:hover {
 		color: var(--accent, #b8845c);
+		background: color-mix(in srgb, var(--background, #f9f7f3) 82%, transparent);
 	}
 
 	/* Show sun in dark mode, moon in light mode */
@@ -189,20 +204,19 @@ import { SITE_TITLE } from '../consts';
 	:global([data-theme="dark"]) .icon-moon { display: none; }
 
 	@media (max-width: 768px) {
-		header {
-			padding: 0 1rem;
-		}
-
 		.nav-links {
-			gap: 1rem;
+			gap: 0.25rem;
 		}
 	}
 
 	@media (max-width: 640px) {
+		:global(:root) {
+			--site-header-offset: 122px;
+		}
+
 		header {
 			height: auto;
-			min-height: 74px;
-			padding: 0.65rem 1rem;
+			padding: 0.75rem 1rem 0.8rem;
 		}
 
 		nav {
@@ -211,8 +225,9 @@ import { SITE_TITLE } from '../consts';
 			grid-template-areas:
 				"logo social"
 				"links links";
-			row-gap: 0.45rem;
+			row-gap: 0.65rem;
 			align-content: center;
+			min-height: auto;
 		}
 
 		h2 {
@@ -222,9 +237,10 @@ import { SITE_TITLE } from '../consts';
 		.nav-links {
 			grid-area: links;
 			display: flex;
-			gap: 1rem;
+			justify-content: flex-start;
+			gap: 0.25rem;
 			overflow-x: auto;
-			padding-bottom: 0.1rem;
+			padding: 0.35rem;
 			scrollbar-width: none;
 		}
 
@@ -245,8 +261,7 @@ import { SITE_TITLE } from '../consts';
 
 	@media (max-width: 480px) {
 		header {
-			padding: 0 0.75rem;
-			min-height: 74px;
+			padding-inline: 0.75rem;
 		}
 
 		h2 {
@@ -255,7 +270,8 @@ import { SITE_TITLE } from '../consts';
 
 		.social-links a,
 		.theme-toggle {
-			padding: 0.4rem;
+			width: 2.05rem;
+			height: 2.05rem;
 		}
 	}
 

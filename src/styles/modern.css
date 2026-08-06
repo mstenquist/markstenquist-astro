@@ -117,7 +117,7 @@ body {
   font-family: var(--font-sans);
   margin: 0;
   padding: 0;
-  padding-top: 60px; /* Fixed header height */
+  padding-top: var(--site-header-offset, 86px);
   background-color: var(--background);
   color: var(--text-primary);
   font-size: var(--text-base);
@@ -420,7 +420,7 @@ code, .code {
 
 @media (max-width: 640px) {
   body {
-    padding-top: 74px;
+    padding-top: var(--site-header-offset, 122px);
   }
 }
 
