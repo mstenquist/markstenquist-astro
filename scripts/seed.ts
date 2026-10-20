@@ -93,8 +93,8 @@ function parsePost(file: string) {
 // --- Content ---
 
 async function main() {
-	const photoFile = join(process.cwd(), 'public/images/mark-feature-photo.jpg');
-	const photo = await client.assets.upload('image', readFileSync(photoFile), { filename: 'mark-feature-photo.jpg' });
+	const photoFile = join(process.cwd(), 'public/images/mark-stenquist.jpg');
+	const photo = await client.assets.upload('image', readFileSync(photoFile), { filename: 'mark-stenquist.jpg' });
 
 	const projects = [
 		{
@@ -105,7 +105,8 @@ async function main() {
 			tag: 'agency',
 			meta: 'agency · co-founder · 2020–now',
 			summary: 'Websites, apps and AI workflows for growing companies.',
-			description: 'The agency I co-founded. We design and build websites, apps and AI tools, from early-stage startups to established brands.',
+			description:
+				'An AI-native design and development agency in Boston. Senior designers and engineers who build the whole product: UX/UI, websites, web apps, AI agents, and generated video.',
 			status: 'active',
 			cardStyle: 'dark',
 			watermark: 'vb_',
@@ -121,6 +122,18 @@ async function main() {
 			status: 'in-progress',
 			cardStyle: 'outline',
 			stack: ['React', 'TypeScript', 'Prisma', 'Neon'],
+		},
+		{
+			_id: 'project-plot-studio',
+			_type: 'project',
+			name: 'Plot studio',
+			url: 'https://plot-studio.markstenquist.com/',
+			tag: 'product',
+			summary: 'Garden and landscape design, to scale, in plan and 3D.',
+			description:
+				'Plan beds, patios, walkways and decks on a plan measured in feet, see the sun and shade, and stand it up in 3D. For landscape pros and anyone planning their own garden.',
+			status: 'in-progress',
+			cardStyle: 'outline',
 		},
 		{
 			_id: 'project-garden-notes',
@@ -191,7 +204,7 @@ async function main() {
 			kicker: '// work',
 			headline: ['Building for the web', 'since 2009'],
 			intro: 'I lead engineering at VisualBoston. These days that means web products and AI workflows, built by a small senior team.',
-			projects: projects.slice(0, 2).map((project) => ref(project._id)),
+			projects: projects.slice(0, 3).map((project) => ref(project._id)),
 			servicesKicker: '// what i work on',
 			servicesHeading: 'The kind of projects I do.',
 			services: [

@@ -13,7 +13,7 @@ const { posts, dateStyle = 'long', showDescription = true } = Astro.props;
 <div class="rows">
 	{
 		posts.map((post) => (
-			<a class="row" href={`/blog/${post.slug}/`} data-cursor-label="read post →">
+			<a class="row" href={`/blog/${post.slug}/`}>
 				<span class="date">{formatDate(post.publishedAt, dateStyle)}</span>
 				<span class="title">
 					<strong>{post.title}</strong>

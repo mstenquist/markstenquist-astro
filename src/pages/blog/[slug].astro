@@ -35,7 +35,7 @@ const { next } = Astro.props;
 
 const body = post.body ?? [];
 const toc = body.filter((block) => block._type === 'block' && block.style === 'h2').map((block) => ({ text: blockText(block), id: slugify(blockText(block)) }));
-const avatar = settings.photo?.asset ? urlFor(settings.photo).width(112).height(112).url() : '/images/mark-feature-photo.jpg';
+const avatar = settings.photo?.asset ? urlFor(settings.photo).width(112).height(112).url() : '/images/mark-stenquist.jpg';
 const components = { block: { h2: Heading, h3: Heading }, type: { image: Figure } };
 ---
 

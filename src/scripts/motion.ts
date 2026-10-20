@@ -7,9 +7,8 @@
 //   data-magnetic          lean toward the pointer while hovered
 //   data-progress          width tracks how far the page has been read
 //   data-timeline          its .timeline-fill grows as the section scrolls in
-//   data-cursor="crosshair" area where the cursor is the x/y crosshair; elsewhere it is a terminal caret
-//   data-cursor-label="…"  label the caret shows over this link (defaults by link type)
-//   data-cursor-invert     blue areas where the caret turns white
+//   data-cursor="crosshair" area where the cursor is the x/y crosshair; elsewhere it is a dot
+//   data-cursor-invert     blue areas where the dot turns white
 //   data-cursor-plain      white elements inside those areas, where it turns blue again
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -95,22 +94,20 @@ if (finePointer && !reduceMotion) {
 	const x = make('cursor-x');
 	const y = make('cursor-y');
 	const chip = make('cursor-chip');
-	const caret = make('cursor-caret');
-	const pill = make('cursor-pill');
-	document.body.append(x, y, chip, caret, pill);
+	const dot = make('cursor-dot');
+	const arrow = document.createElement('span');
+	dot.append(arrow);
+	document.body.append(x, y, chip, dot);
 	document.body.classList.add('has-custom-cursor');
 
 	let cursorQueued = false;
 	let target: EventTarget | null = null;
-	let idleTimer = 0;
 
-	const linkLabel = (link: HTMLElement) => {
-		if (link.dataset.cursorLabel) return link.dataset.cursorLabel;
+	const linkArrow = (link: HTMLElement) => {
 		const href = link.getAttribute('href') ?? '';
-		if (href.startsWith('mailto:')) return 'email ↗';
-		if (/^https?:\/\//.test(href) && !href.includes(location.hostname)) return 'open ↗';
-		if (href.startsWith('#')) return 'jump ↓';
-		return 'go →';
+		if (href.startsWith('#')) return '↓';
+		if (href.startsWith('mailto:') || (/^https?:\/\//.test(href) && !href.includes(location.hostname))) return '↗';
+		return '→';
 	};
 
 	const drawCursor = () => {
@@ -118,10 +115,9 @@ if (finePointer && !reduceMotion) {
 		const el = target instanceof Element ? target : null;
 		const crosshair = !!el?.closest('[data-cursor="crosshair"]');
 		const link = el?.closest<HTMLElement>('a, button') ?? null;
-		const text = !link && !!el?.closest('p, li, blockquote, h1, h2, h3, figcaption');
 
 		document.body.classList.toggle('cursor-crosshair', crosshair);
-		document.body.classList.toggle('cursor-terminal', !crosshair);
+		document.body.classList.toggle('cursor-dot-mode', !crosshair);
 
 		if (crosshair) {
 			x.style.transform = `translate3d(0, ${pointer.y}px, 0)`;
@@ -131,14 +127,12 @@ if (finePointer && !reduceMotion) {
 			return;
 		}
 
-		caret.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0)`;
-		pill.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0)`;
-		caret.classList.toggle('is-text', text);
-		document.body.classList.toggle('cursor-on-link', !!link);
-		// The nearest marker wins, so a white button inside a blue area gets the blue caret back.
+		dot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0)`;
+		dot.classList.toggle('is-link', !!link);
+		if (link) arrow.textContent = linkArrow(link);
+		// The nearest marker wins, so a white button inside a blue area gets the blue dot back.
 		const surface = el?.closest('[data-cursor-invert], [data-cursor-plain]');
 		document.body.classList.toggle('cursor-invert', !!surface?.hasAttribute('data-cursor-invert'));
-		if (link) pill.textContent = linkLabel(link);
 	};
 
 	window.addEventListener(
@@ -151,10 +145,6 @@ if (finePointer && !reduceMotion) {
 			pointer.py = event.clientY / window.innerHeight - 0.5;
 			target = event.target;
 			document.body.classList.add('has-cursor');
-			// The caret blinks once the pointer rests, like a terminal waiting for input.
-			document.body.classList.remove('cursor-idle');
-			clearTimeout(idleTimer);
-			idleTimer = window.setTimeout(() => document.body.classList.add('cursor-idle'), 700);
 			if (!cursorQueued) {
 				cursorQueued = true;
 				requestAnimationFrame(drawCursor);
@@ -164,6 +154,8 @@ if (finePointer && !reduceMotion) {
 		{ passive: true },
 	);
 	document.documentElement.addEventListener('pointerleave', () => document.body.classList.remove('has-cursor'));
+	window.addEventListener('pointerdown', () => dot.classList.add('is-pressed'));
+	window.addEventListener('pointerup', () => dot.classList.remove('is-pressed'));
 	// Scrolling moves new content under a still pointer, so re-check what it is over.
 	window.addEventListener(
 		'scroll',

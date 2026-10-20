@@ -17,7 +17,7 @@ const [first, ...rest] = settings.footerButtons ?? [];
 			{first && <SmartLink class="btn btn-light" href={first.href} data-cursor-plain>{first.label}</SmartLink>}
 			{
 				rest.map((link) => (
-					<SmartLink class="btn btn-outline-light" href={link.href}>
+					<SmartLink class="btn btn-outline-light" href={link.href} data-cursor-plain>
 						{link.label}
 					</SmartLink>
 				))

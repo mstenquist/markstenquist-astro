@@ -8,7 +8,7 @@ if (!home) throw new Error('Sanity: the "Home page" document is missing.');
 
 const headline = home.headline ?? [];
 const lastLine = headline.at(-1);
-const photo = settings.photo?.asset ? urlFor(settings.photo).width(920).height(920).url() : '/images/mark-feature-photo.jpg';
+const photo = settings.photo?.asset ? urlFor(settings.photo).width(512).height(512).url() : '/images/mark-stenquist.jpg';
 ---
 
 <Site {settings}>
