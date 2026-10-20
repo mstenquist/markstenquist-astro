@@ -2,12 +2,18 @@
 import PostRows from '../../components/PostRows.astro';
 import Site from '../../layouts/Site.astro';
 import { formatDate, getBlogPage, getPosts, getSiteSettings, readingTime } from '../../lib/sanity';
+import { blogNode } from '../../lib/schema';
 
 const [settings, page, posts] = await Promise.all([getSiteSettings(), getBlogPage(), getPosts()]);
 const [latest] = posts;
 ---
 
-<Site {settings} title={page?.seoTitle ?? 'Writing'} description={page?.seoDescription ?? page?.intro}>
+<Site
+	{settings}
+	title={page?.seoTitle ?? 'Writing'}
+	description={page?.seoDescription ?? page?.intro}
+	schema={[blogNode(posts, Astro.site!, `${settings.name} — ${page?.heading ?? 'Writing'}`, page?.seoDescription ?? page?.intro)]}
+>
 	<section class="container blog-hero">
 		<div>
 			{page?.kicker && <p class="kicker">{page.kicker}</p>}

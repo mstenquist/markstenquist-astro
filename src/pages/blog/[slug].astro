@@ -3,6 +3,7 @@ import { PortableText } from 'astro-portabletext';
 import Figure from '../../components/portable/Figure.astro';
 import Heading from '../../components/portable/Heading.astro';
 import Site from '../../layouts/Site.astro';
+import { postNodes } from '../../lib/schema';
 import {
 	blockText,
 	formatDate,
@@ -37,9 +38,21 @@ const body = post.body ?? [];
 const toc = body.filter((block) => block._type === 'block' && block.style === 'h2').map((block) => ({ text: blockText(block), id: slugify(blockText(block)) }));
 const avatar = settings.photo?.asset ? urlFor(settings.photo).width(112).height(112).url() : '/images/mark-stenquist.jpg';
 const components = { block: { h2: Heading, h3: Heading }, type: { image: Figure } };
+const shareImage = new URL('/og.png', Astro.site).href;
 ---
 
-<Site {settings} title={post.title} description={post.description} type="article" progress grid={false}>
+<Site
+	{settings}
+	title={post.title}
+	description={post.description}
+	type="article"
+	image={shareImage}
+	schema={postNodes(post, Astro.site!, shareImage)}
+	publishedAt={post.publishedAt}
+	updatedAt={post.updatedAt}
+	progress
+	grid={false}
+>
 	<section class="post-hero grid-bg">
 		<div class="container">
 			<a class="back" href="/blog/">← All writing</a>

@@ -12,16 +12,19 @@ interface Props {
 	type?: 'website' | 'article';
 	progress?: boolean;
 	grid?: boolean;
+	schema?: Record<string, unknown>[];
+	publishedAt?: string;
+	updatedAt?: string;
 }
 
-const { settings, title, description, image, type, progress, grid = true } = Astro.props;
+const { settings, title, description, image, type, progress, grid = true, schema, publishedAt, updatedAt } = Astro.props;
 const pageTitle = title ? `${title} | ${settings.name}` : (settings.seoTitle ?? settings.name);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={pageTitle} description={description ?? settings.seoDescription ?? ''} {settings} {image} {type} />
+		<BaseHead title={pageTitle} description={description ?? settings.seoDescription ?? ''} {settings} {image} {type} {schema} {publishedAt} {updatedAt} />
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
