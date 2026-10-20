@@ -1,104 +1,75 @@
 ---
-import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
+import '../styles/site.css';
+import type { SiteSettings } from '../lib/sanity';
+import { urlFor } from '../lib/sanity';
 
 interface Props {
 	title: string;
 	description: string;
+	settings: SiteSettings;
 	image?: string;
+	type?: 'website' | 'article';
 }
 
+const { title, description, settings, type = 'website' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = '/images/mark-feature-photo.jpg' } = Astro.props;
+const shareImage =
+	Astro.props.image ??
+	(settings.ogImage?.asset ? urlFor(settings.ogImage).width(1200).height(630).url() : new URL('/images/mark-feature-photo.jpg', Astro.site).href);
 ---
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGZW3RPQBQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FGZW3RPQBQ');
+<script is:inline>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-FGZW3RPQBQ');
 </script>
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
+<link rel="alternate" type="application/rss+xml" title={settings.seoTitle ?? settings.name} href={new URL('rss.xml', Astro.site)} />
 <meta name="generator" content={Astro.generator} />
-<meta name="author" content="Mark Stenquist" />
-<meta name="robots" content="index,follow" />
-<meta name="theme-color" content="#f9f7f3" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#1a1816" media="(prefers-color-scheme: dark)" />
+<meta name="author" content={settings.name} />
+<meta name="theme-color" content="#fafafb" />
 
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+	rel="stylesheet"
+/>
 
-<!-- Preload hero image -->
-<link rel="preload" href="/images/mark-feature-photo.jpg" as="image" />
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
-
-<!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={shareImage} />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={shareImage} />
 
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify({
-	"@context": "https://schema.org",
-	"@type": "Person",
-	"name": "Mark Stenquist",
-	"url": "https://markstenquist.com",
-	"jobTitle": "Frontend Engineer & Co-founder",
-	"description": "Massachusetts-based product engineer and VisualBoston co-founder building AI-powered websites, apps, and workflows.",
-	"worksFor": {
-		"@type": "Organization",
-		"name": "VisualBoston",
-		"url": "https://visualboston.com"
-	},
-	"sameAs": [
-		"https://linkedin.com/in/markstenquist",
-		"https://github.com/mstenquist"
-	],
-	"knowsAbout": ["Web Development", "React", "TypeScript", "AI Engineering", "Next.js"],
-	"address": {
-		"@type": "PostalAddress",
-		"addressLocality": "Westwood",
-		"addressRegion": "MA",
-		"addressCountry": "US"
-	}
-})} />
-
-<!-- Dark mode: apply before paint to prevent flash -->
-<script is:inline>
-	(function() {
-		const theme = localStorage.getItem('theme') ||
-			(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-		document.documentElement.setAttribute('data-theme', theme);
-	})();
-</script>
+<script
+	type="application/ld+json"
+	set:html={JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: settings.name,
+		url: 'https://markstenquist.com',
+		description: settings.seoDescription,
+		worksFor: { '@type': 'Organization', name: 'VisualBoston', url: 'https://visualboston.com' },
+		sameAs: (settings.socials ?? []).map((link) => link.href).filter((href) => href.startsWith('http')),
+		address: { '@type': 'PostalAddress', addressLocality: 'Westwood', addressRegion: 'MA', addressCountry: 'US' },
+	})}
+/>

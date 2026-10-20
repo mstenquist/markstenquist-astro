@@ -1,16 +1,17 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getPosts, getSiteSettings } from '../lib/sanity';
 
 export async function GET(context) {
-	const posts = await getCollection('blog');
+	const [settings, posts] = await Promise.all([getSiteSettings(), getPosts()]);
 	return rss({
-		title: SITE_TITLE,
-		description: SITE_DESCRIPTION,
+		title: settings.seoTitle ?? settings.name,
+		description: settings.seoDescription ?? '',
 		site: context.site,
 		items: posts.map((post) => ({
-			...post.data,
-			link: `/blog/${post.id}/`,
+			title: post.title,
+			description: post.description,
+			pubDate: new Date(post.publishedAt),
+			link: `/blog/${post.slug}/`,
 		})),
 	});
 }

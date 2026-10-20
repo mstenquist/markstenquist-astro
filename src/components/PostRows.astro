@@ -1,0 +1,28 @@
+---
+import { formatDate, type PostSummary } from '../lib/sanity';
+
+interface Props {
+	posts: PostSummary[];
+	dateStyle?: 'short' | 'long';
+	showDescription?: boolean;
+}
+
+const { posts, dateStyle = 'long', showDescription = true } = Astro.props;
+---
+
+<div class="rows">
+	{
+		posts.map((post) => (
+			<a class="row" href={`/blog/${post.slug}/`} data-cursor-label="read post →">
+				<span class="date">{formatDate(post.publishedAt, dateStyle)}</span>
+				<span class="title">
+					<strong>{post.title}</strong>
+					{showDescription && <span>{post.description}</span>}
+				</span>
+				<span class="go-arrow" aria-hidden="true">
+					→
+				</span>
+			</a>
+		))
+	}
+</div>

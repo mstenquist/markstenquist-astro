@@ -1,0 +1,12 @@
+---
+// An <a> that opens off-site links in a new tab.
+import type { HTMLAttributes } from 'astro/types';
+import { isExternal } from '../lib/sanity';
+
+type Props = HTMLAttributes<'a'> & { href: string };
+
+const { href, ...rest } = Astro.props;
+const external = isExternal(href);
+---
+
+<a href={href} {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}} {...rest}><slot /></a>

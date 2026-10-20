@@ -1,190 +1,118 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ScrollReveal from '../components/ScrollReveal.astro';
-import '../styles/modern.css';
+import PostRows from '../components/PostRows.astro';
+import SmartLink from '../components/SmartLink.astro';
+import Site from '../layouts/Site.astro';
+import { getPosts, getSiteSettings, getWorkPage } from '../lib/sanity';
 
-const title = "Engineering | Mark Stenquist";
-const description = "Product engineering, AI workflow, and web app work from Mark Stenquist, co-founder and lead engineer at VisualBoston.";
+const [settings, work, allPosts] = await Promise.all([getSiteSettings(), getWorkPage(), getPosts()]);
+if (!work) throw new Error('Sanity: the "Work page" document is missing.');
+
+const headline = work.headline ?? [];
+const posts = work.writingPosts?.length ? work.writingPosts : allPosts.slice(0, 2);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section class="hero hero--full reveal">
-				<div class="hero-text">
-					<h1 class="text-display">Product engineering for real business problems.</h1>
-					<p class="text-lead">
-						Co-founder and lead engineer at <a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="link-enhanced">VisualBoston</a>. 15+ years shipping products across startups, agencies, and my own ventures, now focused on practical AI workflows and web products that make teams faster.
-					</p>
+<Site {settings} title={work.seoTitle ?? 'Work'} description={work.seoDescription}>
+	<section class="container" style="padding-block: clamp(56px, 8vw, 104px) 72px">
+		{work.kicker && <p class="kicker">{work.kicker}</p>}
+		<h1 class="display" style="max-width: 1000px; font-size: clamp(48px, 7vw, 104px)">
+			{
+				headline.map((line, index) => (
+					<>
+						{index > 0 && <br />}
+						{line}
+					</>
+				))
+			}<span class="caret" aria-hidden="true">_</span>
+		</h1>
+		{work.intro && <p class="lead" style="max-width: 620px">{work.intro}</p>}
+	</section>
+
+	{
+		work.projects?.length ? (
+			<section class="container" style="padding-bottom: 72px">
+				<div class="project-grid">
+					{work.projects.map((project) => {
+						const Card = project.url ? SmartLink : 'div';
+						const dark = project.cardStyle === 'dark';
+						return (
+							<Card class:list={['project-card', { 'is-dark': dark }]} href={project.url}>
+								{project.status === 'in-progress' ? (
+									<span class="status">● in progress</span>
+								) : (
+									project.meta && <span class="meta">{project.meta}</span>
+								)}
+								<h2>{project.name}</h2>
+								<p>{project.description ?? project.summary}</p>
+								{project.stack?.length && !dark ? (
+									<div class="chips">
+										{project.stack.map((item) => (
+											<span>{item}</span>
+										))}
+									</div>
+								) : null}
+								{project.url && dark && <span class="go">{project.url.replace(/^https?:\/\//, '')} ↗</span>}
+								{project.watermark && (
+									<span class="watermark" data-parallax="0.12" data-parallax-max="60" aria-hidden="true">
+										{project.watermark}
+									</span>
+								)}
+							</Card>
+						);
+					})}
 				</div>
 			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Good Fits</h2>
-				<div class="fit-grid">
-					<div class="fit-item">
-						<h3>AI-enabled workflows</h3>
-						<p class="text-body">Intake, quoting, search, content operations, internal tools, and other places where AI can remove real manual work.</p>
-					</div>
-					<div class="fit-item">
-						<h3>Web app builds</h3>
-						<p class="text-body">Next.js, React, TypeScript, APIs, authentication, payments, dashboards, and polished customer-facing product flows.</p>
-					</div>
-					<div class="fit-item">
-						<h3>Website rebuilds</h3>
-						<p class="text-body">Sharper positioning, faster pages, better responsive behavior, cleaner CMS/editor workflows, and technical SEO fixes.</p>
-					</div>
-				</div>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Active Work</h2>
-
-				<div class="project-list">
-					<div class="project-item">
-						<div class="project-header">
-							<h3>VisualBoston</h3>
-							<a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="link-enhanced project-link">visualboston.com →</a>
-						</div>
-						<p class="text-body">The agency I co-founded in 2020. We build digital products for ambitious companies, from early-stage startups to established brands.</p>
-					</div>
-
-					<div class="project-item">
-						<div class="project-header">
-							<h3>Garden Sharing App <span class="project-badge">Coming soon</span></h3>
-						</div>
-						<p class="text-body">A marketplace connecting people who want to grow food with neighbors who have the space for it. Think Airbnb for garden plots.</p>
-					</div>
-				</div>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Stack</h2>
-				<p class="text-body">React, Next.js, TypeScript, Node.js, Astro, Tailwind, Postgres, Vercel. AI integrations with Claude, OpenAI, and whatever makes sense for the problem.</p>
-			</section>
-
-			<section class="section-card reveal-stagger">
-				<h2 class="text-section-heading">Get In Touch</h2>
-				<p class="text-body">For project work, start with VisualBoston. For direct notes, email me.</p>
-				<div class="engineering-actions">
-					<a href="https://visualboston.com" target="_blank" rel="noopener noreferrer" class="engineering-action">Work through VisualBoston</a>
-					<a href="mailto:mark@stenquist.com" class="engineering-action">mark@stenquist.com</a>
-				</div>
-			</section>
-		</main>
-		<Footer />
-		<ScrollReveal />
-	</body>
-</html>
-
-<style>
-.project-list {
-	display: flex;
-	flex-direction: column;
-	gap: var(--space-8);
-	margin-top: var(--space-6);
-}
-.fit-grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: var(--space-6);
-	margin-top: var(--space-6);
-}
-.fit-item {
-	border-top: 1px solid var(--border);
-	padding-top: var(--space-4);
-}
-.fit-item h3 {
-	font-family: var(--font-sans);
-	font-size: var(--text-lg);
-	font-weight: 700;
-	color: var(--text-primary);
-	margin: 0 0 var(--space-2);
-}
-.fit-item .text-body {
-	font-size: var(--text-sm);
-	line-height: 1.65;
-	margin: 0;
-}
-.project-item {
-	padding-bottom: var(--space-8);
-	border-bottom: 1px solid var(--border-light);
-}
-.project-item:last-child {
-	border-bottom: none;
-	padding-bottom: 0;
-}
-.project-header {
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
-	gap: var(--space-4);
-	margin-bottom: var(--space-2);
-	flex-wrap: wrap;
-}
-.project-header h3 {
-	font-family: var(--font-mono);
-	font-size: var(--text-lg);
-	font-weight: 600;
-	color: var(--text-primary);
-}
-.project-link {
-	font-family: var(--font-mono);
-	font-size: var(--text-sm);
-}
-.coming-soon-card {
-	border: 1px dashed var(--border);
-	background: var(--sand-50);
-}
-.project-badge {
-	font-family: var(--font-mono);
-	font-size: 0.68rem;
-	font-weight: 600;
-	background: var(--accent);
-	color: #fff;
-	padding: 0.2rem 0.6rem;
-	border-radius: 99px;
-	vertical-align: middle;
-	margin-left: 0.5rem;
-	letter-spacing: 0.03em;
-}
-.engineering-actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--space-4);
-	margin-top: var(--space-4);
-}
-.engineering-action {
-	font-family: var(--font-mono);
-	font-size: var(--text-sm);
-	font-weight: 600;
-	color: var(--accent);
-	text-decoration: none;
-	border: 1px solid var(--border);
-	border-radius: var(--radius-md);
-	padding: 0.65rem 1rem;
-}
-.engineering-action:hover {
-	border-color: var(--accent);
-	background: color-mix(in srgb, var(--accent) 8%, transparent);
-	text-decoration: none;
-}
-@media (max-width: 820px) {
-	.fit-grid {
-		grid-template-columns: 1fr;
+		) : null
 	}
-}
-@media (max-width: 520px) {
-	.engineering-action {
-		width: 100%;
-		text-align: center;
+
+	{
+		work.services?.length ? (
+			<section class="container section">
+				{work.servicesKicker && <p class="kicker">{work.servicesKicker}</p>}
+				{work.servicesHeading && <h2 class="h2">{work.servicesHeading}</h2>}
+				<div class="card-grid">
+					{work.services.map((item, index) => (
+						<div class="svc" data-parallax={(0.02 + index * 0.02).toFixed(2)} data-parallax-max="40">
+							<span class="mono">{String(index + 1).padStart(2, '0')}</span>
+							<h3>{item.title}</h3>
+							{item.description && <p>{item.description}</p>}
+						</div>
+					))}
+				</div>
+			</section>
+		) : null
 	}
-}
-</style>
+
+	{
+		work.stack?.length ? (
+			<section class="container section">
+				<div class="stack-wrap">
+					<div>
+						{work.stackKicker && <p class="kicker">{work.stackKicker}</p>}
+						{work.stackHeading && <h2 class="h2">{work.stackHeading}</h2>}
+						{work.stackNote && <p class="note">{work.stackNote}</p>}
+					</div>
+					<div class="tags">
+						{work.stack.map((tool) => (
+							<span class:list={{ 'is-highlight': tool.highlight }}>{tool.name}</span>
+						))}
+					</div>
+				</div>
+			</section>
+		) : null
+	}
+
+	{
+		posts.length ? (
+			<section class="container section" style="padding-bottom: 120px">
+				<div class="section-head">
+					<div>
+						{work.writingKicker && <p class="kicker">{work.writingKicker}</p>}
+						{work.writingHeading && <h2 class="h2">{work.writingHeading}</h2>}
+					</div>
+					<a href="/blog/">All writing →</a>
+				</div>
+				<PostRows {posts} dateStyle="short" showDescription={false} />
+			</section>
+		) : null
+	}
+</Site>

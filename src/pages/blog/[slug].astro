@@ -1,0 +1,102 @@
+---
+import { PortableText } from 'astro-portabletext';
+import Figure from '../../components/portable/Figure.astro';
+import Heading from '../../components/portable/Heading.astro';
+import Site from '../../layouts/Site.astro';
+import {
+	blockText,
+	formatDate,
+	getPost,
+	getPosts,
+	getSiteSettings,
+	readingTime,
+	slugify,
+	urlFor,
+	type PostSummary,
+} from '../../lib/sanity';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	return posts.map((post, index) => ({
+		params: { slug: post.slug },
+		// Posts are newest first, so the "next" read is the next older one, wrapping to the newest.
+		props: { next: posts.length > 1 ? posts[(index + 1) % posts.length] : undefined },
+	}));
+}
+
+interface Props {
+	next?: PostSummary;
+}
+
+const { slug } = Astro.params;
+const [settings, post] = await Promise.all([getSiteSettings(), getPost(slug!)]);
+if (!post) throw new Error(`Sanity: post "${slug}" not found.`);
+const { next } = Astro.props;
+
+const body = post.body ?? [];
+const toc = body.filter((block) => block._type === 'block' && block.style === 'h2').map((block) => ({ text: blockText(block), id: slugify(blockText(block)) }));
+const avatar = settings.photo?.asset ? urlFor(settings.photo).width(112).height(112).url() : '/images/mark-feature-photo.jpg';
+const components = { block: { h2: Heading, h3: Heading }, type: { image: Figure } };
+---
+
+<Site {settings} title={post.title} description={post.description} type="article" progress grid={false}>
+	<section class="post-hero grid-bg">
+		<div class="container">
+			<a class="back" href="/blog/">← All writing</a>
+			<h1 class="display" data-parallax="-0.1" data-parallax-max="60">{post.title}</h1>
+			<p class="lead">{post.description}</p>
+			<div class="byline">
+				<img src={avatar} alt="" width="44" height="44" />
+				<span>
+					<strong>{settings.name}</strong>
+					<span class="mono">
+						<time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time> · {readingTime(post.wordCount)}
+					</span>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<div class="container post-body">
+		{
+			toc.length > 1 && (
+				<aside class="toc">
+					<p class="kicker">// on this page</p>
+					<nav aria-label="On this page" data-toc>
+						{toc.map((item) => (
+							<a href={`#${item.id}`}>{item.text}</a>
+						))}
+					</nav>
+				</aside>
+			)
+		}
+		<article class="prose">
+			<PortableText value={body} {components} />
+			<div class="author">
+				<span>
+					<img src={avatar} alt="" width="56" height="56" loading="lazy" />
+					<span>
+						<strong>{settings.name}</strong>
+						{settings.bio}
+					</span>
+				</span>
+			</div>
+		</article>
+	</div>
+
+	{
+		next && (
+			<section class="container" style="padding-bottom: 120px">
+				<a class="next" href={`/blog/${next.slug}/`}>
+					<span>
+						<span class="mono">next post</span>
+						<strong>{next.title}</strong>
+					</span>
+					<span class="round-go" aria-hidden="true">
+						→
+					</span>
+				</a>
+			</section>
+		)
+	}
+</Site>

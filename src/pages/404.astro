@@ -1,0 +1,18 @@
+---
+import Site from '../layouts/Site.astro';
+import { getSiteSettings } from '../lib/sanity';
+
+const settings = await getSiteSettings();
+---
+
+<Site {settings} title="Page not found">
+	<section class="container" style="padding-block: clamp(80px, 12vw, 160px)">
+		<p class="kicker">// 404</p>
+		<h1 class="display">Nothing here<span class="caret" aria-hidden="true">_</span></h1>
+		<p class="lead">That page moved or never existed.</p>
+		<div class="btn-row">
+			<a class="btn btn-primary" href="/" data-magnetic>Go home <span aria-hidden="true">→</span></a>
+			<a class="btn btn-secondary" href="/blog/">Read my writing</a>
+		</div>
+	</section>
+</Site>

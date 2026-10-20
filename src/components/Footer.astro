@@ -1,48 +1,37 @@
 ---
-const today = new Date();
+import type { SiteSettings } from '../lib/sanity';
+import SmartLink from './SmartLink.astro';
+
+interface Props {
+	settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+const [first, ...rest] = settings.footerButtons ?? [];
 ---
 
-<footer>
-	<span class="copyright">&copy; {today.getFullYear()} mark_stenquist</span>
-	<span class="separator">/</span>
-	<span class="tagline">building for the web since 2009</span>
+<footer class="site-footer" id="contact">
+	<div class="container">
+		{settings.footerHeading && <h2>{settings.footerHeading}</h2>}
+		<div class="btn-row">
+			{first && <SmartLink class="btn btn-light" href={first.href}>{first.label}</SmartLink>}
+			{
+				rest.map((link) => (
+					<SmartLink class="btn btn-outline-light" href={link.href}>
+						{link.label}
+					</SmartLink>
+				))
+			}
+		</div>
+		<div class="footer-bottom">
+			<nav aria-label="Elsewhere">
+				{
+					settings.socials?.map((link) => (
+						<SmartLink href={link.href}>{link.label}</SmartLink>
+					))
+				}
+			</nav>
+			<span>© {new Date().getFullYear()} {settings.name}</span>
+		</div>
+	</div>
 </footer>
-<style>
-	footer {
-		padding: 2rem;
-		background: var(--surface, #fdfcfa);
-		color: var(--text-muted, #b8a589);
-		text-align: center;
-		font-family: var(--font-mono, 'JetBrains Mono', monospace);
-		font-size: 0.75rem;
-		letter-spacing: 0.02em;
-		border-top: 1px solid var(--border, #e6ddd0);
-		margin-top: 2rem;
-	}
-	
-	.copyright {
-		color: var(--text-secondary, #7a6a52);
-	}
-	
-	.separator {
-		margin: 0 0.75rem;
-		color: var(--border, #e6ddd0);
-	}
-	
-	.tagline {
-		color: var(--text-muted, #b8a589);
-	}
-
-	@media (max-width: 480px) {
-		footer {
-			padding: 1.5rem 1rem;
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-		}
-		
-		.separator {
-			display: none;
-		}
-	}
-</style>

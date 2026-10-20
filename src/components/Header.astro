@@ -1,340 +1,39 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import type { SiteSettings } from '../lib/sanity';
+import SmartLink from './SmartLink.astro';
+
+interface Props {
+	settings: SiteSettings;
+	progress?: boolean;
+}
+
+const { settings, progress = false } = Astro.props;
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => href.startsWith('/') && href !== '/' && path.startsWith(href.replace(/\/$/, ''));
 ---
 
-<header class="header">
-	<nav>
-		<h2><a href="/" id="logo-link">mark_stenquist</a></h2>
-		<div class="nav-links">
-			<HeaderLink href="/engineering">Engineering</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<a href="https://gardening.markstenquist.com" target="_blank" rel="noopener noreferrer">Garden</a>
-		</div>
-		<div class="social-links">
-			<button id="theme-toggle" class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-				<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<circle cx="12" cy="12" r="5"></circle>
-					<line x1="12" y1="1" x2="12" y2="3"></line>
-					<line x1="12" y1="21" x2="12" y2="23"></line>
-					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-					<line x1="1" y1="12" x2="3" y2="12"></line>
-					<line x1="21" y1="12" x2="23" y2="12"></line>
-					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-				</svg>
-				<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-				</svg>
-			</button>
-			<a href="https://linkedin.com/in/markstenquist" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-icon">
-				<span class="sr-only">Go to Mark's LinkedIn Profile</span>
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
-					<g clip-path="url(#clip0_17_68)">
-						<path d="M44.4469 0H3.54375C1.58437 0 0 1.54688 0 3.45938V44.5312C0 46.4437 1.58437 48 3.54375 48H44.4469C46.4062 48 48 46.4438 48 44.5406V3.45938C48 1.54688 46.4062 0 44.4469 0ZM14.2406 40.9031H7.11563V17.9906H14.2406V40.9031ZM10.6781 14.8688C8.39062 14.8688 6.54375 13.0219 6.54375 10.7437C6.54375 8.46562 8.39062 6.61875 10.6781 6.61875C12.9563 6.61875 14.8031 8.46562 14.8031 10.7437C14.8031 13.0125 12.9563 14.8688 10.6781 14.8688ZM40.9031 40.9031H33.7875V29.7656C33.7875 27.1125 33.7406 23.6906 30.0844 23.6906C26.3812 23.6906 25.8187 26.5875 25.8187 29.5781V40.9031H18.7125V17.9906H25.5375V21.1219H25.6312C26.5781 19.3219 28.9031 17.4188 32.3625 17.4188C39.5719 17.4188 40.9031 22.1625 40.9031 28.3313V40.9031Z" fill="currentColor" />
-					</g>
-					<defs>
-						<clipPath id="clip0_17_68">
-							<rect width="48" height="48" fill="currentColor"/>
-						</clipPath>
-					</defs>
-				</svg>
-			</a>
-			<a href="https://github.com/mstenquist" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-icon github-link">
-				<span class="sr-only">Go to Mark's GitHub Profile</span>
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" fill="none">
-					<g clip-path="url(#clip0_910_44)">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M24.0199 0C10.7375 0 0 10.8167 0 24.1983C0 34.895 6.87988 43.9495 16.4241 47.1542C17.6174 47.3951 18.0545 46.6335 18.0545 45.9929C18.0545 45.4319 18.0151 43.509 18.0151 41.5055C11.3334 42.948 9.94198 38.6209 9.94198 38.6209C8.86818 35.8164 7.27715 35.0956 7.27715 35.0956C5.09022 33.6132 7.43645 33.6132 7.43645 33.6132C9.86233 33.7735 11.1353 36.0971 11.1353 36.0971C13.2824 39.7827 16.7422 38.7413 18.1341 38.1002C18.3328 36.5377 18.9695 35.456 19.6455 34.8552C14.3163 34.2942 8.70937 32.211 8.70937 22.9161C8.70937 20.2719 9.66321 18.1086 11.1746 16.4261C10.9361 15.8253 10.1008 13.3409 11.4135 10.0157C11.4135 10.0157 13.4417 9.3746 18.0146 12.4996C19.9725 11.9699 21.9916 11.7005 24.0199 11.6982C26.048 11.6982 28.1154 11.979 30.0246 12.4996C34.5981 9.3746 36.6262 10.0157 36.6262 10.0157C37.9389 13.3409 37.1031 15.8253 36.8646 16.4261C38.4158 18.1086 39.3303 20.2719 39.3303 22.9161C39.3303 32.211 33.7234 34.2539 28.3544 34.8552C29.2296 35.6163 29.9848 37.0583 29.9848 39.3421C29.9848 42.5871 29.9454 45.1915 29.9454 45.9924C29.9454 46.6335 30.383 47.3951 31.5758 47.1547C41.12 43.9491 47.9999 34.895 47.9999 24.1983C48.0392 10.8167 37.2624 0 24.0199 0Z" fill="currentColor"/>
-					</g>
-					<defs>
-						<clipPath id="clip0_910_44">
-							<rect width="48" height="48" fill="currentColor"/>
-						</clipPath>
-					</defs>
-				</svg>
-			</a>
-		</div>
-	</nav>
+<header class="site-header">
+	<div class="container">
+		<a class="logo" href="/">
+			{settings.logoMark && <span class="logo-mark" aria-hidden="true">{settings.logoMark}</span>}
+			{settings.name}
+		</a>
+		<nav class="nav" aria-label="Main">
+			{
+				settings.nav?.map((link) => (
+					<SmartLink href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+						{link.label}
+					</SmartLink>
+				))
+			}
+			{
+				settings.navCta && (
+					<SmartLink class="nav-cta" href={settings.navCta.href}>
+						{settings.navCta.label}
+					</SmartLink>
+				)
+			}
+		</nav>
+	</div>
+	{progress && <div class="progress" data-progress aria-hidden="true" />}
 </header>
-<style>
-	:global(:root) {
-		--site-header-offset: 86px;
-	}
-
-	header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 1000;
-		margin: 0;
-		padding: 0.85rem clamp(1rem, 3vw, 2rem);
-		background: color-mix(in srgb, var(--surface, #fdfcfa) 92%, transparent);
-		border-bottom: 1px solid color-mix(in srgb, var(--border, #e6ddd0) 78%, transparent);
-		box-shadow: 0 10px 30px rgb(61 53 43 / 0.04);
-		backdrop-filter: blur(18px);
-		-webkit-backdrop-filter: blur(18px);
-		transform: translateY(0);
-	}
-
-	header.header-hidden {
-		transform: translateY(-100%);
-	}
-
-	h2 {
-		margin: 0;
-		font-family: var(--font-mono, 'JetBrains Mono', monospace);
-		font-size: 1rem;
-		font-weight: 500;
-		color: var(--text-primary);
-		letter-spacing: 0;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-		color: inherit;
-		transition: color 0.2s ease;
-	}
-
-	h2 a:hover {
-		color: var(--accent, #b8845c);
-	}
-
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: clamp(1rem, 4vw, 2.5rem);
-		min-height: 56px;
-		max-width: 1120px;
-		margin: 0 auto;
-		width: 100%;
-	}
-
-	.nav-links {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.35rem;
-		min-width: 0;
-		padding: 0.35rem;
-		border: 1px solid var(--border-light, #f2ede5);
-		border-radius: var(--radius-md, 0.5rem);
-		background: color-mix(in srgb, var(--background, #f9f7f3) 62%, transparent);
-	}
-
-	.nav-links :global(a) {
-		font-family: var(--font-mono, 'JetBrains Mono', monospace);
-		font-size: 0.82rem;
-		font-weight: 400;
-		color: var(--text-secondary, #7a6a52);
-		text-decoration: none;
-		transition: color 0.2s ease, background 0.2s ease;
-		position: relative;
-		padding: 0.45rem 0.65rem;
-		border-radius: var(--radius-sm, 0.25rem);
-		line-height: 1;
-	}
-
-	.nav-links :global(a:hover) {
-		color: var(--text-primary, #3d352b);
-		background: var(--surface, #fdfcfa);
-	}
-
-	.nav-links :global(a.active) {
-		color: var(--accent, #b8845c);
-		font-weight: 500;
-		background: var(--surface, #fdfcfa);
-	}
-
-	.nav-links :global(a.active::after) {
-		content: none;
-	}
-
-	.social-links {
-		display: flex;
-		align-items: center;
-		gap: 0.25rem;
-		flex-shrink: 0;
-	}
-
-	.social-links a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.3rem;
-		height: 2.3rem;
-		transition: color 0.2s ease, background 0.2s ease;
-		color: var(--text-secondary, #7a6a52);
-		text-decoration: none;
-		border-radius: var(--radius-md, 0.5rem);
-	}
-
-	.social-links a:hover {
-		color: var(--accent, #b8845c);
-		background: color-mix(in srgb, var(--background, #f9f7f3) 82%, transparent);
-	}
-
-	.theme-toggle {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.3rem;
-		height: 2.3rem;
-		background: none;
-		border: none;
-		border-radius: var(--radius-md, 0.5rem);
-		cursor: pointer;
-		color: var(--text-secondary, #7a6a52);
-		transition: color 0.2s ease, background 0.2s ease;
-	}
-
-	.theme-toggle:hover {
-		color: var(--accent, #b8845c);
-		background: color-mix(in srgb, var(--background, #f9f7f3) 82%, transparent);
-	}
-
-	/* Show sun in dark mode, moon in light mode */
-	.icon-sun { display: none; }
-	.icon-moon { display: block; }
-
-	:global([data-theme="dark"]) .icon-sun { display: block; }
-	:global([data-theme="dark"]) .icon-moon { display: none; }
-
-	@media (max-width: 768px) {
-		.nav-links {
-			gap: 0.25rem;
-		}
-	}
-
-	@media (max-width: 640px) {
-		:global(:root) {
-			--site-header-offset: 122px;
-		}
-
-		header {
-			height: auto;
-			padding: 0.75rem 1rem 0.8rem;
-		}
-
-		nav {
-			display: grid;
-			grid-template-columns: 1fr auto;
-			grid-template-areas:
-				"logo social"
-				"links links";
-			row-gap: 0.65rem;
-			align-content: center;
-			min-height: auto;
-		}
-
-		h2 {
-			grid-area: logo;
-		}
-
-		.nav-links {
-			grid-area: links;
-			display: flex;
-			justify-content: flex-start;
-			gap: 0.25rem;
-			overflow-x: auto;
-			padding: 0.35rem;
-			scrollbar-width: none;
-		}
-
-		.nav-links::-webkit-scrollbar {
-			display: none;
-		}
-
-		.nav-links :global(a) {
-			font-size: 0.78rem;
-			white-space: nowrap;
-		}
-
-		.social-links {
-			grid-area: social;
-			height: auto;
-		}
-	}
-
-	@media (max-width: 480px) {
-		header {
-			padding-inline: 0.75rem;
-		}
-
-		h2 {
-			font-size: 0.875rem;
-		}
-
-		.social-links a,
-		.theme-toggle {
-			width: 2.05rem;
-			height: 2.05rem;
-		}
-	}
-
-</style>
-
-<script>
-	const header = document.querySelector('header');
-	const logoLink = document.getElementById('logo-link');
-	let lastScroll = window.scrollY;
-	let ticking = false;
-	let hasScrolled = false;
-
-	function updateHeader() {
-		const currentScroll = window.scrollY;
-
-		if (!hasScrolled) {
-			hasScrolled = true;
-			header?.style.setProperty('transition', 'transform 0.3s ease');
-		}
-
-		if (currentScroll <= 0) {
-			header?.classList.remove('header-hidden');
-		} else if (currentScroll > lastScroll) {
-			header?.classList.add('header-hidden');
-		} else {
-			header?.classList.remove('header-hidden');
-		}
-
-		lastScroll = currentScroll;
-		ticking = false;
-	}
-
-	window.addEventListener('scroll', () => {
-		if (!ticking) {
-			requestAnimationFrame(updateHeader);
-			ticking = true;
-		}
-	}, { passive: true });
-
-	logoLink?.addEventListener('click', () => {
-		header?.classList.remove('header-hidden');
-	});
-
-	// Dark mode toggle
-	const toggle = document.getElementById('theme-toggle');
-	const root = document.documentElement;
-
-	function getThemePreference(): string {
-		const stored = localStorage.getItem('theme');
-		if (stored) return stored;
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	}
-
-	function applyTheme(theme: string) {
-		root.setAttribute('data-theme', theme);
-		localStorage.setItem('theme', theme);
-	}
-
-	// Apply on load
-	applyTheme(getThemePreference());
-
-	toggle?.addEventListener('click', () => {
-		const current = root.getAttribute('data-theme') || getThemePreference();
-		applyTheme(current === 'dark' ? 'light' : 'dark');
-	});
-</script>

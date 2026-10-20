@@ -1,0 +1,14 @@
+---
+import type { Block } from 'astro-portabletext/types';
+import { blockText, slugify } from '../../lib/sanity';
+
+interface Props {
+	node: Block;
+}
+
+const { node } = Astro.props;
+const Tag = node.style as 'h2' | 'h3';
+const id = Tag === 'h2' ? slugify(blockText(node)) : undefined;
+---
+
+<Tag id={id}><slot /></Tag>
