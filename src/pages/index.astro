@@ -12,6 +12,7 @@ const photo = settings.photo?.asset ? urlFor(settings.photo).width(920).height(9
 ---
 
 <Site {settings}>
+	<div data-cursor="crosshair">
 	<section class="container hero">
 		<div class="hero-text">
 			{home.eyebrow && <p class="pill"><span class="pulse-dot" aria-hidden="true" />{home.eyebrow}</p>}
@@ -104,6 +105,8 @@ const photo = settings.photo?.asset ? urlFor(settings.photo).width(920).height(9
 		) : null
 	}
 
+	</div>
+
 	{
 		home.interests?.length ? (
 			<section class="container section">
@@ -111,7 +114,7 @@ const photo = settings.photo?.asset ? urlFor(settings.photo).width(920).height(9
 				{home.interestsHeading && <h2 class="h2">{home.interestsHeading}</h2>}
 				<div class="card-grid">
 					{home.interests.map((item, index) => (
-						<div class="svc">
+						<div class="svc" data-cursor-invert>
 							<span class="mono">{String(index + 1).padStart(2, '0')}</span>
 							<h3>{item.title}</h3>
 							{item.description && <p>{item.description}</p>}

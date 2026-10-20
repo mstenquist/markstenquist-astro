@@ -71,7 +71,7 @@ const posts = work.writingPosts?.length ? work.writingPosts : allPosts.slice(0, 
 				{work.servicesHeading && <h2 class="h2">{work.servicesHeading}</h2>}
 				<div class="card-grid">
 					{work.services.map((item, index) => (
-						<div class="svc" data-parallax={(0.02 + index * 0.02).toFixed(2)} data-parallax-max="40">
+						<div class="svc" data-cursor-invert data-parallax={(0.02 + index * 0.02).toFixed(2)} data-parallax-max="40">
 							<span class="mono">{String(index + 1).padStart(2, '0')}</span>
 							<h3>{item.title}</h3>
 							{item.description && <p>{item.description}</p>}

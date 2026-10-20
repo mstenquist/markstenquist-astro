@@ -334,15 +334,91 @@ a:hover {
 	white-space: nowrap;
 }
 
-.cursor-chip.is-label {
-	padding: 8px 14px;
-	font-size: 13px;
+.has-cursor.cursor-crosshair .cursor-x,
+.has-cursor.cursor-crosshair .cursor-y,
+.has-cursor.cursor-crosshair .cursor-chip {
+	opacity: 1;
 }
 
-.has-cursor .cursor-x,
-.has-cursor .cursor-y,
-.has-cursor .cursor-chip {
+/* Terminal caret: everywhere outside the crosshair areas */
+
+.has-custom-cursor.cursor-terminal,
+.has-custom-cursor.cursor-terminal a,
+.has-custom-cursor.cursor-terminal button {
+	cursor: none;
+}
+
+.cursor-caret,
+.cursor-pill {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.cursor-caret::before {
+	content: '';
+	display: block;
+	width: 10px;
+	height: 20px;
+	margin: -10px 0 0 -5px;
+	border-radius: 2px;
+	background: var(--blue);
+	transition: width 0.18s var(--ease), margin 0.18s var(--ease), height 0.18s var(--ease), background 0.2s ease, scale 0.2s var(--ease);
+}
+
+.cursor-caret.is-text::before {
+	width: 2px;
+	height: 24px;
+	margin: -12px 0 0 -1px;
+}
+
+.cursor-pill {
+	padding: 8px 14px;
+	margin: -17px 0 0 -10px;
+	border-radius: 999px;
+	background: var(--blue);
+	color: #fff;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	white-space: nowrap;
+	scale: 0.6;
+	transform-origin: 10px 17px;
+	transition: opacity 0.18s ease, scale 0.22s var(--ease), background 0.2s ease, color 0.2s ease;
+}
+
+.cursor-pill::before {
+	content: '▍';
+	margin-right: 6px;
+	opacity: 0.7;
+}
+
+.has-cursor.cursor-terminal .cursor-caret {
 	opacity: 1;
+}
+
+.has-cursor.cursor-terminal.cursor-on-link .cursor-caret {
+	opacity: 0;
+}
+
+.has-cursor.cursor-terminal.cursor-on-link .cursor-pill {
+	opacity: 1;
+	scale: 1;
+}
+
+.cursor-idle .cursor-caret::before {
+	animation: blink 1.1s steps(1) infinite;
+}
+
+.cursor-invert .cursor-caret::before {
+	background: #fff;
+}
+
+.cursor-invert .cursor-pill {
+	background: #fff;
+	color: var(--blue);
 }
 
 /* Sections */

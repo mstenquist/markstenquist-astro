@@ -22,7 +22,7 @@ const [latest] = posts;
 	{
 		latest && (
 			<section class="container" style="padding-bottom: 72px">
-				<a class="feature" href={`/blog/${latest.slug}/`} data-cursor-label="read post →">
+				<a class="feature" href={`/blog/${latest.slug}/`} data-cursor-label="read post →" data-cursor-invert>
 					<span class="feature-text">
 						<span class="mono">
 							latest · {formatDate(latest.publishedAt)} · {readingTime(latest.wordCount)}
@@ -30,7 +30,7 @@ const [latest] = posts;
 						<strong>{latest.title}</strong>
 						<span>{latest.description}</span>
 					</span>
-					<span class="round-go" aria-hidden="true">
+					<span class="round-go" aria-hidden="true" data-cursor-plain>
 						→
 					</span>
 				</a>
